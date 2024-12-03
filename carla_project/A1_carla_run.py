@@ -44,8 +44,6 @@ except ImportError:
 
 
 
-
-
 def main_carla():
     args = parse_arguments()
     import os
@@ -68,26 +66,6 @@ def main_carla():
         # run_simulation(args, client)
         run_simulation_Town04(args, client)
         # run_simulation_Town03(args, client)
-
-
-
-        # 在仿真运行完成后，处理生成的 PLY 文件
-        ply_lidar_path= args.save_path+ args.lidar_path # 替换为您的文件路径
-        save_dir = args.save_path+ args.lidar_merge_path   # 替换为保存文件的路径
-        # print("ply_lidar_path:\t", ply_lidar_path)
-        # print("save_dir:\t\t\t", save_dir)
-        # lidar_ply_merge(ply_lidar_path, save_dir)
-        #
-        # # 生成数据集
-        # # C1 C2 C3 C4 C5
-        # dataset_son = ["images_3", "images_5", "images_2", "images_4", "images_6", "points", "calibs", "labels","ImageSets"]
-        #
-        # dataset_generate(args,dataset_son)
-
-        # # 延迟1秒
-        # time.sleep(2)
-        # carla_dataset_inference_vis()
-
 
     except KeyboardInterrupt:
         print('\nCancelled by user. Bye!')

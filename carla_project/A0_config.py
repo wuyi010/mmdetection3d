@@ -60,7 +60,10 @@ Location_list =    [ 0, 1,   2,   3,   4,]
 camera_positions_list = ['C3', 'C4', 'C1', 'C2', 'C5']
 dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 'CAM_BACK_RIGHT', 'CAM_FRONT', "points",
                      "calibs", "labels", "ImageSets"]
-# plan1:
+
+
+"""-----------------------------------------------------   plan1  --------------------------------------------------------------"""
+
 # cam_positions_set = [
 #             {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -0.0000, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
 #             {'location': {'x': 3.45, 'y': 1.37, 'z': 1.9}, 'rotation': {'pitch': 0.0000, 'yaw': 135.0000, 'roll': 0.0000}},  # C2-R135
@@ -76,7 +79,8 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
 #     {'location': {'x': 3.8500, 'y': 0.0000, 'z': 1.8000}, 'rotation': {'pitch': 0.0000, 'yaw': 0.0000, 'roll': 0.0000}}  # L5
 # ]
 
-# # # plan2:
+"""---------------------------------------------------   plan2    -----------------------------------------------------------"""
+
 # cam_positions_set = [
 # {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -17.0, 'yaw': 43.5000, 'roll': 0.0000}},  # C1-R45
 # {'location': {'x': 3.45, 'y': 1.37, 'z': 1.95 }, 'rotation': {'pitch': -17.0, 'yaw': 136.5000, 'roll': 0.0}},  # C3-L45  前右
@@ -91,59 +95,15 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
 # {'location': {'x': 3.2, 'y':-1.44, 'z': 3.28 }, 'rotation': {'pitch': -50.00, 'yaw': -123.0, 'roll': 27.5}},
 # {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.500, 'yaw': 0.000, 'roll': 0.0000}}
 # ]
-#################
-# #
-# cam_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0}, 'rotation': {'pitch': -0.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-# {'location': {'x': 3.20, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
-# {'location': {'x': 3.85, 'y': -1.30, 'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
-# {'location': {'x': 3.20, 'y': -1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
-# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
-# ]
-# lidar_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 45.0, 'roll': 0.0000}}, #右前方
-# {'location': {'x': 3.2, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -45.000, 'yaw': 105.0, 'roll': -25.0}},# 左前方
-# {'location': {'x': 3.85, 'y':-1.30, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': -45.0, 'roll': 0.0000}},
-# {'location': {'x': 3.2, 'y':-1.30, 'z': 3.28 }, 'rotation': {'pitch': -45.00, 'yaw': -105.0, 'roll': 25.0}},
-# {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}
-# ]
-#实测2 突出10cm
-# cam_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0}, 'rotation': {'pitch': -0.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-# {'location': {'x': 3.20, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
-# {'location': {'x': 3.85, 'y': -1.30, 'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
-# {'location': {'x': 3.20, 'y': -1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
-# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
-# ]
-# lidar_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #右前方 lidar 2
-# {'location': {'x': 3.2, 'y': 1.30, 'z': 1.8 }, 'rotation': {'pitch': -45.000, 'yaw': 105.0, 'roll': -25.0}},#      lidar 3
-# {'location': {'x': 3.85, 'y':-1.30, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': -30.0, 'roll': 0.0000}},
-# {'location': {'x': 3.2, 'y':-1.30, 'z': 1.8 }, 'rotation': {'pitch': -45.00, 'yaw': -105.0, 'roll': 25.0}},
-# {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # lidar 1
-# ]
-# # 最终方案无死角覆盖
-# cam_positions_set = [
-# {'location': {'x': 3.7, 'y': 1.45, 'z': 2.0}, 'rotation': {'pitch': -16.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-# {'location': {'x': 3.7, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': -16.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
-# {'location': {'x': 3.7, 'y': -1.45, 'z': 2.0 }, 'rotation': {'pitch': -16.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
-# {'location': {'x': 3.70, 'y': -1.45, 'z': 1.9}, 'rotation': {'pitch': -16.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
-# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}},  # C5-F0H  前
-#
-# ]
-# lidar_positions_set = [
-# {'location': {'x': 3.7, 'y': 1.6, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
-# {'location': {'x': 3.55, 'y': 1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -32.0}},# e1
-# {'location': {'x': 3.65, 'y': 1.6, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
-# {'location': {'x': 3.55, 'y':-1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
-# {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
-# ]
+
+"""-------------------------------------------------------plan1    ----------------------------------------------------------"""
+
+
+
 
 #不盲雷达：260 304  328
 # {'location': {'x': 2.8, 'y': 1.6, 'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 110.0, 'roll': -20.0}},#      lidar 3
-
-
-
+"""--------------------------------------------------------------------------------------------------------------------------"""
 # #实测3 补盲移动1.6m
 # cam_positions_set = [
 # {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0}, 'rotation': {'pitch': -0.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
@@ -159,7 +119,29 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
 # {'location': {'x': 1.6, 'y':-1.30, 'z': 3.28 }, 'rotation': {'pitch': -40.00, 'yaw': -105.0, 'roll': 28.0}}, ############YOUCE
 # {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}
 # ]
-# 替换 cam_positions
+
+
+"""--------------------------------------------------   最终方案无死角覆盖    ---------------------------------------------------"""
+
+cam_positions_set = [
+{'location': {'x': 3.7, 'y': 1.45, 'z': 2.0}, 'rotation': {'pitch': -16.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
+{'location': {'x': 3.7, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': -16.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
+{'location': {'x': 3.7, 'y': -1.45, 'z': 2.0 }, 'rotation': {'pitch': -16.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
+{'location': {'x': 3.70, 'y': -1.45, 'z': 1.9}, 'rotation': {'pitch': -16.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
+{'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}},  # C5-F0H  前
+
+]
+lidar_positions_set = [
+{'location': {'x': 3.7, 'y': 1.6, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
+{'location': {'x': 3.55, 'y': 1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -32.0}},# e1
+{'location': {'x': 3.65, 'y': 1.6, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
+{'location': {'x': 3.55, 'y':-1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
+{'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
+]
+"""---------------------------------------------------------------------------------------------------------------------------"""
+
+
+
 cam_positions = [
     carla.Transform(
         carla.Location(pos['location']['x'], pos['location']['y'], pos['location']['z']),

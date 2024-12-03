@@ -5,7 +5,6 @@ import carla
 import numpy as np
 import cv2
 from matplotlib import cm
-
 from carla_project.carla_simu import DisplayManager, get_config_sensor_options, get_config_file_to_transform
 from carla_project.carla_simu.CustomTimer import CustomTimer
 from carla_project.carla_simu.SensorManager import SensorManager
@@ -140,7 +139,7 @@ def spawn_crossbike(world, blueprint_library, g_vehicle_list, vehicle_type,x, y,
     g_vehicle_list.append(crossbike)
 
 
-import carla
+
 def spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_type, x, y, z=0.400000, yaw=90.439095):
     """
     生成一辆车辆并将其添加到车辆列表中。
@@ -169,23 +168,34 @@ def spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_typ
 
 def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     blueprint_library = world.get_blueprint_library()
+
+    print("_______________________")
     # 获取所有车辆类型
     blueprints_vehicles = world.get_blueprint_library().filter('vehicle.*')
     # 获取所有行人类型
     blueprints_walkers = world.get_blueprint_library().filter('walker.pedestrian.*')
-    print("_______________________")
-    # 按字符串输出所有行人类型
-    walker_types = [walker.id for walker in blueprints_walkers]
-    for walker_type in walker_types:
-        print(walker_type)
+    # # 列出所有的车辆类型
+    # vehicle_types = blueprint_library.filter('vehicle')
+    # for vehicle in vehicle_types:
+    #     print(vehicle.id)  # 打印车辆类型
+
+    # # 按字符串输出所有行人类型
+    # walker_types = [walker.id for walker in blueprints_walkers]
+    # for walker_type in walker_types:
+    #     print(walker_type)
+
     print("_______________________")
 
-    # 获取spawn点
+    """显示可刷出车辆位置"""
     spawn_points = world.get_map().get_spawn_points()
     # for i, spawn_point in enumerate(spawn_points):    # 在地图上用数字标出刷出点的位置
     #     world.debug.draw_string(spawn_point.location, str(i), life_time=10000000)
 
-        # 定义每种车辆类型和对应的刷出点 indices
+    """获取实际刷出位置"""
+    print("前方卡车位置:317 ", spawn_points[317])
+
+    """非主场景车辆"""
+    # 定义每种车辆类型和对应的刷出点 indices
     vehicle_type_to_indices = {
         'vehicle.jeep.wrangler_rubicon':    [46],
         'vehicle.tesla.model3':             [51,314,44,366],
@@ -195,32 +205,10 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         'vehicle.volkswagen.t2':            [ 33, ],
         'vehicle.gazelle.omafiets':         [51,],
         'vehicle.bmw.grandtourer':[311],
-
-
-
     }
+    g_vehicle_list = spawn_vehicles_by_type_NPC(world, blueprint_library, spawn_points, vehicle_type_to_indices,g_vehicle_list)
 
-
-    # 调用新的函数进行车辆实例化
-    g_vehicle_list = spawn_vehicles_by_type_NPC(world, blueprint_library, spawn_points, vehicle_type_to_indices,
-                                            g_vehicle_list)
-
-    """
-
-    x2, y2 = 384.963806, -132.471375
-    Point 6: (x=384.89154,  y=-123.028181)
-    Point 5: (x=384.819275, y=-113.584988)
-    Point 4: (x=384.747009, y=-104.141794)
-    Point 3: (x=384.674744, y=-94.6986   )
-    Point 2: (x=384.602478, y=-85.255406 )
-    Point 1: (x=384.530213, y=-75.812213 )
-    x1, y1 = 384.457947, -66.369019
-    """
-
-    vehicle_type_bwm = 'vehicle.bmw.grandtourer'
-    tsl = 'vehicle.tesla.model3'
-    # vehicle_type_tsl = 'vehicle.jeep.wrangler_rubicon'
-    # vehicle_type_tsl = 'vehicle.kawasaki.ninja'
+    """车辆刷新场景分布"""
     vehicle_positions = [
         # # (381.481506, -154.471375,  90),
         # (vehicle_type_bwm, 381.481506, -144.471375, 90),
@@ -253,83 +241,60 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         # (tsl,386.481506, -130.444522, 90),  #盲区夹角
         # (tsl,384.481506, -130.471375, 0),  #盲区夹角
         # (tsl,378.481506, -128.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0013", 386.870,   -130.610,  90),  # 盲区夹角
-        ("walker.pedestrian.0001", 385.760,   -132.710, 90),  # 盲区夹角
-        ("walker.pedestrian.0001", 386.450,   -134.735, 90),  # 盲区夹角
-        ("walker.pedestrian.0001", 386.450,   -136.735, 90),  # 盲区夹角
-        ("walker.pedestrian.0001", 386.750,    -138.735, 90),  # 盲区夹角
-        (tsl,                      383.481506, -135.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 381.481506, -122.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 381.481506, -123.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 381.481506, -124.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 381.081506, -125.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 380.481506, -126.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 379.481506, -127.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 378.481506, -128.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 380.481506, -129.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0006", 380.481506, -130.471375, 90),  #盲区夹角
-
-
-
+        ("walker.pedestrian.0013", 386.870,   -130.610,  90),     # 盲区
+        ("walker.pedestrian.0001", 385.760,   -132.710, 90),      # 盲区
+        ("walker.pedestrian.0001", 386.450,   -134.735, 90),      # 盲区
+        ("walker.pedestrian.0001", 386.450,   -136.735, 90),      # 盲区
+        ("walker.pedestrian.0001", 386.750,    -138.735, 90),     # 盲区
+        ('vehicle.tesla.model3',   383.481506, -135.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 381.481506, -122.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 381.481506, -123.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 381.481506, -124.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 381.081506, -125.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 380.481506, -126.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 379.481506, -127.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 378.481506, -128.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 380.481506, -129.471375, 90),  #盲区
+        ("walker.pedestrian.0006", 380.481506, -130.471375, 90),  #盲区
     ]
-
-    """
-    walker.pedestrian.0013
-    walker.pedestrian.0027
-    walker.pedestrian.0008
-    walker.pedestrian.0006
-    walker.pedestrian.0035
-    walker.pedestrian.0001
-    """
-    # # # 生成车辆并将其加入列表
-    # for pos in vehicle_positions_bwm:
-    #     spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_type_bwm, x=pos[0], y=pos[1],z=0.4000,yaw=pos[2])
     for pos in vehicle_positions:
         spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, pos[0], x=pos[1], y=pos[2],z=0.281942,yaw=pos[3])
 
-    print("前方卡车位置:317 ", spawn_points[317])
-
-    #
-    # # 自行车
+    """ego左侧自行车布置"""
     # # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",x=390.681506, y=-136.417725)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",x=390.681506, y=-133.417725)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",x=390.681506, y=-130.417725)
-    #
+
+    """ego右侧摩托车布置"""
     # # spawn_crossbike(world, blueprint_library, g_vehicle_list,"vehicle.kawasaki.ninja", x=386.281506, y=-136.417725)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", x=386.281506, y=-133.417725)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", x=386.281506, y=-130.417725)
 
-    #
-    # # 前方车辆阻挡视线car_A
+    """ego前方卡车布置"""
     # car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
-    # car_A_transform = carla.Transform(carla.Location(x=388.481506, y=-119.445007, z=0.281942),
-    #                                   carla.Rotation(pitch=0.000000, yaw=90.439095, roll=0.000000))
+    # car_A_transform = carla.Transform(carla.Location(x=388.481506, y=-119.445007, z=0.281942),carla.Rotation(pitch=0.000000, yaw=90.439095, roll=0.000000))
     # vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
     # g_vehicle_list.append(vehicle_car_A)
 
-
-
-
-
-
-
+    """ego布置"""
     vehicle_bp_hgv = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
     # vehicle_hgv = world.spawn_actor(vehicle_bp_hgv, spawn_points[28])
     car_C_transform = carla.Transform(carla.Location(x=388.482, y=-134.745, z=0.281942),
                                       carla.Rotation(pitch=0.000000, yaw=90.439095, roll=0.000000))
     vehicle_hgv = world.spawn_actor(vehicle_bp_hgv, car_C_transform)
-    print("vehicle_hgv position: ",spawn_points[28])
-    # 获取车辆的碰撞盒（bounding box）
+    print("ego vehicle_hgv position: ",spawn_points[28])
+
+
+    """ego车辆size获取"""#获取车辆的碰撞盒（bounding box）
     bounding_box = vehicle_hgv.bounding_box
     extent = bounding_box.extent
     # 打印车辆的尺寸信息
     length = 2 * extent.x  # 长度
     width = 2 * extent.y  # 宽度
     height = 2 * extent.z  # 高度
-
     print(f"Vehicle dimensions (meters): Length={length:.2f}, Width={width:.2f}, Height={height:.2f}")
 
-
+    """ego车辆自动驾驶设置"""
     g_vehicle_list.append(vehicle_hgv)
     # vehicle_hgv.set_autopilot(True, TM.get_port())
     vehicle_hgv.set_autopilot(False, TM.get_port())
@@ -339,7 +304,7 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     TM.set_path(vehicle_hgv, route_1)
     # vehicle_hgv.set_autopilot(False,TM.get_port())
 
-    # 添加传感器并进行配置
+    """ego车辆传感器配置"""
     cam_name = [1, 2, 3, 4, 5, 6]
     lidar_name = [1, 2, 3, 4, 5]
     display_rgb_pos = {0: [0, 3], 1: [0, 4], 2: [0, 1], 3: [0, 0], 4: [0, 2]}
@@ -383,14 +348,6 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
 
     # for i, vehicle in enumerate(g_vehicle_list):
     #     vehicle.set_autopilot(True, TM.get_port())
-
-    # # 列出所有的车辆类型
-    # vehicle_types = blueprint_library.filter('vehicle')
-    # for vehicle in vehicle_types:
-    #     print(vehicle.id)  # 打印车辆类型
-
-
-
 
 
 
