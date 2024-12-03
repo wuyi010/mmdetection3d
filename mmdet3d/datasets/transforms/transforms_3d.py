@@ -2280,7 +2280,7 @@ class MultiViewWrapper(BaseTransform):
     Args:
         transforms (list[dict]): A list of dict specifying the transformations
             for the monocular situation.
-        override_aug_config (bool): flag of whether to use the same aug config
+        override_aug_config (bool): flag of whether to use the same aug Sensor_cfg
             for multiview image. Defaults to True.
         process_fields (list): Desired keys that the transformations should
             be conducted on. Defaults to ['img', 'cam2img', 'lidar2cam'].
@@ -2398,7 +2398,7 @@ class PolarMix(BaseTransform):
         swap_ratio (float): Swap ratio of two point cloud. Defaults to 0.5.
         rotate_paste_ratio (float): Rotate paste ratio. Defaults to 1.0.
         pre_transform (Sequence[dict], optional): Sequence of transform object
-            or config dict to be composed. Defaults to None.
+            or Sensor_cfg dict to be composed. Defaults to None.
         prob (float): The transformation probability. Defaults to 1.0.
     """
 
@@ -2562,7 +2562,7 @@ class LaserMix(BaseTransform):
         num_areas (List[int]): A list of area numbers will be divided into.
         pitch_angles (Sequence[float]): Pitch angles used to divide areas.
         pre_transform (Sequence[dict], optional): Sequence of transform object
-            or config dict to be composed. Defaults to None.
+            or Sensor_cfg dict to be composed. Defaults to None.
         prob (float): The transformation probability. Defaults to 1.0.
     """
 

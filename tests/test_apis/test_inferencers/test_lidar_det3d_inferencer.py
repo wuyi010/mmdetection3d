@@ -92,7 +92,7 @@ class TestLidarDet3DInferencer(TestCase):
             self.inferencer(inputs, out_dir=tmp_dir)
             # TODO: For LiDAR-based detection, the saved image only exists when
             # show=True.
-            # self.assertTrue(osp.exists(osp.join(tmp_dir, '000000.png')))
+            # self.assertTrue(osp.exists(osp.join(tmp_dir, '000008.png')))
 
     def test_postprocess(self):
         if not torch.cuda.is_available():

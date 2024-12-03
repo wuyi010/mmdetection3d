@@ -1,0 +1,4 @@
+原权重：
+mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class-8963258a.pth
+修改为：
+mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class-8963258b.pth

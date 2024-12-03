@@ -154,7 +154,7 @@ def create_groundtruth_database(dataset_class_name,
                 use_camera=with_mask,
             ),
             data_prefix=dict(
-                pts='training/velodyne_reduced', img='training/image_2'),
+                pts='training/velodyne_reduced_L5', img='training/image_2'),
             pipeline=[
                 dict(
                     type='LoadPointsFromFile',
@@ -516,7 +516,7 @@ class GTDatabaseCreater:
             dataset_cfg.update(
                 test_mode=False,
                 data_prefix=dict(
-                    pts='training/velodyne_reduced', img='training/image_2'),
+                    pts='training/velodyne_reduced_L5', img='training/image_2'),
                 modality=dict(
                     use_lidar=True,
                     use_depth=False,

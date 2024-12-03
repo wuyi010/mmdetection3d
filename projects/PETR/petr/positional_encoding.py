@@ -34,7 +34,7 @@ class SinePositionalEncoding3D(BaseModule):
             numerical stability. Defaults to 1e-6.
         offset (float): offset add to embed when do the normalization.
             Defaults to 0.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
             Default: None
     """
 
@@ -125,7 +125,7 @@ class LearnedPositionalEncoding3D(BaseModule):
             Default 50.
         col_num_embed (int, optional): The dictionary size of col embeddings.
             Default 50.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
     """
 
     def __init__(self,

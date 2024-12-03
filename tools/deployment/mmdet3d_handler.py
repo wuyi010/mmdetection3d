@@ -39,7 +39,7 @@ class MMdet3dHandler(BaseHandler):
         model_dir = properties.get('model_dir')
         serialized_file = self.manifest['model']['serializedFile']
         checkpoint = os.path.join(model_dir, serialized_file)
-        self.config_file = os.path.join(model_dir, 'config.py')
+        self.config_file = os.path.join(model_dir, 'Sensor_cfg.py')
         self.model = init_model(self.config_file, checkpoint, self.device)
         self.initialized = True
 

@@ -31,12 +31,12 @@ class LidarDet3DInferencer(Base3DInferencer):
     """The inferencer of LiDAR-based detection.
 
     Args:
-        model (str, optional): Path to the config file or the model name
+        model (str, optional): Path to the Sensor_cfg file or the model name
             defined in metafile. For example, it could be
             "pointpillars_kitti-3class" or
             "configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-3class.py". # noqa: E501
             If model is not specified, user must provide the
-            `weights` saved by MMEngine which contains the config string.
+            `weights` saved by MMEngine which contains the Sensor_cfg string.
             Defaults to None.
         weights (str, optional): Path to the checkpoint. If it is not specified
             and model is a model name of metafile, the weights will be loaded
@@ -45,7 +45,7 @@ class LidarDet3DInferencer(Base3DInferencer):
             device will be automatically used. Defaults to None.
         scope (str): The scope of the model. Defaults to 'mmdet3d'.
         palette (str): Color palette used for visualization. The order of
-            priority is palette -> config -> checkpoint. Defaults to 'none'.
+            priority is palette -> Sensor_cfg -> checkpoint. Defaults to 'none'.
     """
 
     def __init__(self,
@@ -159,7 +159,7 @@ class LidarDet3DInferencer(Base3DInferencer):
 
         if getattr(self, 'visualizer') is None:
             raise ValueError('Visualization needs the "visualizer" term'
-                             'defined in the config, but got None.')
+                             'defined in the Sensor_cfg, but got None.')
 
         results = []
 

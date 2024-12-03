@@ -24,11 +24,11 @@ class PVRCNNRoiHead(Base3DRoIHead):
         bbox_roi_extractor (dict, optional): Config of roi_extractor.
             Defaults to None.
         bbox_head (dict, optional): Config of bbox_head. Defaults to None.
-        train_cfg (dict, optional): Train config of model.
+        train_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        test_cfg (dict, optional): Train config of model.
+        test_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
     """
 

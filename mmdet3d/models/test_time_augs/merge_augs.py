@@ -21,7 +21,7 @@ def merge_aug_bboxes_3d(aug_results: List[dict],
             - scores_3d (Tensor): Detection scores.
             - labels_3d (Tensor): Predicted box labels.
         aug_batch_input_metas (List[dict]): Meta information of each sample.
-        test_cfg (dict or :obj:`ConfigDict`): Test config.
+        test_cfg (dict or :obj:`ConfigDict`): Test Sensor_cfg.
 
     Returns:
         dict: Bounding boxes results in cpu mode, containing merged results.

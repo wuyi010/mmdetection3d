@@ -10,7 +10,7 @@ def test_multi_backbone():
     if not torch.cuda.is_available():
         pytest.skip()
 
-    # test list config
+    # test list Sensor_cfg
     cfg_list = dict(
         type='MultiBackbone',
         num_streams=4,
@@ -72,7 +72,7 @@ def test_multi_backbone():
     assert ret_dict['fp_xyz_net0'][-1].shape == torch.Size([1, 128, 3])
     assert ret_dict['fp_features_net0'][-1].shape == torch.Size([1, 256, 128])
 
-    # test dict config
+    # test dict Sensor_cfg
     cfg_dict = dict(
         type='MultiBackbone',
         num_streams=2,

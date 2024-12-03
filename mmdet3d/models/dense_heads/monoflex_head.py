@@ -80,9 +80,9 @@ class MonoFlexHead(AnchorFreeMono3DHead):
             In MonoFlex, Default: None.
         bbox_coder (dict, optional): Bbox coder for encoding and decoding boxes.
             Default: dict(type='MonoFlexCoder', code_size=7).
-        norm_cfg (dict, optional): Dictionary to construct and config norm layer.
+        norm_cfg (dict, optional): Dictionary to construct and Sensor_cfg norm layer.
             Default: norm_cfg=dict(type='GN', num_groups=32, requires_grad=True).
-        init_cfg (dict): Initialization config dict. Default: None.
+        init_cfg (dict): Initialization Sensor_cfg dict. Default: None.
     """  # noqa: E501
 
     def __init__(self,

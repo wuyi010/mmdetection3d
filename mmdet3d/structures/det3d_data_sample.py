@@ -72,12 +72,12 @@ class Det3DDataSample(DetDataSample):
         >>> print(data_sample)
         <Det3DDataSample(
             META INFORMATION
-            DATA FIELDS
+            DATA_result FIELDS
             gt_instances_3d: <InstanceData(
                     META INFORMATION
                     img_shape: (800, 1196, 3)
                     pad_shape: (800, 1216, 3)
-                    DATA FIELDS
+                    DATA_result FIELDS
                     labels_3d: tensor([1, 0, 2, 0, 1])
                     bboxes_3d: BaseInstance3DBoxes(
                             tensor([[1.9115e-01, 3.6061e-01, 6.7707e-01, 5.2902e-01, 8.0736e-01, 8.2759e-01,
@@ -124,10 +124,10 @@ class Det3DDataSample(DetDataSample):
         >>> print(data_sample)
         <Det3DDataSample(
             META INFORMATION
-            DATA FIELDS
+            DATA_result FIELDS
             gt_pts_seg: <PointData(
                     META INFORMATION
-                    DATA FIELDS
+                    DATA_result FIELDS
                     pts_semantic_mask: tensor([0.7199, 0.4006])
                     pts_instance_mask: tensor([0.7363, 0.8096])
                 ) at 0x7f7e2962cc40>

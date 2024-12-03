@@ -52,13 +52,13 @@ class TransFusionHead(nn.Module):
         in_channels=128 * 3,
         hidden_channel=128,
         num_classes=4,
-        # config for Transformer
+        # Sensor_cfg for Transformer
         num_decoder_layers=3,
         decoder_layer=dict(),
         num_heads=8,
         nms_kernel_size=1,
         bn_momentum=0.1,
-        # config for FFN
+        # Sensor_cfg for FFN
         common_heads=dict(),
         num_heatmap_convs=2,
         conv_cfg=dict(type='Conv1d'),

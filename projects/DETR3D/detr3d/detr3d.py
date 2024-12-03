@@ -16,7 +16,7 @@ class DETR3D(MVXTwoStageDetector):
 
     Args:
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`Det3DDataPreprocessor`. Defaults to None.
+            Sensor_cfg of :class:`Det3DDataPreprocessor`. Defaults to None.
         use_grid_mask (bool) : Data augmentation. Whether to mask out some
             grids during extract_img_feat. Defaults to False.
         img_backbone (dict, optional): Backbone of extracting
@@ -25,11 +25,11 @@ class DETR3D(MVXTwoStageDetector):
             image features. Defaults to None.
         pts_bbox_head (dict, optional): Bboxes head of
             detr3d. Defaults to None.
-        train_cfg (dict, optional): Train config of model.
+        train_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        test_cfg (dict, optional): Train config of model.
+        test_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
     """
 

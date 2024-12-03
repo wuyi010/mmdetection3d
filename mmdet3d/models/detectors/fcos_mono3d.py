@@ -17,18 +17,18 @@ class FCOSMono3D(SingleStageMono3DDetector):
     `leaderboard <https://www.nuscenes.org/object-detection?externalData=all&mapData=all&modalities=Camera>`_.
 
     Args:
-        backbone (:obj:`ConfigDict` or dict): The backbone config.
-        neck (:obj:`ConfigDict` or dict): The neck config.
-        bbox_head (:obj:`ConfigDict` or dict): The bbox head config.
-        train_cfg (:obj:`ConfigDict` or dict, optional): The training config
+        backbone (:obj:`ConfigDict` or dict): The backbone Sensor_cfg.
+        neck (:obj:`ConfigDict` or dict): The neck Sensor_cfg.
+        bbox_head (:obj:`ConfigDict` or dict): The bbox head Sensor_cfg.
+        train_cfg (:obj:`ConfigDict` or dict, optional): The training Sensor_cfg
             of FCOS. Defaults to None.
-        test_cfg (:obj:`ConfigDict` or dict, optional): The testing config
+        test_cfg (:obj:`ConfigDict` or dict, optional): The testing Sensor_cfg
             of FCOS. Defaults to None.
         data_preprocessor (:obj:`ConfigDict` or dict, optional): Config of
             :class:`DetDataPreprocessor` to process the input data.
             Defaults to None.
         init_cfg (:obj:`ConfigDict` or list[:obj:`ConfigDict`] or dict or
-            list[dict], optional): Initialization config dict.
+            list[dict], optional): Initialization Sensor_cfg dict.
             Defaults to None.
     """  # noqa: E501
 

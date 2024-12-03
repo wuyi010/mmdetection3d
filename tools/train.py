@@ -14,7 +14,7 @@ from mmdet3d.utils import replace_ceph_backend
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a 3D detector')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('Sensor_cfg', help='train Sensor_cfg file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
@@ -45,8 +45,8 @@ def parse_args():
         '--cfg-options',
         nargs='+',
         action=DictAction,
-        help='override some settings in the used config, the key-value pair '
-        'in xxx=yyy format will be merged into config file. If the value to '
+        help='override some settings in the used Sensor_cfg, the key-value pair '
+        'in xxx=yyy format will be merged into Sensor_cfg file. If the value to '
         'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
         'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
         'Note that the quotation marks are necessary and that no white space '
@@ -69,7 +69,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    # load config
+    # load Sensor_cfg
     cfg = Config.fromfile(args.config)
 
     # TODO: We will unify the ceph support approach with other OpenMMLab repos
@@ -85,7 +85,7 @@ def main():
         # update configs according to CLI args if args.work_dir is not None
         cfg.work_dir = args.work_dir
     elif cfg.get('work_dir', None) is None:
-        # use config filename as default work_dir if cfg.work_dir is None
+        # use Sensor_cfg filename as default work_dir if cfg.work_dir is None
         cfg.work_dir = osp.join('./work_dirs',
                                 osp.splitext(osp.basename(args.config))[0])
 
@@ -94,7 +94,7 @@ def main():
         optim_wrapper = cfg.optim_wrapper.type
         if optim_wrapper == 'AmpOptimWrapper':
             print_log(
-                'AMP training is already enabled in your config.',
+                'AMP training is already enabled in your Sensor_cfg.',
                 logger='current',
                 level=logging.WARNING)
         else:
@@ -128,7 +128,7 @@ def main():
         cfg.resume = True
         cfg.load_from = args.resume
 
-    # build the runner from config
+    # build the runner from Sensor_cfg
     if 'runner_type' not in cfg:
         # build the default runner
         runner = Runner.from_cfg(cfg)

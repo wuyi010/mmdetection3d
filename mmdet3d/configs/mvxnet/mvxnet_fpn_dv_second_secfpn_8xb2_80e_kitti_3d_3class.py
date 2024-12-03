@@ -253,7 +253,7 @@ train_dataloader = dict(
             modality=modality,
             ann_file='kitti_infos_train.pkl',
             data_prefix=dict(
-                pts='training/velodyne_reduced', img='training/image_2'),
+                pts='training/velodyne_reduced_L5', img='training/image_2'),
             pipeline=train_pipeline,
             filter_empty_gt=False,
             metainfo=metainfo,
@@ -272,7 +272,7 @@ val_dataloader = dict(
         modality=modality,
         ann_file='kitti_infos_val.pkl',
         data_prefix=dict(
-            pts='training/velodyne_reduced', img='training/image_2'),
+            pts='training/velodyne_reduced_L5', img='training/image_2'),
         pipeline=test_pipeline,
         metainfo=metainfo,
         test_mode=True,
@@ -288,7 +288,7 @@ test_dataloader = dict(
         ann_file='kitti_infos_val.pkl',
         modality=modality,
         data_prefix=dict(
-            pts='training/velodyne_reduced', img='training/image_2'),
+            pts='training/velodyne_reduced_L5', img='training/image_2'),
         pipeline=test_pipeline,
         metainfo=metainfo,
         test_mode=True,

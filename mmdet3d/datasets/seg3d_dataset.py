@@ -99,7 +99,7 @@ class Seg3DDataset(BaseDataset):
 
         # generate palette if it is not defined based on
         # label mapping, otherwise directly use palette
-        # defined in dataset config.
+        # defined in dataset Sensor_cfg.
         palette = metainfo.get('palette', None)
         updated_palette = self._update_palette(new_classes, palette)
 

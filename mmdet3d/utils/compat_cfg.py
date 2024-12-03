@@ -7,7 +7,7 @@ from mmengine import ConfigDict
 
 def compat_cfg(cfg):
     """This function would modify some filed to keep the compatibility of
-    config.
+    Sensor_cfg.
 
     For example, it will move some args which will be deprecated to the correct
     fields.
@@ -26,8 +26,8 @@ def compat_runner_args(cfg):
             'max_epochs': cfg.total_epochs
         })
         warnings.warn(
-            'config is now expected to have a `runner` section, '
-            'please set `runner` in your config.', UserWarning)
+            'Sensor_cfg is now expected to have a `runner` section, '
+            'please set `runner` in your Sensor_cfg.', UserWarning)
     else:
         if 'total_epochs' in cfg:
             assert cfg.total_epochs == cfg.runner.max_epochs

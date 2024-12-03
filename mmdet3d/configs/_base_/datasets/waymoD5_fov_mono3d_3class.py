@@ -10,7 +10,7 @@ from mmdet3d.datasets.waymo_dataset import WaymoDataset
 from mmdet3d.evaluation.metrics.waymo_metric import WaymoMetric
 
 # dataset settings
-# D3 in the config name means the whole dataset is divided into 3 folds
+# D3 in the Sensor_cfg name means the whole dataset is divided into 3 folds
 # We only use one fold for efficient experiments
 dataset_type = 'WaymoDataset'
 data_root = 'data/waymo/kitti_format/'

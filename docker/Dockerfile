@@ -19,7 +19,7 @@ RUN rm /etc/apt/sources.list.d/cuda.list \
 
 # (Optional, use Mirror to speed up downloads)
 # RUN sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/mirrors.aliyun.com\/ubuntu\//g' /etc/apt/sources.list && \
-#    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+#    pip Sensor_cfg set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 # Install the required packages
 RUN apt-get update \

@@ -313,8 +313,8 @@ class PartAggregationROIHead(Base3DRoIHead):
         seg_roi_extractor (ConfigDict): Config of seg_roi_extractor.
         bbox_roi_extractor (ConfigDict): Config of part_roi_extractor.
         bbox_head (ConfigDict): Config of bbox_head.
-        train_cfg (ConfigDict): Training config.
-        test_cfg (ConfigDict): Testing config.
+        train_cfg (ConfigDict): Training Sensor_cfg.
+        test_cfg (ConfigDict): Testing Sensor_cfg.
     """
 
     def __init__(self,
@@ -414,7 +414,7 @@ class PartAggregationROIHead(Base3DRoIHead):
                 Defaults to None.
             rpn_results_list (List[:obj:`InstanceData`]): Detection results
                 of rpn head.
-            test_cfg (Config): Test config.
+            test_cfg (Config): Test Sensor_cfg.
 
         Returns:
             list[:obj:`InstanceData`]: Detection results of each sample

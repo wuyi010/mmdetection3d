@@ -189,7 +189,7 @@ An example to test PointPillars on KITTI with 8 GPUs and generate a submission t
       dataset=dict(
           ann_file='kitti_infos_test.pkl',
           load_eval_anns=False,
-          data_prefix=dict(pts='testing/velodyne_reduced')))
+          data_prefix=dict(pts='testing/velodyne_reduced_L5')))
   test_evaluator = dict(
       ann_file=data_root + 'kitti_infos_test.pkl',
       format_only=True,

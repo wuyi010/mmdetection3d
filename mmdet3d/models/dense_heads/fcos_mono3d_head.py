@@ -47,12 +47,12 @@ class FCOSMono3DHead(AnchorFreeMono3DHead):
         loss_dir (:obj:`ConfigDict` or dict): Config of direction classification loss.
         loss_attr (:obj:`ConfigDict` or dict): Config of attribute classification loss.
         loss_centerness (:obj:`ConfigDict` or dict): Config of centerness loss.
-        norm_cfg (:obj:`ConfigDict` or dict): dictionary to construct and config norm layer.
+        norm_cfg (:obj:`ConfigDict` or dict): dictionary to construct and Sensor_cfg norm layer.
             Default: norm_cfg=dict(type='GN', num_groups=32, requires_grad=True).
         centerness_branch (tuple[int]): Channels for centerness branch.
             Default: (64, ).
         init_cfg (:obj:`ConfigDict` or dict or list[:obj:`ConfigDict` or \
-            dict]): Initialization config dict.
+            dict]): Initialization Sensor_cfg dict.
     """  # noqa: E501
 
     def __init__(self,

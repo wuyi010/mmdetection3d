@@ -102,7 +102,7 @@ class RangeImageHead(Base3DDecodeHead):
             batch_input_metas (List[:obj:`Det3DDataSample`]): The det3d data
                 samples. It usually includes information such as `metainfo` and
                 `gt_pts_seg`. We use `point2voxel_map` in this function.
-            test_cfg (dict or :obj:`ConfigDict`): The testing config.
+            test_cfg (dict or :obj:`ConfigDict`): The testing Sensor_cfg.
 
         Returns:
             List[Tensor]: List of point-wise segmentation labels.

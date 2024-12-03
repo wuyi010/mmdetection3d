@@ -1,0 +1,10 @@
+{
+    "channels": "128",
+    "horizontal_fov": "120",
+    "upper_fov": "12.7",
+    "lower_fov": "-12.7",
+    "range": "100.0",
+    "rotation_frequency": "20.0",
+    "points_per_second": "500000",
+    "sensor_tick": "1"
+}

@@ -279,6 +279,7 @@ class BEVFusion(Base3DDetector):
             x = features[0]
 
         x = self.pts_backbone(x)
+
         x = self.pts_neck(x)
 
         return x

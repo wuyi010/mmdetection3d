@@ -122,7 +122,7 @@ mim install "mmdet3d>=1.1.0rc0"
 **步骤 1.** 我们需要下载配置文件和模型权重文件。
 
 ```shell
-mim download mmdet3d --config pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car --dest .
+mim download mmdet3d --Sensor_cfg pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car --dest .
 ```
 
 下载将需要几秒钟或更长时间，这取决于您的网络环境。完成后，您会在当前文件夹中发现两个文件 `pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car.py` 和 `hv_pointpillars_secfpn_6x8_160e_kitti-3d-car_20220331_134606-d42d15ed.pth`。

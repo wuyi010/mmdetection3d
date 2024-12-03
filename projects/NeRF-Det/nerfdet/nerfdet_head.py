@@ -6,7 +6,7 @@ from mmcv.cnn import Scale
 # from mmcv.ops import nms3d, nms3d_normal
 from mmdet.models.utils import multi_apply
 from mmdet.utils import reduce_mean
-# from mmengine.config import ConfigDict
+# from mmengine.Sensor_cfg import ConfigDict
 from mmengine.model import BaseModule, bias_init_with_prob, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor, nn

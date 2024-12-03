@@ -24,10 +24,10 @@ class H3DNet(TwoStage3DDetector):
             Defaults to None.
         test_cfg (dict, optional): Config dict of test hyper-parameters.
             Defaults to None.
-        init_cfg (dict, optional): the config to control the
+        init_cfg (dict, optional): the Sensor_cfg to control the
            initialization. Default to None.
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`BaseDataPreprocessor`.  it usually includes,
+            Sensor_cfg of :class:`BaseDataPreprocessor`.  it usually includes,
             ``pad_size_divisor``, ``pad_value``, ``mean`` and ``std``.
     """
 

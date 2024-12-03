@@ -17,12 +17,12 @@ class ImVoxelNet(Base3DDetector):
     r"""`ImVoxelNet <https://arxiv.org/abs/2106.01178>`_.
 
     Args:
-        backbone (:obj:`ConfigDict` or dict): The backbone config.
-        neck (:obj:`ConfigDict` or dict): The neck config.
-        neck_3d (:obj:`ConfigDict` or dict): The 3D neck config.
-        bbox_head (:obj:`ConfigDict` or dict): The bbox head config.
+        backbone (:obj:`ConfigDict` or dict): The backbone Sensor_cfg.
+        neck (:obj:`ConfigDict` or dict): The neck Sensor_cfg.
+        neck_3d (:obj:`ConfigDict` or dict): The 3D neck Sensor_cfg.
+        bbox_head (:obj:`ConfigDict` or dict): The bbox head Sensor_cfg.
         prior_generator (:obj:`ConfigDict` or dict): The prior points
-            generator config.
+            generator Sensor_cfg.
         n_voxels (list): Number of voxels along x, y, z axis.
         coord_type (str): The type of coordinates of points cloud:
             'DEPTH', 'LIDAR', or 'CAMERA'.
@@ -31,10 +31,10 @@ class ImVoxelNet(Base3DDetector):
         test_cfg (:obj:`ConfigDict` or dict, optional): Config dict of test
             hyper-parameters. Defaults to None.
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`BaseDataPreprocessor`.  it usually includes,
+            Sensor_cfg of :class:`BaseDataPreprocessor`.  it usually includes,
                 ``pad_size_divisor``, ``pad_value``, ``mean`` and ``std``.
         init_cfg (:obj:`ConfigDict` or dict, optional): The initialization
-            config. Defaults to None.
+            Sensor_cfg. Defaults to None.
     """
 
     def __init__(self,

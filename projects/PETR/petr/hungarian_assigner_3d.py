@@ -39,7 +39,7 @@ class HungarianAssigner3D(BaseAssigner):
             L1 cost. Default 1.0.
         iou_weight (int | float, optional): The scale factor for regression
             iou cost. Default 1.0.
-        iou_calculator (dict | optional): The config for the iou calculation.
+        iou_calculator (dict | optional): The Sensor_cfg for the iou calculation.
             Default type `BboxOverlaps2D`.
         iou_mode (str | optional): "iou" (intersection over union), "iof"
                 (intersection over foreground), or "giou" (generalized

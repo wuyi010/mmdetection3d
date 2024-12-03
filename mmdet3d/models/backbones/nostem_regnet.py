@@ -33,7 +33,7 @@ class NoStemRegNet(RegNet):
             the first 1x1 conv layer.
         frozen_stages (int): Stages to be frozen (all param fixed). -1 means
             not freezing any parameters.
-        norm_cfg (dict): Dictionary to construct and config norm layer.
+        norm_cfg (dict): Dictionary to construct and Sensor_cfg norm layer.
         norm_eval (bool): Whether to set norm layers to eval mode, namely,
             freeze running stats (mean and var). Note: Effect on Batch Norm
             and its variants only.

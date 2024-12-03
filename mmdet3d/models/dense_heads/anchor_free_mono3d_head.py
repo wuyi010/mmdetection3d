@@ -78,12 +78,12 @@ class AnchorFreeMono3DHead(BaseMono3DDenseHead):
             convolution layer. Default: None.
         norm_cfg (:obj:`ConfigDict` or dict, Optional): Config dict for
             normalization layer. Default: None.
-        train_cfg (:obj:`ConfigDict` or dict, Optional): Training config
+        train_cfg (:obj:`ConfigDict` or dict, Optional): Training Sensor_cfg
             of anchor head.
-        test_cfg (:obj:`ConfigDict` or dict, Optional): Testing config of
+        test_cfg (:obj:`ConfigDict` or dict, Optional): Testing Sensor_cfg of
             anchor head.
         init_cfg (:obj:`ConfigDict` or dict or list[:obj:`ConfigDict` or \
-            dict]): Initialization config dict.
+            dict]): Initialization Sensor_cfg dict.
     """  # noqa: W605
 
     _version = 1

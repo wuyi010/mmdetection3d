@@ -404,7 +404,7 @@ class Asymm3DSpconv(BaseModule):
             height pooling.
         norm_cfg (:obj:`ConfigDict` or dict): Config dict for normalization
             layer. Defaults to dict(type='BN1d', eps=1e-3, momentum=0.01)).
-        init_cfg (dict, optional): Initialization config.
+        init_cfg (dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 

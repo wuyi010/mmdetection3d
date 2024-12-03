@@ -15,7 +15,7 @@ except ImportError:
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('Sensor_cfg', help='train Sensor_cfg file path')
     parser.add_argument(
         '--shape',
         type=int,
@@ -32,8 +32,8 @@ def parse_args():
         '--cfg-options',
         nargs='+',
         action=DictAction,
-        help='override some settings in the used config, the key-value pair '
-        'in xxx=yyy format will be merged into config file. If the value to '
+        help='override some settings in the used Sensor_cfg, the key-value pair '
+        'in xxx=yyy format will be merged into Sensor_cfg file. If the value to '
         'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
         'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
         'Note that the quotation marks are necessary and that no white space '

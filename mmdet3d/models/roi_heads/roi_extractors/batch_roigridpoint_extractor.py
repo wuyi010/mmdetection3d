@@ -15,7 +15,7 @@ class Batch3DRoIGridExtractor(BaseModule):
             Defaults to 6.
         roi_layer (dict, optional): Config of sa module to get
             grid points features. Defaults to None.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
     """
 

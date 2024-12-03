@@ -14,7 +14,7 @@ from mmdet3d.utils import replace_ceph_backend
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet3D test (and eval) a model')
-    parser.add_argument('config', help='test config file path')
+    parser.add_argument('Sensor_cfg', help='test Sensor_cfg file path')
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument(
         '--work-dir',
@@ -44,8 +44,8 @@ def parse_args():
         '--cfg-options',
         nargs='+',
         action=DictAction,
-        help='override some settings in the used config, the key-value pair '
-        'in xxx=yyy format will be merged into config file. If the value to '
+        help='override some settings in the used Sensor_cfg, the key-value pair '
+        'in xxx=yyy format will be merged into Sensor_cfg file. If the value to '
         'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
         'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
         'Note that the quotation marks are necessary and that no white space '
@@ -99,7 +99,7 @@ def trigger_visualization_hook(cfg, args):
 def main():
     args = parse_args()
 
-    # load config
+    # load Sensor_cfg
     cfg = Config.fromfile(args.config)
 
     # TODO: We will unify the ceph support approach with other OpenMMLab repos
@@ -115,7 +115,7 @@ def main():
         # update configs according to CLI args if args.work_dir is not None
         cfg.work_dir = args.work_dir
     elif cfg.get('work_dir', None) is None:
-        # use config filename as default work_dir if cfg.work_dir is None
+        # use Sensor_cfg filename as default work_dir if cfg.work_dir is None
         cfg.work_dir = osp.join('./work_dirs',
                                 osp.splitext(osp.basename(args.config))[0])
 
@@ -127,12 +127,12 @@ def main():
     if args.tta:
         # Currently, we only support tta for 3D segmentation
         # TODO: Support tta for 3D detection
-        assert 'tta_model' in cfg, 'Cannot find ``tta_model`` in config.'
-        assert 'tta_pipeline' in cfg, 'Cannot find ``tta_pipeline`` in config.'
+        assert 'tta_model' in cfg, 'Cannot find ``tta_model`` in Sensor_cfg.'
+        assert 'tta_pipeline' in cfg, 'Cannot find ``tta_pipeline`` in Sensor_cfg.'
         cfg.test_dataloader.dataset.pipeline = cfg.tta_pipeline
         cfg.model = ConfigDict(**cfg.tta_model, module=cfg.model)
 
-    # build the runner from config
+    # build the runner from Sensor_cfg
     if 'runner_type' not in cfg:
         # build the default runner
         runner = Runner.from_cfg(cfg)

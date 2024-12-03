@@ -30,14 +30,14 @@ class CenterPoint(MVXTwoStageDetector):
             modality. Defaults to None.
         img_rpn_head (dict, optional): RPN head of image
             modality. Defaults to None.
-        train_cfg (dict, optional): Train config of model.
+        train_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        test_cfg (dict, optional): Train config of model.
+        test_cfg (dict, optional): Train Sensor_cfg of model.
             Defaults to None.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`Det3DDataPreprocessor`. Defaults to None.
+            Sensor_cfg of :class:`Det3DDataPreprocessor`. Defaults to None.
     """
 
     def __init__(self,

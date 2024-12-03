@@ -16,8 +16,8 @@ class H3DRoIHead(Base3DRoIHead):
     Args:
         primitive_list (List): Configs of primitive heads.
         bbox_head (ConfigDict): Config of bbox_head.
-        train_cfg (ConfigDict): Training config.
-        test_cfg (ConfigDict): Testing config.
+        train_cfg (ConfigDict): Training Sensor_cfg.
+        test_cfg (ConfigDict): Testing Sensor_cfg.
     """
 
     def __init__(self,

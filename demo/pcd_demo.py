@@ -76,6 +76,25 @@ def main():
     # TODO: Support inference of point cloud numpy file.
     init_args, call_args = parse_args()
 
+    print('init_args :',init_args)
+    print('call_args :',call_args)
+
+    #
+    # init_args  = {'model': '/home/didi/mmdetection3d/configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car.py',
+    #               'weights': '/home/didi/mmdetection3d/checkpoints/hv_pointpillars_secfpn_6x8_160e_kitti-3d-car_20220331_134606-d42d15ed.pth',
+    #               'device': 'cuda:0'}
+    # call_args  = {'pred_score_thr': 0.3,
+    #               'out_dir': 'outputs',
+    #               'show': True,
+    #               'wait_time': -1,
+    #               'no_save_vis': False,
+    #               'no_save_pred': False,
+    #               'print_result': False,
+    #               'inputs': {'points': '/home/didi/mmdetection3d/demo/data/kitti/000000.bin'}}
+
+
+
+
     inferencer = LidarDet3DInferencer(**init_args)
     inferencer(**call_args)
 

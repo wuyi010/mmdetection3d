@@ -19,7 +19,7 @@ def cal_train_time(log_dicts, args):
                 all_times.append(log_dict[epoch]['time'][1:])
         if not all_times:
             raise KeyError(
-                'Please reduce the log interval in the config so that '
+                'Please reduce the log interval in the Sensor_cfg so that '
                 'interval is less than iterations of one epoch.')
         epoch_ave_time = np.array(list(map(lambda x: np.mean(x), all_times)))
         slowest_epoch = epoch_ave_time.argmax()
@@ -62,7 +62,7 @@ def plot_curve(log_dicts, args):
                         'is equal to the `eval_interval` during training.')
                 raise KeyError(
                     f'{args.json_logs[i]} does not contain metric {metric}. '
-                    'Please reduce the log interval in the config so that '
+                    'Please reduce the log interval in the Sensor_cfg so that '
                     'interval is less than iterations of one epoch.')
 
             if args.eval:

@@ -14,7 +14,7 @@ from tools.misc.fuse_conv_bn import fuse_module
 
 def parse_args():
     parser = argparse.ArgumentParser(description='MMDet benchmark a model')
-    parser.add_argument('config', help='test config file path')
+    parser.add_argument('Sensor_cfg', help='test Sensor_cfg file path')
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument('--samples', default=2000, help='samples to benchmark')
     parser.add_argument(
@@ -36,7 +36,7 @@ def main():
     args = parse_args()
     init_default_scope('mmdet3d')
 
-    # build config and set cudnn_benchmark
+    # build Sensor_cfg and set cudnn_benchmark
     cfg = Config.fromfile(args.config)
 
     if cfg.env_cfg.get('cudnn_benchmark', False):

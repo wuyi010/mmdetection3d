@@ -14,7 +14,7 @@ class DSVTMiddleEncoder(nn.Module):
             to dsvt input.
         block_name (list[string]): Name of blocks for each stage. Length:
             stage_num.
-        set_info (list[list[int, int]]): A list of set config for each stage.
+        set_info (list[list[int, int]]): A list of set Sensor_cfg for each stage.
             Eelement i contains
             [set_size, block_num], where set_size is the number of voxel in a
             set and block_num is the number of blocks for stage i. Length:

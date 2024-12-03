@@ -33,7 +33,7 @@ class CBGSDataset:
             self.dataset = dataset
         else:
             raise TypeError(
-                'elements in datasets sequence should be config or '
+                'elements in datasets sequence should be Sensor_cfg or '
                 f'`BaseDataset` instance, but got {type(dataset)}')
         self._metainfo = self.dataset.metainfo
 

@@ -48,7 +48,7 @@ def fuse_module(m):
 def parse_args():
     parser = argparse.ArgumentParser(
         description='fuse Conv and BN layers in a model')
-    parser.add_argument('config', help='config file path')
+    parser.add_argument('Sensor_cfg', help='Sensor_cfg file path')
     parser.add_argument('checkpoint', help='checkpoint file path')
     parser.add_argument('out', help='output path of the converted model')
     args = parser.parse_args()
@@ -57,7 +57,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    # build the model from a config file and a checkpoint file
+    # build the model from a Sensor_cfg file and a checkpoint file
     model = init_model(args.config, args.checkpoint)
     # fuse conv and bn layers of the model
     fused_model = fuse_module(model)

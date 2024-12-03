@@ -21,7 +21,7 @@ def setup_seed(seed):
 
 
 def _get_config_directory():
-    """Find the predefined detector config directory."""
+    """Find the predefined detector Sensor_cfg directory."""
     try:
         # Assume we are running in the source mmdetection3d repo
         repo_dpath = dirname(dirname(dirname(__file__)))
@@ -31,7 +31,7 @@ def _get_config_directory():
         repo_dpath = dirname(dirname(mmdet3d.__file__))
     config_dpath = join(repo_dpath, 'configs')
     if not exists(config_dpath):
-        raise Exception('Cannot find config path')
+        raise Exception('Cannot find Sensor_cfg path')
     return config_dpath
 
 

@@ -379,7 +379,7 @@ class PartA2BboxHead(BaseModule):
         Args:
             sampling_results (list[:obj:`SamplingResult`]):
                 Sampled results from rois.
-            rcnn_train_cfg (:obj:`ConfigDict`): Training config of rcnn.
+            rcnn_train_cfg (:obj:`ConfigDict`): Training Sensor_cfg of rcnn.
             concat (bool): Whether to concatenate targets between batches.
 
         Returns:
@@ -535,7 +535,7 @@ class PartA2BboxHead(BaseModule):
             class_labels (torch.Tensor): Label of classes
             class_pred (torch.Tensor): Score for nms.
             input_metas (list[dict]): Point cloud and image's meta info.
-            cfg (:obj:`ConfigDict`): Testing config.
+            cfg (:obj:`ConfigDict`): Testing Sensor_cfg.
 
         Returns:
             list[:obj:`InstanceData`]: Detection results of each sample

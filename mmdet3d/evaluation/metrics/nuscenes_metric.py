@@ -423,7 +423,7 @@ class NuScenesMetric(BaseMetric):
                                            self.eval_detection_configs)
             cam_boxes3d, scores, labels = nusc_box_to_cam_box3d(boxes)
             # box nms 3d over 6 images in a frame
-            # TODO: move this global setting into config
+            # TODO: move this global setting into Sensor_cfg
             nms_cfg = dict(
                 use_rotate_nms=True,
                 nms_across_levels=False,

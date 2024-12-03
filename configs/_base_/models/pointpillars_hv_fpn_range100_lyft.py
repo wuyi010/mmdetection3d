@@ -4,7 +4,7 @@ _base_ = './pointpillars_hv_fpn_nus.py'
 # Voxel size for voxel encoder
 # Usually voxel size is changed consistently with the point cloud range
 # If point cloud range is modified, do remember to change all related
-# keys in the config.
+# keys in the Sensor_cfg.
 model = dict(
     data_preprocessor=dict(
         voxel_layer=dict(

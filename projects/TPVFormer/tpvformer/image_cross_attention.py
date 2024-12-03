@@ -23,7 +23,7 @@ class TPVImageCrossAttention(BaseModule):
         init_cfg (obj:`mmcv.ConfigDict`): The Config for initialization.
             Default: None.
         batch_first (bool): Whether the first dimension of the input is batch.
-        deformable_attention: (dict): The config for the deformable
+        deformable_attention: (dict): The Sensor_cfg for the deformable
             attention used in SCA.
         tpv_h (int): The height of the TPV.
         tpv_w (int): The width of the TPV.

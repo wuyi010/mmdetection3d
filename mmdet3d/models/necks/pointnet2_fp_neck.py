@@ -27,7 +27,7 @@ class PointNetFPNeck(BaseModule):
 
     Args:
         fp_channels (tuple[tuple[int]]): Tuple of mlp channels in FP modules.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
             Default: None
     """
 

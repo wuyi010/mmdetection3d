@@ -27,6 +27,8 @@ class TestMultiModalityDet3DInferencer(TestCase):
             'configs/mvxnet/mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class.py',  # noqa
             weights=  # noqa
             'https://download.openmmlab.com/mmdetection3d/v1.0.0_models/mvxnet/dv_mvx-fpn_second_secfpn_adamw_2x8_80e_kitti-3d-3class/dv_mvx-fpn_second_secfpn_adamw_2x8_80e_kitti-3d-3class_20210831_060805-83442923.pth'  # noqa
+            # '/home/didi/mmdetection3d/checkpoints/mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class-fixed.pth'  # noqa
+
         )
 
     def assert_predictions_equal(self, preds1, preds2):
@@ -97,7 +99,7 @@ class TestMultiModalityDet3DInferencer(TestCase):
             self.inferencer(inputs, out_dir=tmp_dir)
             # TODO: For results of LiDAR-based detection, the saved image only
             # exists when show=True.
-            # self.assertTrue(osp.exists(osp.join(tmp_dir, '000000.png')))
+            # self.assertTrue(osp.exists(osp.join(tmp_dir, '000008.png')))
 
     def test_postprocess(self):
         if not torch.cuda.is_available():

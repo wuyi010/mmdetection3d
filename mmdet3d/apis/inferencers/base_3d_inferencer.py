@@ -31,12 +31,12 @@ class Base3DInferencer(BaseInferencer):
     """Base 3D model inferencer.
 
     Args:
-        model (str, optional): Path to the config file or the model name
+        model (str, optional): Path to the Sensor_cfg file or the model name
             defined in metafile. For example, it could be
             "pgd-kitti" or
             "configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d.py".
             If model is not specified, user must provide the
-            `weights` saved by MMEngine which contains the config string.
+            `weights` saved by MMEngine which contains the Sensor_cfg string.
             Defaults to None.
         weights (str, optional): Path to the checkpoint. If it is not specified
             and model is a model name of metafile, the weights will be loaded
@@ -45,7 +45,7 @@ class Base3DInferencer(BaseInferencer):
             device will be automatically used. Defaults to None.
         scope (str): The scope of the model. Defaults to 'mmdet3d'.
         palette (str): Color palette used for visualization. The order of
-            priority is palette -> config -> checkpoint. Defaults to 'none'.
+            priority is palette -> Sensor_cfg -> checkpoint. Defaults to 'none'.
     """
 
     preprocess_kwargs: set = {'cam_type'}
@@ -74,11 +74,11 @@ class Base3DInferencer(BaseInferencer):
         self.model = revert_sync_batchnorm(self.model)
 
     def _convert_syncbn(self, cfg: ConfigType):
-        """Convert config's naiveSyncBN to BN.
+        """Convert Sensor_cfg's naiveSyncBN to BN.
 
         Args:
-            config (str or :obj:`mmengine.Config`): Config file path
-                or the config object.
+            Sensor_cfg (str or :obj:`mmengine.Config`): Config file path
+                or the Sensor_cfg object.
         """
         if isinstance(cfg, dict):
             for item in cfg:
@@ -124,7 +124,7 @@ class Base3DInferencer(BaseInferencer):
         if cfg_palette is not None:
             model.dataset_meta['palette'] = cfg_palette
 
-        model.cfg = cfg  # save the config in the model for convenience
+        model.cfg = cfg  # save the Sensor_cfg in the model for convenience
         model.to(device)
         model.eval()
         return model

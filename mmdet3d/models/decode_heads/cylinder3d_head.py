@@ -41,7 +41,7 @@ class Cylinder3DHead(Base3DDecodeHead):
         ignore_index (int): The label index to be ignored. When using masked
             BCE loss, ignore_index should be set to None. Defaults to 19.
         init_cfg (dict or :obj:`ConfigDict` or list[dict or :obj:`ConfigDict`],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
     """
 
     def __init__(self,

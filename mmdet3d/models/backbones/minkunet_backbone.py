@@ -56,7 +56,7 @@ class MinkUNetBackbone(BaseModule):
         block_type (str): Type of block in encoder and decoder.
         sparseconv_backend (str): Sparse convolutional backend.
         init_cfg (dict or :obj:`ConfigDict` or List[dict or :obj:`ConfigDict`]
-            , optional): Initialization config dict.
+            , optional): Initialization Sensor_cfg dict.
     """
 
     def __init__(self,

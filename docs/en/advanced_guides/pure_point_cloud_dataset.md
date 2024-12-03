@@ -61,7 +61,7 @@ With this design, we provide an alternative choice for customizing datasets.
 ```python
 
 [
-    {'image': {'image_idx': 0, 'image_path': 'training/image_2/000000.png', 'image_shape': array([ 370, 1224], dtype=int32)},
+    {'image': {'image_idx': 0, 'image_path': 'training/image_2/000008.png', 'image_shape': array([ 370, 1224], dtype=int32)},
      'point_cloud': {'num_features': 4, 'velodyne_path': 'training/velodyne/000000.bin'},
      'calib': {'P0': array([[707.0493,   0.    , 604.0814,   0.    ],
        [  0.    , 707.0493, 180.5066,   0.    ],
@@ -226,7 +226,7 @@ We use `RepeatDataset` as wrapper to repeat the dataset. For example, suppose th
 dataset_A_train = dict(
         type='RepeatDataset',
         times=N,
-        dataset=dict(  # This is the original config of Dataset_A
+        dataset=dict(  # This is the original Sensor_cfg of Dataset_A
             type='Dataset_A',
             ...
             pipeline=train_pipeline
@@ -245,7 +245,7 @@ For example, to repeat `Dataset_A` with `oversample_thr=1e-3`, the config looks 
 dataset_A_train = dict(
         type='ClassBalancedDataset',
         oversample_thr=1e-3,
-        dataset=dict(  # This is the original config of Dataset_A
+        dataset=dict(  # This is the original Sensor_cfg of Dataset_A
             type='Dataset_A',
             ...
             pipeline=train_pipeline

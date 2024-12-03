@@ -268,7 +268,8 @@ def update_nuscenes_infos(pkl_path, out_dir):
     }
     nusc = NuScenes(
         version=data_list['metadata']['version'],
-        dataroot='./data/nuscenes',
+        # dataroot='./data/nuscenes',
+        dataroot='out_dir',
         verbose=True)
 
     print('Start updating:')

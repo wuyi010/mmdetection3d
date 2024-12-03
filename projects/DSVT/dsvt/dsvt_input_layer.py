@@ -30,7 +30,7 @@ class DSVTInputLayer(nn.Module):
             stage_{i+1}. Length: stage_num - 1.
         dim_model (list[int]): Number of input channels for each stage. Length:
             stage_num.
-        set_info (list[list[int, int]]): A list of set config for each stage.
+        set_info (list[list[int, int]]): A list of set Sensor_cfg for each stage.
             Eelement i contains
             [set_size, block_num], where set_size is the number of voxel in a
             set and block_num is the

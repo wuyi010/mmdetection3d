@@ -20,10 +20,10 @@ from mmdet3d.structures.det3d_data_sample import SampleList
 
 
 def convert_SyncBN(config):
-    """Convert config's naiveSyncBN to BN.
+    """Convert Sensor_cfg's naiveSyncBN to BN.
 
     Args:
-         config (str or :obj:`mmengine.Config`): Config file path or the config
+         config (str or :obj:`mmengine.Config`): Config file path or the Sensor_cfg
             object.
     """
     if isinstance(config, dict):
@@ -40,17 +40,17 @@ def init_model(config: Union[str, Path, Config],
                device: str = 'cuda:0',
                palette: str = 'none',
                cfg_options: Optional[dict] = None):
-    """Initialize a model from config file, which could be a 3D detector or a
+    """Initialize a model from Sensor_cfg file, which could be a 3D detector or a
     3D segmentor.
 
     Args:
         config (str, :obj:`Path`, or :obj:`mmengine.Config`): Config file path,
-            :obj:`Path`, or the config object.
+            :obj:`Path`, or the Sensor_cfg object.
         checkpoint (str, optional): Checkpoint path. If left as None, the model
             will not load any weights.
         device (str): Device to use.
         cfg_options (dict, optional): Options to override some settings in
-            the used config.
+            the used Sensor_cfg.
 
     Returns:
         nn.Module: The constructed detector.
@@ -58,14 +58,14 @@ def init_model(config: Union[str, Path, Config],
     if isinstance(config, (str, Path)):
         config = Config.fromfile(config)
     elif not isinstance(config, Config):
-        raise TypeError('config must be a filename or Config object, '
+        raise TypeError('Sensor_cfg must be a filename or Config object, '
                         f'but got {type(config)}')
     if cfg_options is not None:
         config.merge_from_dict(cfg_options)
 
     convert_SyncBN(config.model)
     config.model.train_cfg = None
-    init_default_scope(config.get('default_scope', 'mmdet3d'))
+    init_default_scope(config.get('default_scope', 'mmdet3d')) # 初始化框架的作用域，以便正确管理和加载模型、训练和推理的配置。
     model = MODELS.build(config.model)
 
     if checkpoint is not None:
@@ -102,7 +102,7 @@ def init_model(config: Union[str, Path, Config],
                     'You can also set the palette to customize.')
                 model.dataset_meta['palette'] = 'random'
 
-    model.cfg = config  # save the config in the model for convenience
+    model.cfg = config  # save the Sensor_cfg in the model for convenience
     if device != 'cpu':
         torch.cuda.set_device(device)
     else:
@@ -228,7 +228,7 @@ def inference_multi_modality_detector(model: nn.Module,
     test_pipeline = deepcopy(cfg.test_dataloader.dataset.pipeline)
     test_pipeline = Compose(test_pipeline)
     box_type_3d, box_mode_3d = \
-        get_box_type(cfg.test_dataloader.dataset.box_type_3d)
+        get_box_type(cfg.test_dataloader.dataset.box_type_3d) # 定义3D边界框表示方法的标识符，常见的类型包括 LiDAR、Depth 等，
 
     data_list = mmengine.load(ann_file)['data_list']
 

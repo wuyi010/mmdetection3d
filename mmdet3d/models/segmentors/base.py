@@ -16,10 +16,10 @@ class Base3DSegmentor(BaseModel, metaclass=ABCMeta):
 
     Args:
         data_preprocessor (dict or ConfigDict, optional): Model preprocessing
-            config for processing the input data. it usually includes
+            Sensor_cfg for processing the input data. it usually includes
             ``to_rgb``, ``pad_size_divisor``, ``pad_val``, ``mean`` and
             ``std``. Defaults to None.
-       init_cfg (dict or ConfigDict, optional): The config to control the
+       init_cfg (dict or ConfigDict, optional): The Sensor_cfg to control the
            initialization. Defaults to None.
     """
 

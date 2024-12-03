@@ -5,7 +5,7 @@ from mmdet3d.registry import MODELS
 
 def test_dla_net():
     # test DLANet used in SMOKE
-    # test list config
+    # test list Sensor_cfg
     cfg = dict(
         type='DLANet',
         depth=34,

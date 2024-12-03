@@ -16,7 +16,7 @@ class_names = [
 class2label = {one_class: i for i, one_class in enumerate(class_names)}
 
 # -----------------------------------------------------------------------------
-# CONVERT ORIGINAL DATA TO POINTS, SEM_LABEL AND INS_LABEL FILES
+# CONVERT ORIGINAL DATA_result TO POINTS, SEM_LABEL AND INS_LABEL FILES
 # -----------------------------------------------------------------------------
 
 

@@ -109,7 +109,7 @@ class PartA2RPNHead(Anchor3DHead):
             mlvl_priors (List[torch.Tensor]): Multi-level anchors
                 in single batch.
             input_meta (list[dict]): Contain pcd and img's meta info.
-            cfg (:obj:`ConfigDict`): Training or testing config.
+            cfg (:obj:`ConfigDict`): Training or testing Sensor_cfg.
             rescale (list[torch.Tensor]): whether th rescale bbox.
 
         Returns:
@@ -199,7 +199,7 @@ class PartA2RPNHead(Anchor3DHead):
             batch_data_samples (List[:obj:`Det3DDataSample`]): The Data
                 samples. It usually includes information such as
                 `gt_instance_3d`, `gt_panoptic_seg_3d` and `gt_sem_seg_3d`.
-            proposal_cfg (ConfigDict, optional): Proposal config.
+            proposal_cfg (ConfigDict, optional): Proposal Sensor_cfg.
 
         Returns:
             tuple: the return value is a tuple contains:
@@ -290,7 +290,7 @@ class PartA2RPNHead(Anchor3DHead):
             mlvl_dir_scores (torch.Tensor): Direction scores of
                 Multi-level bbox.
             score_thr (int): Score threshold.
-            cfg (:obj:`ConfigDict`): Training or testing config.
+            cfg (:obj:`ConfigDict`): Training or testing Sensor_cfg.
             input_meta (dict): Contain pcd and img's meta info.
 
         Returns:

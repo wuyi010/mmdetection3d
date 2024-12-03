@@ -17,29 +17,29 @@ class Cylinder3D(EncoderDecoder3D):
         <https://arxiv.org/abs/2011.10033>`_.
 
     Args:
-        voxel_encoder (dict or :obj:`ConfigDict`): The config for the
+        voxel_encoder (dict or :obj:`ConfigDict`): The Sensor_cfg for the
             points2voxel encoder of segmentor.
-        backbone (dict or :obj:`ConfigDict`): The config for the backnone of
+        backbone (dict or :obj:`ConfigDict`): The Sensor_cfg for the backnone of
             segmentor.
-        decode_head (dict or :obj:`ConfigDict`): The config for the decode
+        decode_head (dict or :obj:`ConfigDict`): The Sensor_cfg for the decode
             head of segmentor.
-        neck (dict or :obj:`ConfigDict`, optional): The config for the neck of
+        neck (dict or :obj:`ConfigDict`, optional): The Sensor_cfg for the neck of
             segmentor. Defaults to None.
         auxiliary_head (dict or :obj:`ConfigDict` or List[dict or
-            :obj:`ConfigDict`], optional): The config for the auxiliary head of
+            :obj:`ConfigDict`], optional): The Sensor_cfg for the auxiliary head of
             segmentor. Defaults to None.
         loss_regularization (dict or :obj:`ConfigDict` or List[dict or
-            :obj:`ConfigDict`], optional): The config for the regularization
+            :obj:`ConfigDict`], optional): The Sensor_cfg for the regularization
             loass. Defaults to None.
-        train_cfg (dict or :obj:`ConfigDict`, optional): The config for
+        train_cfg (dict or :obj:`ConfigDict`, optional): The Sensor_cfg for
             training. Defaults to None.
-        test_cfg (dict or :obj:`ConfigDict`, optional): The config for testing.
+        test_cfg (dict or :obj:`ConfigDict`, optional): The Sensor_cfg for testing.
             Defaults to None.
         data_preprocessor (dict or :obj:`ConfigDict`, optional): The
-            pre-process config of :class:`BaseDataPreprocessor`.
+            pre-process Sensor_cfg of :class:`BaseDataPreprocessor`.
             Defaults to None.
         init_cfg (dict or :obj:`ConfigDict` or List[dict or :obj:`ConfigDict`],
-            optional): The weight initialized config for :class:`BaseModule`.
+            optional): The weight initialized Sensor_cfg for :class:`BaseModule`.
             Defaults to None.
     """
 

@@ -9,7 +9,7 @@ from mmdet3d.apis import inference_detector, init_model
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument('pcd', help='Point cloud file')
-    parser.add_argument('config', help='Config file')
+    parser.add_argument('Sensor_cfg', help='Config file')
     parser.add_argument('checkpoint', help='Checkpoint file')
     parser.add_argument('model_name', help='The model name in the server')
     parser.add_argument(
@@ -31,7 +31,7 @@ def parse_result(input):
 
 
 def main(args):
-    # build the model from a config file and a checkpoint file
+    # build the model from a Sensor_cfg file and a checkpoint file
     model = init_model(args.config, args.checkpoint, device=args.device)
     # test a single point cloud file
     model_result, _ = inference_detector(model, args.pcd)

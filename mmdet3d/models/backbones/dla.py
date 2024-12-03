@@ -16,7 +16,7 @@ def dla_build_norm_layer(cfg: ConfigType,
     """Build normalization layer specially designed for DLANet.
 
     Args:
-        cfg (dict): The norm layer config, which should contain:
+        cfg (dict): The norm layer Sensor_cfg, which should contain:
 
             - type (str): Layer type.
             - layer args: Args needed to instantiate a norm layer.
@@ -45,13 +45,13 @@ class BasicBlock(BaseModule):
     Args:
         in_channels (int): Input feature channel.
         out_channels (int): Output feature channel.
-        norm_cfg (dict): Dictionary to construct and config
+        norm_cfg (dict): Dictionary to construct and Sensor_cfg
             norm layer.
-        conv_cfg (dict): Dictionary to construct and config
+        conv_cfg (dict): Dictionary to construct and Sensor_cfg
             conv layer.
         stride (int, optional): Conv stride. Default: 1.
         dilation (int, optional): Conv dilation. Default: 1.
-        init_cfg (dict, optional): Initialization config.
+        init_cfg (dict, optional): Initialization Sensor_cfg.
             Default: None.
     """
 
@@ -109,13 +109,13 @@ class Root(BaseModule):
     Args:
         in_channels (int): Input feature channel.
         out_channels (int): Output feature channel.
-        norm_cfg (dict): Dictionary to construct and config
+        norm_cfg (dict): Dictionary to construct and Sensor_cfg
             norm layer.
-        conv_cfg (dict): Dictionary to construct and config
+        conv_cfg (dict): Dictionary to construct and Sensor_cfg
             conv layer.
         kernel_size (int): Size of convolution kernel.
         add_identity (bool): Whether to add identity in root.
-        init_cfg (dict, optional): Initialization config.
+        init_cfg (dict, optional): Initialization Sensor_cfg.
             Default: None.
     """
 
@@ -165,9 +165,9 @@ class Tree(BaseModule):
         block (nn.Module): The block module in tree.
         in_channels: Input feature channel.
         out_channels: Output feature channel.
-        norm_cfg (dict): Dictionary to construct and config
+        norm_cfg (dict): Dictionary to construct and Sensor_cfg
             norm layer.
-        conv_cfg (dict): Dictionary to construct and config
+        conv_cfg (dict): Dictionary to construct and Sensor_cfg
             conv layer.
         stride (int, optional): Convolution stride.
             Default: 1.
@@ -179,7 +179,7 @@ class Tree(BaseModule):
         dilation (int, optional): Conv dilation. Default: 1.
         add_identity (bool, optional): Whether to add
             identity in root. Default: False.
-        init_cfg (dict, optional): Initialization config.
+        init_cfg (dict, optional): Initialization Sensor_cfg.
             Default: None.
     """
 
@@ -289,9 +289,9 @@ class DLANet(BaseModule):
         depth (int): Depth of DLA. Default: 34.
         in_channels (int, optional): Number of input image channels.
             Default: 3.
-        norm_cfg (dict, optional): Dictionary to construct and config
+        norm_cfg (dict, optional): Dictionary to construct and Sensor_cfg
             norm layer. Default: None.
-        conv_cfg (dict, optional): Dictionary to construct and config
+        conv_cfg (dict, optional): Dictionary to construct and Sensor_cfg
             conv layer. Default: None.
         layer_with_level_root (list[bool], optional): Whether to apply
             level_root in each DLA layer, this is only used for
@@ -301,7 +301,7 @@ class DLANet(BaseModule):
         pretrained (str, optional): model pretrained path.
             Default: None.
         init_cfg (dict or list[dict], optional): Initialization
-            config dict. Default: None
+            Sensor_cfg dict. Default: None
     """
     arch_settings = {
         34: (BasicBlock, (1, 1, 1, 2, 2, 1), (16, 32, 64, 128, 256, 512)),
@@ -400,9 +400,9 @@ class DLANet(BaseModule):
             in_channels (int): Input feature channel.
             out_channels (int): Output feature channel.
             num_convs (int): Number of Conv module.
-            norm_cfg (dict): Dictionary to construct and config
+            norm_cfg (dict): Dictionary to construct and Sensor_cfg
                 norm layer.
-            conv_cfg (dict): Dictionary to construct and config
+            conv_cfg (dict): Dictionary to construct and Sensor_cfg
                 conv layer.
             stride (int, optional): Conv stride. Default: 1.
             dilation (int, optional): Conv dilation. Default: 1.

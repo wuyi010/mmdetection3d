@@ -131,7 +131,7 @@ class PointFusion(BaseModule):
         act_cfg (:obj:`ConfigDict` or dict): Config dict for activation layer.
             Defaults to None.
         init_cfg (:obj:`ConfigDict` or dict or List[:obj:`Contigdict` or dict],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
         activate_out (bool): Whether to apply relu activation to output
             features. Defaults to True.
         fuse_out (bool): Whether to apply conv layer to the fused features.

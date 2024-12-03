@@ -824,7 +824,7 @@ class PGDHead(FCOSMono3DHead):
                 shape (N, num_points * 1, H, W)
             batch_img_metas (list[dict]): Meta information of each image, e.g.,
                 image size, scaling factor, etc.
-            cfg (mmengine.Config, optional): Test / postprocessing config,
+            cfg (mmengine.Config, optional): Test / postprocessing Sensor_cfg,
                 if None, test_cfg would be used. Defaults to None.
             rescale (bool, optional): If True, return boxes in original image
                 space. Defaults to False.

@@ -50,11 +50,11 @@ class TestVisualizationHook(TestCase):
             'img_path':
             osp.join(
                 osp.dirname(__file__),
-                '../../data/kitti/training/image_2/000000.png'),
+                '../../data/kitti/training/image_2/000008.png'),
             'lidar_path':
             osp.join(
                 osp.dirname(__file__),
-                '../../data/kitti/training/velodyne_reduced/000000.bin')
+                '../../data/kitti/training/velodyne_reduced_L5/000000.bin')
         })
         pred_det3d_data_sample.pred_instances_3d = pred_instances_3d
         self.outputs = [pred_det3d_data_sample] * 2

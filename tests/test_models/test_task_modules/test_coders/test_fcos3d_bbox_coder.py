@@ -7,7 +7,7 @@ from mmdet3d.registry import TASK_UTILS
 
 
 def test_fcos3d_bbox_coder():
-    # test a config without priors
+    # test a Sensor_cfg without priors
     bbox_coder_cfg = dict(
         type='FCOS3DBBoxCoder',
         base_depths=None,
@@ -37,7 +37,7 @@ def test_fcos3d_bbox_coder():
                                    [[0.1966]]]])
     assert torch.allclose(decode_bbox, expected_bbox, atol=1e-3)
 
-    # test a config with priors
+    # test a Sensor_cfg with priors
     prior_bbox_coder_cfg = dict(
         type='FCOS3DBBoxCoder',
         base_depths=((28., 13.), (25., 12.)),

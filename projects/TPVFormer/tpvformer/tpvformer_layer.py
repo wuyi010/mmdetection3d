@@ -27,12 +27,12 @@ class TPVFormerLayer(BaseModule):
             The order of the configs in the list should be consistent with
             corresponding attentions in operation_order.
             If it is a dict, all of the attention modules in operation_order
-            will be built with this config. Default: None.
+            will be built with this Sensor_cfg. Default: None.
         ffn_cfgs (list[`mmcv.ConfigDict`] | obj:`mmcv.ConfigDict` | None )):
             Configs for FFN, The order of the configs in the list should be
             consistent with corresponding ffn in operation_order.
             If it is a dict, all of the attention modules in operation_order
-            will be built with this config.
+            will be built with this Sensor_cfg.
         operation_order (tuple[str]): The execution order of operation
             in transformer. Such as ('self_attn', 'norm', 'ffn', 'norm').
             Support `prenorm` when you specifying first element as `norm`.

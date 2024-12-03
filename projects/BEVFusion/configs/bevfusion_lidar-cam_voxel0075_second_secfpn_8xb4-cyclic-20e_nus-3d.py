@@ -2,18 +2,18 @@ _base_ = [
     './bevfusion_lidar_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d.py'
 ]
 point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
-input_modality = dict(use_lidar=True, use_camera=True)
+input_modality = dict(use_lidar=True, use_camera=True) # 定义了模型是否使用激光雷达 (use_lidar=True) 和摄像头 (use_camera=True) 数据作为输入。
 backend_args = None
 
-model = dict(
+model = dict(# 模型定义
     type='BEVFusion',
-    data_preprocessor=dict(
+    data_preprocessor=dict( # 对图像和点云数据进行预处理，如归一化、颜色空间转换
         type='Det3DDataPreprocessor',
         mean=[123.675, 116.28, 103.53],
         std=[58.395, 57.12, 57.375],
         bgr_to_rgb=False),
-    img_backbone=dict(
-        type='mmdet.SwinTransformer',
+    img_backbone=dict(                # 图像特征提取网络
+        type='mmdet.SwinTransformer', # 一种性能较好的视觉变换器网络结构。
         embed_dims=96,
         depths=[2, 2, 6, 2],
         num_heads=[3, 6, 12, 24],
@@ -33,7 +33,7 @@ model = dict(
             checkpoint=  # noqa: E251
             'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa: E501
         )),
-    img_neck=dict(
+    img_neck=dict(#图像特征融合层 从不同层次的特征图中提取信息并进行融合
         type='GeneralizedLSSFPN',
         in_channels=[192, 384, 768],
         out_channels=256,
@@ -42,7 +42,7 @@ model = dict(
         norm_cfg=dict(type='BN2d', requires_grad=True),
         act_cfg=dict(type='ReLU', inplace=True),
         upsample_cfg=dict(mode='bilinear', align_corners=False)),
-    view_transform=dict(
+    view_transform=dict( # 视角变换模块，用于将多视角特征转换为鸟瞰视角（BEV）表示。
         type='DepthLSSTransform',
         in_channels=256,
         out_channels=80,
@@ -53,17 +53,18 @@ model = dict(
         zbound=[-10.0, 10.0, 20.0],
         dbound=[1.0, 60.0, 0.5],
         downsample=2),
-    fusion_layer=dict(
+    fusion_layer=dict( # 融合层，用于融合激光雷达和摄像头的特征
         type='ConvFuser', in_channels=[80, 256], out_channels=256))
 
+"""训练管道 train_pipeline"""
 train_pipeline = [
     dict(
-        type='BEVLoadMultiViewImageFromFiles',
+        type='BEVLoadMultiViewImageFromFiles', # 从文件加载多视角的图像数据
         to_float32=True,
         color_type='color',
         backend_args=backend_args),
     dict(
-        type='LoadPointsFromFile',
+        type='LoadPointsFromFile', # 从文件加载激光雷达点云数据
         coord_type='LIDAR',
         load_dim=5,
         use_dim=5,
@@ -77,7 +78,7 @@ train_pipeline = [
         remove_close=True,
         backend_args=backend_args),
     dict(
-        type='LoadAnnotations3D',
+        type='LoadAnnotations3D',# 加载 3D 注释数据，主要是用于训练时的标签。
         with_bbox_3d=True,
         with_label_3d=True,
         with_attr_label=False),
@@ -117,7 +118,7 @@ train_pipeline = [
         fixed_prob=True),
     dict(type='PointShuffle'),
     dict(
-        type='Pack3DDetInputs',
+        type='Pack3DDetInputs', #将点云、图像和标签打包为模型输入。
         keys=[
             'points', 'img', 'gt_bboxes_3d', 'gt_labels_3d', 'gt_bboxes',
             'gt_labels'
@@ -221,7 +222,7 @@ test_cfg = dict()
 optim_wrapper = dict(
     type='OptimWrapper',
     optimizer=dict(type='AdamW', lr=0.0002, weight_decay=0.01),
-    clip_grad=dict(max_norm=35, norm_type=2))
+    clip_grad=dict(max_norm=35, norm_type=2)) #梯度裁剪
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically

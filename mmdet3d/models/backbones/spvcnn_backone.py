@@ -37,7 +37,7 @@ class SPVCNNBackbone(MinkUNetBackbone):
         drop_ratio (float): Dropout ratio of voxel features. Defaults to 0.3.
         sparseconv_backend (str): Sparse convolution backend.
         init_cfg (dict or :obj:`ConfigDict` or list[dict or :obj:`ConfigDict`]
-            , optional): Initialization config dict. Defaults to None.
+            , optional): Initialization Sensor_cfg dict. Defaults to None.
     """
 
     def __init__(self,

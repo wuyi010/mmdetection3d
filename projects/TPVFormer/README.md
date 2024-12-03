@@ -29,7 +29,7 @@ In MMDetection3D's root directory, run the following command to train the model:
 2. For example, to train TPVFormer on 8 GPUs, please use
 
 ```bash
-bash tools/dist_train.sh projects/TPVFormer/config/tpvformer_8xb1-2x_nus-seg.py 8
+bash tools/dist_train.sh projects/TPVFormer/Sensor_cfg/tpvformer_8xb1-2x_nus-seg.py 8
 ```
 
 ### Testing commands
@@ -37,7 +37,7 @@ bash tools/dist_train.sh projects/TPVFormer/config/tpvformer_8xb1-2x_nus-seg.py 
 In MMDetection3D's root directory, run the following command to test the model on 8 GPUs:
 
 ```bash
-bash tools/dist_test.sh projects/TPVFormer/config/tpvformer_8xb1-2x_nus-seg.py  ${CHECKPOINT_PATH} 8
+bash tools/dist_test.sh projects/TPVFormer/Sensor_cfg/tpvformer_8xb1-2x_nus-seg.py  ${CHECKPOINT_PATH} 8
 ```
 
 ## Results and models

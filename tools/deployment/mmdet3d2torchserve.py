@@ -20,11 +20,11 @@ def mmdet3d2torchserve(
     model_version: str = '1.0',
     force: bool = False,
 ):
-    """Converts MMDetection3D model (config + checkpoint) to TorchServe `.mar`.
+    """Converts MMDetection3D model (Sensor_cfg + checkpoint) to TorchServe `.mar`.
 
     Args:
         config_file (str):
-            In MMDetection3D config format.
+            In MMDetection3D Sensor_cfg format.
             The contents vary for each task repository.
         checkpoint_file (str):
             In MMDetection3D checkpoint format.
@@ -48,11 +48,11 @@ def mmdet3d2torchserve(
     config = mmengine.Config.fromfile(config_file)
 
     with TemporaryDirectory() as tmpdir:
-        config.dump(f'{tmpdir}/config.py')
+        config.dump(f'{tmpdir}/Sensor_cfg.py')
 
         args = Namespace(
             **{
-                'model_file': f'{tmpdir}/config.py',
+                'model_file': f'{tmpdir}/Sensor_cfg.py',
                 'serialized_file': checkpoint_file,
                 'handler': f'{Path(__file__).parent}/mmdet3d_handler.py',
                 'model_name': model_name or Path(checkpoint_file).stem,
@@ -71,7 +71,7 @@ def mmdet3d2torchserve(
 def parse_args():
     parser = ArgumentParser(
         description='Convert MMDetection models to TorchServe `.mar` format.')
-    parser.add_argument('config', type=str, help='config file path')
+    parser.add_argument('Sensor_cfg', type=str, help='Sensor_cfg file path')
     parser.add_argument('checkpoint', type=str, help='checkpoint file path')
     parser.add_argument(
         '--output-folder',

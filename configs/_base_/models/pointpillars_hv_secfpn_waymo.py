@@ -2,7 +2,7 @@
 # Voxel size for voxel encoder
 # Usually voxel size is changed consistently with the point cloud range
 # If point cloud range is modified, do remember to change all related
-# keys in the config.
+# keys in the Sensor_cfg.
 voxel_size = [0.32, 0.32, 6]
 model = dict(
     type='MVXFasterRCNN',

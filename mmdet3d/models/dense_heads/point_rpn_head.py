@@ -324,7 +324,7 @@ class PointRPNHead(BaseModule):
             bbox (torch.Tensor): Predicted bounding boxes.
             points (torch.Tensor): Input points.
             input_meta (dict): Contain pcd and img's meta info.
-            nms_cfg (dict): NMS config dict.
+            nms_cfg (dict): NMS Sensor_cfg dict.
 
         Returns:
             tuple[torch.Tensor]: Bounding boxes, scores and labels.
@@ -474,7 +474,7 @@ class PointRPNHead(BaseModule):
             batch_data_samples (List[:obj:`Det3DDataSample`]): The Data
                 samples. It usually includes information such as
                 `gt_instance_3d`, `gt_panoptic_seg_3d` and `gt_sem_seg_3d`.
-            proposal_cfg (ConfigDict, optional): Proposal config.
+            proposal_cfg (ConfigDict, optional): Proposal Sensor_cfg.
 
         Returns:
             tuple: the return value is a tuple contains:

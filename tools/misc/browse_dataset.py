@@ -12,7 +12,7 @@ from mmdet3d.utils import replace_ceph_backend
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Browse a dataset')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('Sensor_cfg', help='train Sensor_cfg file path')
     parser.add_argument(
         '--output-dir',
         default=None,
@@ -42,8 +42,8 @@ def parse_args():
         '--cfg-options',
         nargs='+',
         action=DictAction,
-        help='override some settings in the used config, the key-value pair '
-        'in xxx=yyy format will be merged into config file. If the value to '
+        help='override some settings in the used Sensor_cfg, the key-value pair '
+        'in xxx=yyy format will be merged into Sensor_cfg file. If the value to '
         'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
         'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
         'Note that the quotation marks are necessary and that no white space '
@@ -53,7 +53,7 @@ def parse_args():
 
 
 def build_data_cfg(config_path, aug, cfg_options):
-    """Build data config for loading visualization data."""
+    """Build data Sensor_cfg for loading visualization data."""
 
     cfg = Config.fromfile(config_path)
     if cfg_options is not None:

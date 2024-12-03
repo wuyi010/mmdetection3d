@@ -21,30 +21,30 @@ class MultiViewDfM(DfM):
     <https://arxiv.org/abs/2207.12716>`_.
 
     Args:
-        backbone (:obj:`ConfigDict` or dict): The backbone config.
-        neck (:obj:`ConfigDict` or dict): The neck config.
+        backbone (:obj:`ConfigDict` or dict): The backbone Sensor_cfg.
+        neck (:obj:`ConfigDict` or dict): The neck Sensor_cfg.
         backbone_stereo (:obj:`ConfigDict` or dict): The stereo backbone
-        config.
-        backbone_3d (:obj:`ConfigDict` or dict): The 3d backbone config.
-        neck_3d (:obj:`ConfigDict` or dict): The 3D neck config.
-        bbox_head_3d (:obj:`ConfigDict` or dict): The bbox head config.
+        Sensor_cfg.
+        backbone_3d (:obj:`ConfigDict` or dict): The 3d backbone Sensor_cfg.
+        neck_3d (:obj:`ConfigDict` or dict): The 3D neck Sensor_cfg.
+        bbox_head_3d (:obj:`ConfigDict` or dict): The bbox head Sensor_cfg.
         voxel_size (:obj:`ConfigDict` or dict): The voxel size.
         anchor_generator (:obj:`ConfigDict` or dict): The anchor generator
-            config.
-        neck_2d (:obj:`ConfigDict` or dict, optional): The 2D neck config
+            Sensor_cfg.
+        neck_2d (:obj:`ConfigDict` or dict, optional): The 2D neck Sensor_cfg
             for 2D object detection. Defaults to None.
         bbox_head_2d (:obj:`ConfigDict` or dict, optional): The 2D bbox
-            head config for 2D object detection. Defaults to None.
+            head Sensor_cfg for 2D object detection. Defaults to None.
         depth_head_2d (:obj:`ConfigDict` or dict, optional): The 2D depth
-            head config for depth estimation in fov space. Defaults to None.
+            head Sensor_cfg for depth estimation in fov space. Defaults to None.
         depth_head (:obj:`ConfigDict` or dict, optional): The depth head
-            config for depth estimation in 3D voxel projected to fov space .
+            Sensor_cfg for depth estimation in 3D voxel projected to fov space .
         train_cfg (:obj:`ConfigDict` or dict, optional): Config dict of
             training hyper-parameters. Defaults to None.
         test_cfg (:obj:`ConfigDict` or dict, optional): Config dict of test
             hyper-parameters. Defaults to None.
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`BaseDataPreprocessor`.  it usually includes,
+            Sensor_cfg of :class:`BaseDataPreprocessor`.  it usually includes,
                 ``pad_size_divisor``, ``pad_value``, ``mean`` and ``std``.
         valid_sample (bool): Whether to filter invalid points in view
             transformation. Defaults to True.
@@ -53,7 +53,7 @@ class MultiViewDfM(DfM):
         transform_depth (bool): Key to determine the transformation of depth.
             Defaults to True.
         init_cfg (:obj:`ConfigDict` or dict, optional): The initialization
-            config. Defaults to None.
+            Sensor_cfg. Defaults to None.
     """
 
     def __init__(self,

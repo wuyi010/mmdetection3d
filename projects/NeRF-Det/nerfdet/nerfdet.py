@@ -21,12 +21,12 @@ class NerfDet(Base3DDetector):
     r"""`ImVoxelNet <https://arxiv.org/abs/2307.14620>`_.
 
     Args:
-        backbone (:obj:`ConfigDict` or dict): The backbone config.
-        neck (:obj:`ConfigDict` or dict): The neck config.
-        neck_3d(:obj:`ConfigDict` or dict): The 3D neck config.
-        bbox_head(:obj:`ConfigDict` or dict): The bbox head config.
+        backbone (:obj:`ConfigDict` or dict): The backbone Sensor_cfg.
+        neck (:obj:`ConfigDict` or dict): The neck Sensor_cfg.
+        neck_3d(:obj:`ConfigDict` or dict): The 3D neck Sensor_cfg.
+        bbox_head(:obj:`ConfigDict` or dict): The bbox head Sensor_cfg.
         prior_generator (:obj:`ConfigDict` or dict): The prior generator
-            config.
+            Sensor_cfg.
         n_voxels (list): Number of voxels along x, y, z axis.
         voxel_size (list): The size of voxels.Each voxel represents
             a cube of `voxel_size[0]` meters, `voxel_size[1]` meters,
@@ -36,9 +36,9 @@ class NerfDet(Base3DDetector):
         test_cfg (:obj:`ConfigDict` or dict, optional): Config dict of test
             hyper-parameters. Defaults to None.
         init_cfg (:obj:`ConfigDict` or dict, optional): The initialization
-            config. Defaults to None.
+            Sensor_cfg. Defaults to None.
         render_testing (bool): If you want to render novel view, please set
-            "render_testing = True" in config
+            "render_testing = True" in Sensor_cfg
         The other args are the parameters of NeRF, you can just use the
             default values.
     """

@@ -8,11 +8,11 @@ from mmengine.structures import InstanceData
 
 from mmdet3d.structures.det3d_data_sample import Det3DDataSample
 
-# Type hint of config data
+# Type hint of Sensor_cfg data
 ConfigType = Union[ConfigDict, dict]
 OptConfigType = Optional[ConfigType]
 
-# Type hint of one or more config data
+# Type hint of one or more Sensor_cfg data
 MultiConfig = Union[ConfigType, List[ConfigType]]
 OptMultiConfig = Optional[MultiConfig]
 

@@ -23,7 +23,7 @@ class ForegroundSegmentationHead(BaseModule):
         extra_width (float): Boxes enlarge width. Default used 0.1.
         norm_cfg (dict): Type of normalization method. Defaults to
             dict(type='BN1d', eps=1e-5, momentum=0.1).
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
         loss_seg (dict): Config of segmentation loss. Defaults to
             dict(type='mmdet.FocalLoss')

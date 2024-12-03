@@ -46,7 +46,7 @@ class BaseShapeHead(BaseModule):
         norm_cfg (dict): Config of norm layer.
             Default: dict(type='BN2d').
         bias (bool | str): Type of bias. Default: False.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
     """
 
     def __init__(self,
@@ -178,7 +178,7 @@ class ShapeAwareHead(Anchor3DHead):
         tasks (dict): Shape-aware groups of multi-class objects.
         assign_per_class (bool): Whether to do assignment for each
             class. Default: True.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
     """
 
     def __init__(self,
@@ -405,7 +405,7 @@ class ShapeAwareHead(Anchor3DHead):
             dir_cls_preds (list[torch.Tensor]): Multi-level direction
                 class predictions.
             batch_input_metas (list[dict]): Contain pcd and img's meta info.
-            cfg (:obj:`ConfigDict`, optional): Training or testing config.
+            cfg (:obj:`ConfigDict`, optional): Training or testing Sensor_cfg.
                 Default: None.
             rescale (list[torch.Tensor], optional): Whether to rescale bbox.
                 Default: False.
@@ -463,7 +463,7 @@ class ShapeAwareHead(Anchor3DHead):
             mlvl_anchors (List[torch.Tensor]): Multi-level anchors
                 in single batch.
             input_meta (list[dict]): Contain pcd and img's meta info.
-            cfg (:obj:`ConfigDict`): Training or testing config.
+            cfg (:obj:`ConfigDict`): Training or testing Sensor_cfg.
             rescale (list[torch.Tensor]): whether to rescale bbox.
                 Default: False.
 

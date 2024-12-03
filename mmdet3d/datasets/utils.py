@@ -22,7 +22,7 @@ def is_loading_function(transform):
     so we need to search if its inner transforms contain any loading function.
 
     Args:
-        transform (dict | :obj:`Pipeline`): A transform config or a function.
+        transform (dict | :obj:`Pipeline`): A transform Sensor_cfg or a function.
 
     Returns:
         bool: Whether it is a loading function. None means can't judge.
@@ -107,7 +107,7 @@ def get_loading_pipeline(pipeline):
         elif is_loading:
             loading_pipeline.append(transform)
     assert len(loading_pipeline) > 0, \
-        'The data pipeline in your config file must include ' \
+        'The data pipeline in your Sensor_cfg file must include ' \
         'loading step.'
     return loading_pipeline
 

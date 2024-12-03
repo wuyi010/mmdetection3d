@@ -124,7 +124,7 @@ To verify whether MMDetection3D is installed correctly, we provide some sample c
 **Step 1.** We need to download config and checkpoint files.
 
 ```shell
-mim download mmdet3d --config pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car --dest .
+mim download mmdet3d --Sensor_cfg pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car --dest .
 ```
 
 The downloading will take several seconds or more, depending on your network environment. When it is done, you will find two files `pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car.py` and `hv_pointpillars_secfpn_6x8_160e_kitti-3d-car_20220331_134606-d42d15ed.pth` in your current folder.

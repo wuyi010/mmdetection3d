@@ -19,13 +19,13 @@ def parse_args():
 
 
 def parse_config(config_strings):
-    """Parse config from strings.
+    """Parse Sensor_cfg from strings.
 
     Args:
-        config_strings (string): strings of model config.
+        config_strings (string): strings of model Sensor_cfg.
 
     Returns:
-        Config: model config
+        Config: model Sensor_cfg
     """
     temp_file = tempfile.NamedTemporaryFile()
     config_path = f'{temp_file.name}.py'
@@ -34,7 +34,7 @@ def parse_config(config_strings):
 
     config = Config.fromfile(config_path)
 
-    # Update backbone config
+    # Update backbone Sensor_cfg
     if 'pool_mod' in config.model.backbone.backbones:
         config.model.backbone.backbones.pop('pool_mod')
 
@@ -48,7 +48,7 @@ def parse_config(config_strings):
     if 'type' not in config.model.rpn_head.vote_aggregation_cfg:
         config.model.rpn_head.vote_aggregation_cfg['type'] = 'PointSAModule'
 
-    # Update rpn_head config
+    # Update rpn_head Sensor_cfg
     if 'pred_layer_cfg' not in config.model.rpn_head:
         config.model.rpn_head['pred_layer_cfg'] = dict(
             in_channels=128, shared_conv_channels=(128, 128), bias=True)
@@ -101,7 +101,7 @@ def main():
     """
     args = parse_args()
     checkpoint = torch.load(args.checkpoint)
-    cfg = parse_config(checkpoint['meta']['config'])
+    cfg = parse_config(checkpoint['meta']['Sensor_cfg'])
     # Build the model and load checkpoint
     model = MODELS.build(
         cfg.model,

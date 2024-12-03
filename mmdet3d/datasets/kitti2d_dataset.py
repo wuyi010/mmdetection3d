@@ -43,7 +43,7 @@ class Kitti2DDataset(Det3DDataset):
         {
             'image': {
                 'image_idx': 0,
-                'image_path': 'training/image_2/000000.png',
+                'image_path': 'training/image_2/000008.png',
                 'image_shape': array([ 370, 1224], dtype=int32)
             },
             'point_cloud': {

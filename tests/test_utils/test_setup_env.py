@@ -30,7 +30,7 @@ def test_setup_multi_processes():
     sys_omp_threads = os.environ.pop('OMP_NUM_THREADS', default=None)
     sys_mkl_threads = os.environ.pop('MKL_NUM_THREADS', default=None)
 
-    # test config without setting env
+    # test Sensor_cfg without setting env
     config = dict(data=dict(workers_per_gpu=2))
     cfg = Config(config)
     setup_multi_processes(cfg)

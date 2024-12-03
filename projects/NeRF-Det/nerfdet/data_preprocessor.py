@@ -59,7 +59,7 @@ class NeRFDetDataPreprocessor(DetDataPreprocessor):
             provided: 'hard' and 'dynamic', respectively for hard voxelization
             and dynamic voxelization. Defaults to 'hard'.
         voxel_layer (dict or :obj:`ConfigDict`, optional): Voxelization layer
-            config. Defaults to None.
+            Sensor_cfg. Defaults to None.
         batch_first (bool): Whether to put the batch dimension to the first
             dimension when getting voxel coordinates. Defaults to True.
         max_voxels (int, optional): Maximum number of voxels in each voxel

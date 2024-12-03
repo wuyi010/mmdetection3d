@@ -22,26 +22,26 @@ def parse_args():
         '--gpus_per_node',
         type=int,
         default=8,
-        help='GPUs per node config for slurm, '
+        help='GPUs per node Sensor_cfg for slurm, '
         'should be set according to your slurm environment')
     parser.add_argument(
         '--cpus_per_task',
         type=int,
         default=5,
-        help='CPUs per task config for slurm, '
+        help='CPUs per task Sensor_cfg for slurm, '
         'should be set according to your slurm environment')
     parser.add_argument(
         '--gpus',
         type=int,
         default=8,
-        help='Totally used num of GPUs config for slurm (in testing), '
+        help='Totally used num of GPUs Sensor_cfg for slurm (in testing), '
         'should be set according to your slurm environment')
     parser.add_argument(
         '--mode', type=str, default='train', help='Train or test')
     parser.add_argument(
         '--long_work_dir',
         action='store_true',
-        help='Whether use full relative path of config as work dir')
+        help='Whether use full relative path of Sensor_cfg as work dir')
     parser.add_argument(
         '--max_keep_ckpts',
         type=int,
@@ -67,7 +67,7 @@ if args.input_file is not None:
         config_paths = fi.read().strip().split('\n')
 else:
     while True:
-        print('Please type a config path and '
+        print('Please type a Sensor_cfg path and '
               'press enter (press enter directly to exit):')
         config_path = input()
         if config_path != '':
@@ -84,14 +84,14 @@ if args.mode == 'train':
     for i, config_path in enumerate(config_paths):
         root_dir = osp.dirname(osp.dirname(osp.abspath(__file__)))
         if not osp.exists(osp.join(root_dir, config_path)):
-            print(f'Invalid config path (does not exist):\n{config_path}')
+            print(f'Invalid Sensor_cfg path (does not exist):\n{config_path}')
             continue
 
         config_name = config_path.split('/')[-1][:-3]
         match_obj = re.match(r'^.*_[0-9]+x([0-9]+)_.*$', config_name)
         if match_obj is None:
-            print(f'Invalid config path (no GPU num in '
-                  f'config name):\n{config_path}')
+            print(f'Invalid Sensor_cfg path (no GPU num in '
+                  f'Sensor_cfg name):\n{config_path}')
             continue
 
         gpu_num = int(match_obj.group(1))
@@ -130,7 +130,7 @@ elif args.mode == 'test':
     for i, config_path in enumerate(config_paths):
         root_dir = osp.dirname(osp.dirname(osp.abspath(__file__)))
         if not osp.exists(osp.join(root_dir, config_path)):
-            print(f'Invalid config path (does not exist):\n{config_path}')
+            print(f'Invalid Sensor_cfg path (does not exist):\n{config_path}')
             continue
 
         config_name = config_path.split('/')[-1][:-3]
@@ -145,7 +145,7 @@ elif args.mode == 'test':
                 eval_option = task
                 break
         if eval_option is None:
-            print(f'Invalid config path (invalid task):\n{config_path}')
+            print(f'Invalid Sensor_cfg path (invalid task):\n{config_path}')
             continue
 
         work_dir_name = config_path if args.long_work_dir else config_name

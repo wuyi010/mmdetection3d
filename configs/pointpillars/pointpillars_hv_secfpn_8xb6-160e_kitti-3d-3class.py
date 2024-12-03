@@ -5,6 +5,7 @@ _base_ = [
 ]
 
 point_cloud_range = [0, -39.68, -3, 69.12, 39.68, 1]
+point_cloud_range = [0, -39.68, -3, 100, 39.68, 1]
 # dataset settings
 data_root = 'data/kitti/'
 class_names = ['Pedestrian', 'Cyclist', 'Car']

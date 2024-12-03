@@ -26,7 +26,7 @@ class GroupFree3DMHA(MultiheadAttention):
         dropout_layer (ConfigType): The dropout_layer used when adding
             the shortcut. Defaults to dict(type='DropOut', drop_prob=0.).
         init_cfg (:obj:`ConfigDict` or dict or List[:obj:`Contigdict` or dict],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
         batch_first (bool): Key, Query and Value are shape of
             (batch, n, embed_dim) or (n, batch, embed_dim).
             Defaults to False.

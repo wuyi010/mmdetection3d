@@ -15,7 +15,7 @@ from mmdet3d.evaluation.metrics.waymo_metric import WaymoMetric
 from mmdet3d.visualization.local_visualizer import Det3DLocalVisualizer
 
 # dataset settings
-# D5 in the config name means the whole dataset is divided into 5 folds
+# D5 in the Sensor_cfg name means the whole dataset is divided into 5 folds
 # We only use one fold for efficient experiments
 dataset_type = 'WaymoDataset'
 data_root = 'data/waymo/kitti_format/'

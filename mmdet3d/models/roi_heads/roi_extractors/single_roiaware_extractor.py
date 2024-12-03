@@ -17,7 +17,7 @@ class Single3DRoIAwareExtractor(BaseModule):
     Extract Point-wise roi features.
 
     Args:
-        roi_layer (dict, optional): The config of roi layer.
+        roi_layer (dict, optional): The Sensor_cfg of roi layer.
     """
 
     def __init__(self,

@@ -36,7 +36,7 @@ def _generate_kitti_dataset_config():
     ]
 
     modality = dict(use_lidar=True, use_camera=False)
-    data_prefix = dict(pts='training/velodyne_reduced', img='training/image_2')
+    data_prefix = dict(pts='training/velodyne_reduced_L5', img='training/image_2')
     return data_root, ann_file, classes, data_prefix, pipeline, modality
 
 
@@ -50,7 +50,7 @@ def test_getitem():
         data_root,
         ann_file,
         data_prefix=dict(
-            pts='training/velodyne_reduced',
+            pts='training/velodyne_reduced_L5',
             img='training/image_2',
         ),
         pipeline=pipeline,
@@ -90,7 +90,7 @@ def test_getitem():
         data_root,
         ann_file,
         data_prefix=dict(
-            pts='training/velodyne_reduced',
+            pts='training/velodyne_reduced_L5',
             img='training/image_2',
         ),
         pipeline=pipeline,

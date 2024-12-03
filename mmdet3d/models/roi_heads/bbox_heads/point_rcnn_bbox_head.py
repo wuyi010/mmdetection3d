@@ -367,7 +367,7 @@ class PointRCNNBboxHead(BaseModule):
         Args:
             sampling_results (list[:obj:`SamplingResult`]):
                 Sampled results from rois.
-            rcnn_train_cfg (:obj:`ConfigDict`): Training config of rcnn.
+            rcnn_train_cfg (:obj:`ConfigDict`): Training Sensor_cfg of rcnn.
             concat (bool): Whether to concatenate targets between
                 batches. Defaults to True.
 
@@ -481,7 +481,7 @@ class PointRCNNBboxHead(BaseModule):
             bbox_pred (torch.Tensor): Bounding boxes predictions
             class_labels (torch.Tensor): Label of classes
             input_metas (list[dict]): Point cloud and image's meta info.
-            cfg (:obj:`ConfigDict`, optional): Testing config.
+            cfg (:obj:`ConfigDict`, optional): Testing Sensor_cfg.
                 Defaults to None.
 
         Returns:

@@ -27,8 +27,8 @@ class TorchSparseConvModule(BaseModule):
         bias (bool): Whether use bias in conv. Defaults to False.
         transposed (bool): Whether use transposed convolution operator.
             Defaults to False.
-        norm_cfg (:obj:`ConfigDict` or dict): The config of normalization.
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        norm_cfg (:obj:`ConfigDict` or dict): The Sensor_cfg of normalization.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 
@@ -73,8 +73,8 @@ class TorchSparseBasicBlock(BaseModule):
         stride (int or Tuple[int]): Stride of the first block. Defaults to 1.
         dilation (int): Dilation of block. Defaults to 1.
         bias (bool): Whether use bias in conv. Defaults to False.
-        norm_cfg (:obj:`ConfigDict` or dict): The config of normalization.
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        norm_cfg (:obj:`ConfigDict` or dict): The Sensor_cfg of normalization.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 
@@ -133,8 +133,8 @@ class TorchSparseBottleneck(BaseModule):
         stride (int or Tuple[int]): Stride of the second block. Defaults to 1.
         dilation (int): Dilation of block. Defaults to 1.
         bias (bool): Whether use bias in conv. Defaults to False.
-        norm_cfg (:obj:`ConfigDict` or dict): The config of normalization.
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        norm_cfg (:obj:`ConfigDict` or dict): The Sensor_cfg of normalization.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 

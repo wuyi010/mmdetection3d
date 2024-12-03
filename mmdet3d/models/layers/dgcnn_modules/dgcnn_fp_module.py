@@ -21,7 +21,7 @@ class DGCNNFPModule(BaseModule):
         act_cfg (:obj:`ConfigDict` or dict): Config dict for activation layer.
             Defaults to dict(type='ReLU').
         init_cfg (:obj:`ConfigDict` or dict or List[:obj:`Contigdict` or dict],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
     """
 
     def __init__(self,

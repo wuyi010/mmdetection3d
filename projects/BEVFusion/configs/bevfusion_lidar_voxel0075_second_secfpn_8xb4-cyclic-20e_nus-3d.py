@@ -6,7 +6,7 @@ custom_imports = dict(
 # Voxel size for voxel encoder
 # Usually voxel size is changed consistently with the point cloud range
 # If point cloud range is modified, do remember to change all related
-# keys in the config.
+# keys in the Sensor_cfg.
 voxel_size = [0.075, 0.075, 0.2]
 point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
 class_names = [

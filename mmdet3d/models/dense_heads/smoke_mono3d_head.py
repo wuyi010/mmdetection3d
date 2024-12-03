@@ -45,10 +45,10 @@ class SMOKEMono3DHead(AnchorFreeMono3DHead):
             classification loss. In SMOKE, Default: None.
         loss_attr (:obj:`ConfigDict` or dict, Optional): Config of attribute
             classification loss. In SMOKE, Default: None.
-        norm_cfg (:obj:`ConfigDict` or dict): Dictionary to construct and config norm layer.
+        norm_cfg (:obj:`ConfigDict` or dict): Dictionary to construct and Sensor_cfg norm layer.
             Default: norm_cfg=dict(type='GN', num_groups=32, requires_grad=True).
         init_cfg (:obj:`ConfigDict` or dict or list[:obj:`ConfigDict` or \
-            dict]): Initialization config dict. Defaults to None.
+            dict]): Initialization Sensor_cfg dict. Defaults to None.
     """  # noqa: E501
 
     def __init__(self,

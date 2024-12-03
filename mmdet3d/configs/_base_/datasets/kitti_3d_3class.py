@@ -126,7 +126,7 @@ train_dataloader = dict(
             type=KittiDataset,
             data_root=data_root,
             ann_file='kitti_infos_train.pkl',
-            data_prefix=dict(pts='training/velodyne_reduced'),
+            data_prefix=dict(pts='training/velodyne_reduced_L5'),
             pipeline=train_pipeline,
             modality=input_modality,
             test_mode=False,
@@ -144,7 +144,7 @@ val_dataloader = dict(
     dataset=dict(
         type=KittiDataset,
         data_root=data_root,
-        data_prefix=dict(pts='training/velodyne_reduced'),
+        data_prefix=dict(pts='training/velodyne_reduced_L5'),
         ann_file='kitti_infos_val.pkl',
         pipeline=test_pipeline,
         modality=input_modality,
@@ -161,7 +161,7 @@ test_dataloader = dict(
     dataset=dict(
         type=KittiDataset,
         data_root=data_root,
-        data_prefix=dict(pts='training/velodyne_reduced'),
+        data_prefix=dict(pts='training/velodyne_reduced_L5'),
         ann_file='kitti_infos_val.pkl',
         pipeline=test_pipeline,
         modality=input_modality,

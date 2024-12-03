@@ -56,7 +56,7 @@ class Base3DDecodeHead(BaseModule, metaclass=ABCMeta):
         ignore_index (int): The label index to be ignored. When using masked
             BCE loss, ignore_index should be set to None. Defaults to 255.
         init_cfg (dict or :obj:`ConfigDict` or list[dict or :obj:`ConfigDict`],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
     """
 
     def __init__(self,
@@ -124,7 +124,7 @@ class Base3DDecodeHead(BaseModule, metaclass=ABCMeta):
             batch_data_samples (List[:obj:`Det3DDataSample`]): The seg data
                 samples. It usually includes information such as `metainfo` and
                 `gt_pts_seg`.
-            train_cfg (dict or :obj:`ConfigDict`): The training config.
+            train_cfg (dict or :obj:`ConfigDict`): The training Sensor_cfg.
 
         Returns:
             Dict[str, Tensor]: A dictionary of loss components.
@@ -141,7 +141,7 @@ class Base3DDecodeHead(BaseModule, metaclass=ABCMeta):
             inputs (dict): Feature dict from backbone.
             batch_input_metas (List[dict]): Meta information of a batch of
                 samples.
-            test_cfg (dict or :obj:`ConfigDict`): The testing config.
+            test_cfg (dict or :obj:`ConfigDict`): The testing Sensor_cfg.
 
         Returns:
             Tensor: Output segmentation map.

@@ -29,7 +29,7 @@ class DGCNNBackbone(BaseModule):
             module. Defaults to (1024, ).
         act_cfg (dict, optional): Config of activation layer.
             Defaults to dict(type='ReLU').
-        init_cfg (dict, optional): Initialization config.
+        init_cfg (dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 

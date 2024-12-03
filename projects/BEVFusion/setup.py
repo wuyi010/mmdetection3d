@@ -1,11 +1,16 @@
 import os
+os.environ['CUDA_HOME'] = '/usr/local/cuda-11.3'
+os.environ['PATH'] = '/usr/local/cuda-11.3/bin:' + os.environ['PATH']
+os.environ['LD_LIBRARY_PATH'] = '/usr/local/cuda-11.3/lib64:' + os.environ['LD_LIBRARY_PATH']
+
+
+
+import os
 from setuptools import setup
-
 import torch
-from torch.utils.cpp_extension import (BuildExtension, CppExtension,
+from torch.utils.cpp_extension import (BuildExtension,
+                                       CppExtension,
                                        CUDAExtension)
-
-
 def make_cuda_ext(name,
                   module,
                   sources,

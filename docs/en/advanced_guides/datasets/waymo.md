@@ -145,7 +145,7 @@ cd waymo-od
 git checkout remotes/origin/master
 
 # use the Bazel build system
-sudo apt-get install --assume-yes pkg-config zip g++ zlib1g-dev unzip python3 python3-pip
+sudo apt-get install --assume-yes pkg-Sensor_cfg zip g++ zlib1g-dev unzip python3 python3-pip
 BAZEL_VERSION=3.1.0
 wget https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
 sudo bash bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh

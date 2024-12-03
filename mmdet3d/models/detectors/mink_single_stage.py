@@ -34,9 +34,9 @@ class MinkSingleStage3DDetector(SingleStage3DDetector):
         test_cfg (dict, optional): Config dict of test hyper-parameters.
             Defaults to None.
         data_preprocessor (dict or ConfigDict, optional): The pre-process
-            config of :class:`BaseDataPreprocessor`.  it usually includes,
+            Sensor_cfg of :class:`BaseDataPreprocessor`.  it usually includes,
                 ``pad_size_divisor``, ``pad_value``, ``mean`` and ``std``.
-        init_cfg (dict or ConfigDict, optional): the config to control the
+        init_cfg (dict or ConfigDict, optional): the Sensor_cfg to control the
             initialization. Defaults to None.
     """
     _version = 2

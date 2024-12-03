@@ -56,7 +56,7 @@ class Det3DLocalVisualizer(DetLocalVisualizer):
             should be RGB. Defaults to None.
         pcd_mode (int): The point cloud mode (coordinates): 0 represents LiDAR,
             1 represents CAMERA, 2 represents Depth. Defaults to 0.
-        vis_backends (List[dict], optional): Visual backend config list.
+        vis_backends (List[dict], optional): Visual backend Sensor_cfg list.
             Defaults to None.
         save_dir (str, optional): Save file dir for all storage backends.
             If it is None, the backend storage will not save any data.
@@ -68,7 +68,7 @@ class Det3DLocalVisualizer(DetLocalVisualizer):
         mask_color (str or Tuple[int], optional): Color of masks. The tuple of
             color should be in BGR order. Defaults to None.
         line_width (int or float): The linewidth of lines. Defaults to 3.
-        frame_cfg (dict): The coordinate frame config while Open3D
+        frame_cfg (dict): The coordinate frame Sensor_cfg while Open3D
             visualization initialization.
             Defaults to dict(size=1, origin=[0, 0, 0]).
         alpha (int or float): The transparency of bboxes or mask.
@@ -160,7 +160,7 @@ class Det3DLocalVisualizer(DetLocalVisualizer):
         """Initialize open3d vis according to frame_cfg.
 
         Args:
-            frame_cfg (dict): The config to create coordinate frame in open3d
+            frame_cfg (dict): The Sensor_cfg to create coordinate frame in open3d
                 vis.
 
         Returns:
@@ -204,7 +204,7 @@ class Det3DLocalVisualizer(DetLocalVisualizer):
                 - 'add': Add input point cloud into existing point cloud.
 
                 Defaults to 'replace'.
-            frame_cfg (dict): The coordinate frame config for Open3D
+            frame_cfg (dict): The coordinate frame Sensor_cfg for Open3D
                 visualization initialization.
                 Defaults to dict(size=1, origin=[0, 0, 0]).
             points_color (Tuple[float]): The color of points.

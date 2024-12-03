@@ -5,8 +5,8 @@ from mmengine import Config, DictAction
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Print the whole config')
-    parser.add_argument('config', help='config file path')
+    parser = argparse.ArgumentParser(description='Print the whole Sensor_cfg')
+    parser.add_argument('Sensor_cfg', help='Sensor_cfg file path')
     parser.add_argument(
         '--options', nargs='+', action=DictAction, help='arguments in dict')
     args = parser.parse_args()

@@ -211,7 +211,7 @@ class PETRTransformerDecoderLayer(BaseTransformerLayer):
         operation_order (tuple[str]): The execution order of operation
             in transformer. Such as ('self_attn', 'norm', 'ffn', 'norm').
             Default：None
-        act_cfg (dict): The activation config for FFNs. Default: `LN`
+        act_cfg (dict): The activation Sensor_cfg for FFNs. Default: `LN`
         norm_cfg (dict): Config dict for normalization layer.
             Default: `LN`.
         ffn_num_fcs (int): The number of fully-connected layers in FFNs.

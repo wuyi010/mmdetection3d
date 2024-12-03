@@ -18,7 +18,7 @@ class StackQueryAndGroup(BaseModule):
         radius (float): List of radius in each ball query.
         sample_nums (int): Number of samples in each ball query.
         use_xyz (bool): Whether to use xyz. Default: True.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
     """
 
@@ -102,7 +102,7 @@ class StackedSAModuleMSG(BaseModule):
             Default: 'max_pool'.
         norm_cfg (dict): Type of normalization method. Defaults to
             dict(type='BN2d', eps=1e-5, momentum=0.01).
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model. Defaults to None.
     """
 

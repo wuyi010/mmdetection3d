@@ -39,11 +39,11 @@ class MinkowskiConvModule(BaseModule):
         bias (bool): Whether to use bias in conv. Defaults to False.
         conv_cfg (:obj:`ConfigDict` or dict, optional): Config of conv layer.
             Defaults to None.
-        norm_cfg (:obj:`ConfigDict` or dict): The config of normalization.
+        norm_cfg (:obj:`ConfigDict` or dict): The Sensor_cfg of normalization.
             Defaults to dict(type='MinkowskiBN').
-        act_cfg (:obj:`ConfigDict` or dict): The config of activation.
+        act_cfg (:obj:`ConfigDict` or dict): The Sensor_cfg of activation.
             Defaults to dict(type='MinkowskiReLU', inplace=True).
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 
@@ -101,7 +101,7 @@ class MinkowskiBasicBlock(BasicBlock, BaseModule):
             necessary. Defaults to None.
         bn_momentum (float): Momentum of batch norm layer. Defaults to 0.1.
         dimension (int): Dimension of minkowski convolution. Defaults to 3.
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 
@@ -140,7 +140,7 @@ class MinkowskiBottleneck(Bottleneck, BaseModule):
             necessary. Defaults to None.
         bn_momentum (float): Momentum of batch norm layer. Defaults to 0.1.
         dimension (int): Dimension of minkowski convolution. Defaults to 3.
-        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization config.
+        init_cfg (:obj:`ConfigDict` or dict, optional): Initialization Sensor_cfg.
             Defaults to None.
     """
 

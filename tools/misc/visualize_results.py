@@ -10,7 +10,7 @@ from mmdet3d.registry import DATASETS
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet3D visualize the results')
-    parser.add_argument('config', help='test config file path')
+    parser.add_argument('Sensor_cfg', help='test Sensor_cfg file path')
     parser.add_argument('--result', help='results file in pickle format')
     parser.add_argument(
         '--show-dir', help='directory where visualize results will be saved')

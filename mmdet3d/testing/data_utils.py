@@ -58,7 +58,7 @@ def create_dummy_data_info(with_ann=True):
             },
             'CAM2': {
                 'img_path':
-                'tests/data/kitti/training/image_2/000000.png',
+                'tests/data/kitti/training/image_2/000008.png',
                 'height':
                 370,
                 'width':
@@ -89,7 +89,7 @@ def create_dummy_data_info(with_ann=True):
             'num_pts_feats':
             4,
             'lidar_path':
-            'tests/data/kitti/training/velodyne_reduced/000000.bin',
+            'tests/data/kitti/training/velodyne_reduced_L5/000000.bin',
             'lidar2cam': [[
                 -0.0015960992313921452, -0.9999162554740906,
                 -0.012840436771512032, -0.022366708144545555

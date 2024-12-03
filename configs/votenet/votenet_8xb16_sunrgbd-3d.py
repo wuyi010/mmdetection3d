@@ -1,4 +1,4 @@
-# TODO refactor the config of sunrgbd
+# TODO refactor the Sensor_cfg of sunrgbd
 _base_ = [
     '../_base_/datasets/sunrgbd-3d.py', '../_base_/models/votenet.py',
     '../_base_/schedules/schedule-3x.py', '../_base_/default_runtime.py'

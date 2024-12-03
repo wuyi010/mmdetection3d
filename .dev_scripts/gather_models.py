@@ -10,8 +10,8 @@ work_dirs/pgd_r101_caffe_fpn_gn-head_3x4_4x_kitti-mono3d \
 work_dirs/pgd_r101_caffe_fpn_gn-head_3x4_4x_kitti-mono3d
 
 Note that before running the above command, rename the directory with the
-config name if you did not use the default directory name, create
-a corresponding directory 'pgd' under the above path and put the used config
+Sensor_cfg name if you did not use the default directory name, create
+a corresponding directory 'pgd' under the above path and put the used Sensor_cfg
 into it.
 """
 
@@ -154,7 +154,7 @@ def main():
             used_configs.append(raw_config)
     print(f'Find {len(used_configs)} models to be gathered')
 
-    # find final_ckpt and log file for trained each config
+    # find final_ckpt and log file for trained each Sensor_cfg
     # and parse the best performance
     model_infos = []
     for used_config in used_configs:
@@ -187,10 +187,10 @@ def main():
     # publish model for each checkpoint
     publish_model_infos = []
     for model in model_infos:
-        model_publish_dir = osp.join(models_out, model['config'].rstrip('.py'))
+        model_publish_dir = osp.join(models_out, model['Sensor_cfg'].rstrip('.py'))
         mmengine.mkdir_or_exist(model_publish_dir)
 
-        model_name = model['config'].split('/')[-1].rstrip(
+        model_name = model['Sensor_cfg'].split('/')[-1].rstrip(
             '.py') + '_' + model['model_time']
         publish_model_path = osp.join(model_publish_dir, model_name)
         trained_model_path = osp.join(models_root,
@@ -208,8 +208,8 @@ def main():
             osp.join(models_root, model['log_json_path'].rstrip('.json')),
             osp.join(model_publish_dir, f'{model_name}.log'))
 
-        # copy config to guarantee reproducibility
-        config_path = model['config']
+        # copy Sensor_cfg to guarantee reproducibility
+        config_path = model['Sensor_cfg']
         config_path = osp.join(
             'configs',
             config_path) if 'configs' not in config_path else config_path

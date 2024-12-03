@@ -67,11 +67,11 @@ class PETRHead(AnchorFreeHead):
             regression loss. Default `L1Loss`.
         loss_iou (obj:`mmcv.ConfigDict`|dict): Config of the
             regression iou loss. Default `GIoULoss`.
-        tran_cfg (obj:`mmcv.ConfigDict`|dict): Training config of
+        tran_cfg (obj:`mmcv.ConfigDict`|dict): Training Sensor_cfg of
             transformer head.
-        test_cfg (obj:`mmcv.ConfigDict`|dict): Testing config of
+        test_cfg (obj:`mmcv.ConfigDict`|dict): Testing Sensor_cfg of
             transformer head.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
             Default: None
     """
     _version = 2

@@ -183,7 +183,7 @@ train_dataloader = dict(
             type=dataset_type,
             data_root=data_root,
             ann_file='kitti_infos_train.pkl',
-            data_prefix=dict(pts='training/velodyne_reduced'),
+            data_prefix=dict(pts='training/velodyne_reduced_L5'),
             pipeline=train_pipeline,
             modality=input_modality,
             test_mode=False,
@@ -198,7 +198,7 @@ val_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        data_prefix=dict(pts='training/velodyne_reduced'),
+        data_prefix=dict(pts='training/velodyne_reduced_L5'),
         ann_file='kitti_infos_val.pkl',
         pipeline=test_pipeline,
         modality=input_modality,
@@ -214,7 +214,7 @@ test_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        data_prefix=dict(pts='training/velodyne_reduced'),
+        data_prefix=dict(pts='training/velodyne_reduced_L5'),
         ann_file='kitti_infos_val.pkl',
         pipeline=test_pipeline,
         modality=input_modality,
@@ -247,7 +247,7 @@ test_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        data_prefix=dict(pts='testing/velodyne_reduced'),
+        data_prefix=dict(pts='testing/velodyne_reduced_L5'),
         ann_file='kitti_infos_test.pkl',
         load_eval_anns=False,
         pipeline=test_pipeline,
@@ -282,9 +282,9 @@ test_cfg = dict(type='TestLoop')
 `optim_wrapper` is the field to configure optimization-related settings. The optimizer wrapper not only provides the functions of the optimizer, but also supports functions such as gradient clipping, mixed precision training, etc. Find more in [optimizer wrapper tutorial](https://mmengine.readthedocs.io/en/latest/tutorials/optim_wrapper.html).
 
 ```python
-optim_wrapper = dict(  # Optimizer wrapper config
+optim_wrapper = dict(  # Optimizer wrapper Sensor_cfg
     type='OptimWrapper',  # Optimizer wrapper type, switch to AmpOptimWrapper to enable mixed precision training.
-    optimizer=dict(  # Optimizer config. Support all kinds of optimizers in PyTorch. Refer to https://pytorch.org/docs/stable/optim.html#algorithms
+    optimizer=dict(  # Optimizer Sensor_cfg. Support all kinds of optimizers in PyTorch. Refer to https://pytorch.org/docs/stable/optim.html#algorithms
         type='AdamW', lr=0.001, betas=(0.95, 0.99), weight_decay=0.01),
     clip_grad=dict(max_norm=35, norm_type=2))  # Gradient clip option. Set None to disable gradient clip. Find usage in https://mmengine.readthedocs.io/en/latest/tutorials/optim_wrapper.html
 ```
@@ -357,7 +357,7 @@ default_scope = 'mmdet3d'  # The default registry scope to find modules. Refer t
 
 env_cfg = dict(
     cudnn_benchmark=False,  # Whether to enable cudnn benchmark
-    mp_cfg=dict(  # Multi-processing config
+    mp_cfg=dict(  # Multi-processing Sensor_cfg
         mp_start_method='fork',  # Use fork to start multi-processing threads. 'fork' usually faster than 'spawn' but maybe unsafe. See discussion in https://github.com/pytorch/pytorch/issues/1355
         opencv_num_threads=0),  # Disable opencv multi-threads to avoid system being overloaded
     dist_cfg=dict(backend='nccl'))  # Distribution configs

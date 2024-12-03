@@ -44,7 +44,7 @@ class Anchor3DHead(Base3DDenseHead, AnchorTrainMixin):
         loss_dir (dict): Config of direction classifier loss.
         train_cfg (dict): Train configs.
         test_cfg (dict): Test configs.
-        init_cfg (dict or list[dict], optional): Initialization config dict.
+        init_cfg (dict or list[dict], optional): Initialization Sensor_cfg dict.
     """
 
     def __init__(self,

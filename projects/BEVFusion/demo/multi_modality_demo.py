@@ -12,6 +12,7 @@ def parse_args():
     parser.add_argument('pcd', help='Point cloud file')
     parser.add_argument('img', help='image file')
     parser.add_argument('ann', help='ann file')
+    # parser.add_argument('Sensor_cfg', help='Config file')
     parser.add_argument('config', help='Config file')
     parser.add_argument('checkpoint', help='Checkpoint file')
     parser.add_argument(
@@ -38,7 +39,7 @@ def parse_args():
 
 
 def main(args):
-    # build the model from a config file and a checkpoint file
+    # build the model from a Sensor_cfg file and a checkpoint file
     model = init_model(args.config, args.checkpoint, device=args.device)
 
     # init visualizer
@@ -73,6 +74,27 @@ def main(args):
         vis_task='multi-modality_det')
 
 
+
 if __name__ == '__main__':
     args = parse_args()
+    print(args)
     main(args)
+    
+"""
+_________________
+python projects/BEVFusion/demo/multi_modality_demo.py demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin demo/data/nuscenes/ demo/data/nuscenes/n015-2018-07-24-11-22-45+0800.pkl projects/BEVFusion/configs/bevfusion_lidar-cam_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d.py /home/didi/mmdetection3d/checkpoints/bevfusion_lidar-cam_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d-fixed.pth --cam-type all --score-thr 0.2 --show --snapshot
+-----------------
+
+            multi_modality_demo.py 
+pcd         n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin 
+img         demo/data/nuscenes/ 
+ann         n015-2018-07-24-11-22-45+0800.pkl 
+config      bevfusion_lidar-cam_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d.py 
+checkpoint  bevfusion_lidar-cam_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d-fixed.pth 
+--cam-type  all 
+--score-thr 0.2 
+--show
+
+
+
+"""

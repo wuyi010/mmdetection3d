@@ -42,7 +42,7 @@ class PVRCNNBBoxHead(BaseModule):
             Defaults to dict(type='BN1d', eps=1e-5, momentum=0.1)
         loss_bbox (dict): Config dict of box regression loss.
         loss_cls (dict): Config dict of classifacation loss.
-        init_cfg (dict, optional): Initialize config of
+        init_cfg (dict, optional): Initialize Sensor_cfg of
             model.
     """
 
@@ -253,7 +253,7 @@ class PVRCNNBBoxHead(BaseModule):
         Args:
             sampling_results (list[:obj:`SamplingResult`]):
                 Sampled results from rois.
-            rcnn_train_cfg (:obj:`ConfigDict`): Training config of rcnn.
+            rcnn_train_cfg (:obj:`ConfigDict`): Training Sensor_cfg of rcnn.
             concat (bool): Whether to concatenate targets between batches.
 
         Returns:
@@ -407,7 +407,7 @@ class PVRCNNBBoxHead(BaseModule):
             bbox_reg (torch.Tensor): Bounding boxes predictions
             class_labels (torch.Tensor): Label of classes
             input_metas (list[dict]): Point cloud meta info.
-            test_cfg (:obj:`ConfigDict`): Testing config.
+            test_cfg (:obj:`ConfigDict`): Testing Sensor_cfg.
 
         Returns:
             list[:obj:`InstanceData`]: Detection results of each sample
@@ -472,7 +472,7 @@ class PVRCNNBBoxHead(BaseModule):
         Args:
             scores (torch.Tensor): Object score of bounding boxes.
             bbox_preds (torch.Tensor): Predicted bounding boxes.
-            nms_cfg (dict): NMS config dict.
+            nms_cfg (dict): NMS Sensor_cfg dict.
             input_meta (dict): Contain pcd and img's meta info.
 
         Returns:

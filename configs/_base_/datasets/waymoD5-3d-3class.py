@@ -1,5 +1,5 @@
 # dataset settings
-# D5 in the config name means the whole dataset is divided into 5 folds
+# D5 in the Sensor_cfg name means the whole dataset is divided into 5 folds
 # We only use one fold for efficient experiments
 dataset_type = 'WaymoDataset'
 # data_root = 's3://openmmlab/datasets/detection3d/waymo/kitti_format/'

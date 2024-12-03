@@ -21,7 +21,7 @@ class PointFPModule(BaseModule):
         norm_cfg (:obj:`ConfigDict` or dict): Config dict for normalization
             layer. Defaults to dict(type='BN2d').
         init_cfg (:obj:`ConfigDict` or dict or List[:obj:`Contigdict` or dict],
-            optional): Initialization config dict. Defaults to None.
+            optional): Initialization Sensor_cfg dict. Defaults to None.
     """
 
     def __init__(self,

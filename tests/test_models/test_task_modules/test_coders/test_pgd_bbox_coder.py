@@ -7,7 +7,7 @@ from mmdet3d.registry import TASK_UTILS
 
 
 def test_pgd_bbox_coder():
-    # test a config without priors
+    # test a Sensor_cfg without priors
     bbox_coder_cfg = dict(
         type='PGDBBoxCoder',
         base_depths=None,
