@@ -70,5 +70,5 @@ if __name__ == "__main__":
     #
 
     ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge/000000.ply"
-    ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar/043785-L2.ply"
+    ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge/001363.ply"
     read_pcd_ply_visualize(ply_dir5)

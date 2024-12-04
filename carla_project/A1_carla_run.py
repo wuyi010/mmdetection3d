@@ -58,15 +58,18 @@ def main_carla():
         result = f"Folder '{folder_path}' has been deleted."
     else:
         result = f"Folder '{folder_path}' does not exist."
-
-
     try:
         client = carla.Client(args.host, args.port)
         client.set_timeout(5.0)
-        # run_simulation(args, client)
-        run_simulation_Town04(args, client)
-        # run_simulation_Town03(args, client)
 
+        town = 0
+
+        if town==3:
+            run_simulation_Town03(args, client)
+        elif town==4:
+            run_simulation_Town04(args, client)
+        else:
+            run_simulation(args, client)
     except KeyboardInterrupt:
         print('\nCancelled by user. Bye!')
 

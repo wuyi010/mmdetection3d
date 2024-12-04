@@ -184,14 +184,10 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         'vehicle.toyota.prius':             [ 165],
         'vehicle.gazelle.omafiets':         [37],
         'vehicle.bmw.grandtourer':[40],
-
-
-
     }
 
     # 调用新的函数进行车辆实例化
-    g_vehicle_list = spawn_vehicles_by_type_NPC(world, blueprint_library, spawn_points, vehicle_type_to_indices,
-                                            g_vehicle_list)
+    g_vehicle_list = spawn_vehicles_by_type_NPC(world, blueprint_library, spawn_points, vehicle_type_to_indices,g_vehicle_list)
 
     """
 
@@ -199,97 +195,79 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     前方卡车位置:172  Transform(Location(x=5.854201, y=184.692886, z=0.275307), Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
     x=5.854201, y=184.692886, z=0.275307
     """
-    vehicle_type_bwm = 'vehicle.bmw.grandtourer'
-    vehicle_positions_bwm = [
-        # (1.426758, 184.692886,-90.362541),
-        (1.826758, 172.692886, -90.362541),
-        # (1.826758, 164.692886, -90.362541),
-        # (1.826758, 154.692886, -90.362541),
-        # (1.926758, 144.692886, -90.362541),
-        # (2.026758, 134.692886, -90.362541),
-        # (2.126758, 124.692886, -90.362541),
-        # (2.226758, 114.692886, -90.362541),
-        (2.326758, 104.692886,  -90.362541),
-        # (2.426758, 94.692886,  -90.362541),
-        (2.526758, 84.692886,  -90.362541),
-        # (2.626758, 74.692886,  -90.362541),
-        # (2.7826758, 64.692886,  -90.362541),
-        # (2.826758, 54.692886,  -90.362541),
-
+    vehicle_positions = [
+        ('vehicle.bmw.grandtourer', 1.826758, 172.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 1.826758, 164.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 1.826758, 154.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 1.926758, 144.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.026758, 134.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.126758, 124.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.226758, 114.692886, -90.362541),
+        ('vehicle.bmw.grandtourer', 2.326758, 104.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.426758, 94.692886,  -90.362541),
+        ('vehicle.bmw.grandtourer', 2.526758, 84.692886, -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.626758, 74.692886,  -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.7826758, 64.692886,  -90.362541),
+        # ('vehicle.bmw.grandtourer', 2.826758, 54.692886,  -90.362541),
+        # """----------------------------------------------------------------"""
+        # """----------------------------------------------------------------"""
+        # """----------------------------------------------------------------"""
+        # ('vehicle.tesla.model3',  8.46675,   172.692886,   -90.362541),
+        ('vehicle.tesla.model3', 8.46675,   168.692886,   -90.362541),
+        # ('vehicle.tesla.model3', 8.46675,   154.692886,   -90.062541),
+        # ('vehicle.tesla.model3', 8.46675,   144.692886,   -90.062541),
+        # ('vehicle.tesla.model3', 8.46675,   134.692886,   -90.062541),
+        # ('vehicle.tesla.model3', 8.46675,   124.692886,   -90.362541),
+        # ('vehicle.tesla.model3', 8.46675,   114.692886,   -90.362541),
+        ('vehicle.tesla.model3', 8.46675,   104.692886,   -90.362541),
+        ('vehicle.tesla.model3', 8.46675,   94.692886 ,   -90.362541),
+        # ('vehicle.tesla.model3', 8.46675,   84.692886 ,   -90.362541),
+        ('vehicle.tesla.model3', 8.46675,   74.692886 ,   -90.362541),
+        # ('vehicle.tesla.model3', 8.46675,   64.692886 ,   -90.362541),
+        ('vehicle.tesla.model3', 8.46675,   54.692886 ,   -90.362541),
     ]
-    vehicle_type_tsl = 'vehicle.tesla.model3'
-    vehicle_positions_tsl = [
-        # (8.46675,   172.692886,   -90.362541),
-        (8.46675,   168.692886,   -90.362541),
-        # (8.46675,   154.692886,   -90.062541),
-        # (8.46675,   144.692886,   -90.062541),
-        # (8.46675,   134.692886,   -90.062541),
-        # (8.46675,   124.692886,   -90.362541),
-        # (8.46675,   114.692886,   -90.362541),
-        (8.46675,   104.692886,   -90.362541),
-        (8.46675,   94.692886 ,   -90.362541),
-        # (8.46675,   84.692886 ,   -90.362541),
-        (8.46675,   74.692886 ,   -90.362541),
-        # (8.46675,   64.692886 ,   -90.362541),
-        (8.46675,   54.692886 ,   -90.362541),
-
-
-    ]
-
-    # # 生成车辆并将其加入列表
-    for pos in vehicle_positions_bwm:
-        spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_type_bwm, x=pos[0], y=pos[1],z=0.4000,yaw=pos[2])
-    for pos in vehicle_positions_tsl:
-        spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_type_tsl, x=pos[0], y=pos[1],z=0.4,yaw=pos[2])
+    for pos in vehicle_positions:
+        spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, pos[0], x=pos[1], y=pos[2],z=0.281942,yaw=pos[3])
 
 
 
 
-
-    # 自行车 5.854201, y=184.692886, z=0.275307
+    """ego左侧自行车布置""" #     自行车 5.854201, y=184.692886, z=0.275307
     spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 161.692886,)
     spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 164.692886,)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 167.692886,)
-
+    """ego右侧摩托车布置"""
     spawn_crossbike(world, blueprint_library, g_vehicle_list,"vehicle.kawasaki.ninja",  7.804, 161.692886)
     spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", 7.804,164.692886)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", 7.804,167.692886)
 
-
-    # 前方车辆阻挡视线car_A
+    """ego前方卡车布置"""
     car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]  #8.526758, 164.692886,
     car_A_transform = carla.Transform(carla.Location(x=5.354201, y=149.692886, z=0.281942),
                                       carla.Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
     vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
     g_vehicle_list.append(vehicle_car_A)
 
-
-
-
-
-
-    print("前方卡车位置:172 ", spawn_points[172])
-    print("前方卡车位置:112 ", spawn_points[112])
     """
     Transform(Location(x=2.354272, y=189.215149, z=0.275307), Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
     """
+    """ego布置"""
     vehicle_bp_hgv = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
     # vehicle_hgv = world.spawn_actor(vehicle_bp_hgv, spawn_points[28])
     car_C_transform = carla.Transform(carla.Location(x=5.354201, y=164.692886, z=0.275307),
                                       carla.Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
     vehicle_hgv = world.spawn_actor(vehicle_bp_hgv, car_C_transform)
 
-    # 获取车辆的碰撞盒（bounding box）
+    """ego车辆size获取"""  # 获取车辆的碰撞盒（bounding box）
     bounding_box = vehicle_hgv.bounding_box
     extent = bounding_box.extent
     # 打印车辆的尺寸信息
     length = 2 * extent.x  # 长度
     width = 2 * extent.y  # 宽度
     height = 2 * extent.z  # 高度
-
     print(f"Vehicle dimensions (meters): Length={length:.2f}, Width={width:.2f}, Height={height:.2f}")
 
-
+    """ego车辆自动驾驶设置"""
     g_vehicle_list.append(vehicle_hgv)
     # vehicle_hgv.set_autopilot(True, TM.get_port())
     vehicle_hgv.set_autopilot(False, TM.get_port())
@@ -299,7 +277,7 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     # TM.set_path(vehicle_hgv, route_1)
     # vehicle_hgv.set_autopilot(False,TM.get_port())
 
-    # 添加传感器并进行配置
+    """ego车辆传感器配置"""
     cam_name = [1, 2, 3, 4, 5, 6]
     lidar_name = [1, 2, 3, 4, 5]
     display_rgb_pos = {0: [0, 3], 1: [0, 4], 2: [0, 1], 3: [0, 0], 4: [0, 2]}
@@ -310,6 +288,16 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     save_dir = 'config'
     sensor_options_RGBCamera = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_RGBCamera.json'))
     sensor_options_LiDAR = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar.json'))
+    sensor_options_LiDAR_1 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_1.json'))
+    sensor_options_LiDAR_2 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_2.json'))
+    sensor_options_LiDAR_3 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_3.json'))
+    sensor_options_LiDAR_123 = [
+        sensor_options_LiDAR,  # 第一个 LiDAR 配置
+        sensor_options_LiDAR,  # 第二个 LiDAR 配置
+        sensor_options_LiDAR,  # 第三个 LiDAR 配置
+        sensor_options_LiDAR,  # 第四个 LiDAR 配置
+        sensor_options_LiDAR,  # 第五个 LiDAR 配置
+    ]
     config_rgb = get_config_file_to_transform(os.path.join(save_dir, 'config_rgb.json'))
     config_lidar = get_config_file_to_transform(os.path.join(save_dir, 'config_lidar.json'))
 
@@ -318,26 +306,16 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         display_pos = display_rgb_pos.get(i, [0, 0])
         SensorManager(world, display_manager, 'RGBCamera', transform,
                       vehicle_hgv, sensor_options_RGBCamera, display_pos, cam_name[i], args)
-    # 遍历 LiDAR 传感器配置
+    # # 遍历 LiDAR 传感器配置
+    # for i, transform in enumerate(config_lidar):
+    #     display_pos = display_pos_lidar.get(i, [1, 0])  # 如果没有匹配则默认[1, 0]
+    #     SensorManager(world, display_manager, 'LiDAR', transform,
+    #                   vehicle_hgv, sensor_options_LiDAR, display_pos, lidar_name[i], args)
+    # # 遍历 LiDAR 传感器配置
     for i, transform in enumerate(config_lidar):
         display_pos = display_pos_lidar.get(i, [1, 0])  # 如果没有匹配则默认[1, 0]
         SensorManager(world, display_manager, 'LiDAR', transform,
-                      vehicle_hgv, sensor_options_LiDAR, display_pos, lidar_name[i], args)
-
-
-
-    # for i, vehicle in enumerate(g_vehicle_list):
-    #     vehicle.set_autopilot(True, TM.get_port())
-
-    # # 列出所有的车辆类型
-    # vehicle_types = blueprint_library.filter('vehicle')
-    # for vehicle in vehicle_types:
-    #     print(vehicle.id)  # 打印车辆类型
-
-
-
-
-
+                      vehicle_hgv, sensor_options_LiDAR_123[i], display_pos, lidar_name[i], args)
 
     # Simulation loop
     call_exit = False

@@ -210,52 +210,25 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
 
     """车辆刷新场景分布"""
     vehicle_positions = [
-        # # (381.481506, -154.471375,  90),
-        # (vehicle_type_bwm, 381.481506, -144.471375, 90),
-        #
-        # # (vehicle_type_bwm, 381.481506, -134.471375,  100),
-        # (vehicle_type_bwm, 381.481506, -124.471375, 90),
-        # (vehicle_type_bwm, 381.481506, -114.471375, 90),
-        # # (vehicle_type_bwm, 381.481506, -104.471375,   90),
-        #   (vehicle_type_bwm, 381.481506, -94.471375, 90),
-        # # (vehicle_type_bwm, 381.681506, -84.471375 ,   90),
-        # # (vehicle_type_bwm, 381.481506, -74.471375 ,   90),
-        #   (vehicle_type_bwm, 381.481506, -54.471375, 90),
+        # (381.481506, -154.471375,  90),
+        ('vehicle.bmw.grandtourer', 381.481506, -154.471375,    90),
+        ('vehicle.bmw.grandtourer', 381.481506, -144.471375,    90),
+        ('vehicle.bmw.grandtourer', 381.481506, -124.471375,    90),
+        ('vehicle.bmw.grandtourer', 381.481506, -104.471375,    90),
+        ('vehicle.bmw.grandtourer', 381.481506, -84.471375,      90),
+        ('vehicle.bmw.grandtourer', 381.481506, -54.471375,      90),
 
-        # (tsl,394.481506,  -134.471375,  90),
-        # (tsl,394.481506,  -124.471375,  90),
-        # (tsl,394.481506,  -114.471375,  90),
-        # (tsl,394.481506,  -104.471375,  90),
-        # (tsl,394.481506,  -94.471375 ,  90),
-        # (tsl,394.281506,  -84.471375 ,   90),
-        # (tsl,394.481506,  -74.471375 ,   90),
-        # (tsl,394.481506,  -64.471375 ,   90),
-        # (tsl,394.481506, -54.471375 ,   90),
-        # (tsl,394.481506,  -44.471375 , 90),
-        # (tsl,391.481506, -84.471375, 90),
-
-        # (tsl,385.481506, -74.471375, 90),
-        # (tsl,385.481506, -84.471375, 90),
+        # ('vehicle.tesla.model3',394.481506,  -134.471375,  90), car_posi
+        # ('vehicle.tesla.model3',394.481506,  -114.471375,  90),
+        # ('vehicle.tesla.model3',394.481506,  -104.471375,  90),
+        # ('vehicle.tesla.model3',394.281506,   -84.471375 , 90),
+        # ('vehicle.tesla.model3',394.481506,   -44.471375 , 90),
+        ('vehicle.tesla.model3',391.481506,   -64.471375,  90),
+        ('vehicle.tesla.model3',385.481506,   -64.471375,  90),
 
 
-        # (tsl,386.481506, -130.444522, 90),  #盲区夹角
-        # (tsl,384.481506, -130.471375, 0),  #盲区夹角
-        # (tsl,378.481506, -128.471375, 90),  #盲区夹角
-        ("walker.pedestrian.0013", 386.870,   -130.610,  90),     # 盲区
-        ("walker.pedestrian.0001", 385.760,   -132.710, 90),      # 盲区
-        ("walker.pedestrian.0001", 386.450,   -134.735, 90),      # 盲区
-        ("walker.pedestrian.0001", 386.450,   -136.735, 90),      # 盲区
-        ("walker.pedestrian.0001", 386.750,    -138.735, 90),     # 盲区
-        ('vehicle.tesla.model3',   383.481506, -135.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 381.481506, -122.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 381.481506, -123.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 381.481506, -124.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 381.081506, -125.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 380.481506, -126.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 379.481506, -127.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 378.481506, -128.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 380.481506, -129.471375, 90),  #盲区
-        ("walker.pedestrian.0006", 380.481506, -130.471375, 90),  #盲区
+
+
     ]
     for pos in vehicle_positions:
         spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, pos[0], x=pos[1], y=pos[2],z=0.281942,yaw=pos[3])
@@ -271,10 +244,10 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", x=386.281506, y=-130.417725)
 
     """ego前方卡车布置"""
-    # car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
-    # car_A_transform = carla.Transform(carla.Location(x=388.481506, y=-119.445007, z=0.281942),carla.Rotation(pitch=0.000000, yaw=90.439095, roll=0.000000))
-    # vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
-    # g_vehicle_list.append(vehicle_car_A)
+    car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
+    car_A_transform = carla.Transform(carla.Location(x=388.481506, y=-119.445007, z=0.281942),carla.Rotation(pitch=0.000000, yaw=90.439095, roll=0.000000))
+    vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
+    g_vehicle_list.append(vehicle_car_A)
 
     """ego布置"""
     vehicle_bp_hgv = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]
@@ -319,11 +292,11 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     sensor_options_LiDAR_2 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_2.json'))
     sensor_options_LiDAR_3 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_3.json'))
     sensor_options_LiDAR_123 = [
-        sensor_options_LiDAR_2,  # 第一个 LiDAR 配置
-        sensor_options_LiDAR_3,  # 第二个 LiDAR 配置
-        sensor_options_LiDAR_2,  # 第三个 LiDAR 配置
-        sensor_options_LiDAR_3,  # 第四个 LiDAR 配置
-        sensor_options_LiDAR_1,  # 第五个 LiDAR 配置
+        sensor_options_LiDAR,  # 第一个 LiDAR 配置
+        sensor_options_LiDAR,  # 第二个 LiDAR 配置
+        sensor_options_LiDAR,  # 第三个 LiDAR 配置
+        sensor_options_LiDAR,  # 第四个 LiDAR 配置
+        sensor_options_LiDAR,  # 第五个 LiDAR 配置
     ]
     config_rgb = get_config_file_to_transform(os.path.join(save_dir, 'config_rgb.json'))
     config_lidar = get_config_file_to_transform(os.path.join(save_dir, 'config_lidar.json'))

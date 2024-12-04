@@ -4,6 +4,8 @@ import carla
 import numpy as np
 import os
 import pickle
+
+
 from carla_project.carla_simu import get_config_sensor_options, get_config_file_to_transform
 from  carla_project.carla_simu import get_config_file_to_transform
 
@@ -62,13 +64,13 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
                      "calibs", "labels", "ImageSets"]
 
 
-"""-----------------------------------------------------   plan1  --------------------------------------------------------------"""
+"""-----------------------------------------------------   planA  --------------------------------------------------------------"""
 
 # cam_positions_set = [
-#             {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -0.0000, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-#             {'location': {'x': 3.45, 'y': 1.37, 'z': 1.9}, 'rotation': {'pitch': 0.0000, 'yaw': 135.0000, 'roll': 0.0000}},  # C2-R135
-#             {'location': {'x': 3.45, 'y': -1.37, 'z': 2.1}, 'rotation': {'pitch': 0.0000, 'yaw': -45.0000, 'roll': 0.0000}},  # C3-L45  前右
-#             {'location': {'x': 3.45, 'y': -1.37, 'z': 1.9}, 'rotation': {'pitch': 0.0000, 'yaw': -135.0000, 'roll': 0.0000}},  # C4-L135
+#             {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -0.0000, 'yaw': 30.0000, 'roll': 0.0000}},  # C1-R45
+#             {'location': {'x': 3.45, 'y': 1.37, 'z': 1.9}, 'rotation': {'pitch': 0.0000, 'yaw': 150.0000, 'roll': 0.0000}},  # C2-R135
+#             {'location': {'x': 3.45, 'y': -1.37, 'z': 2.1}, 'rotation': {'pitch': 0.0000, 'yaw': -30.0000, 'roll': 0.0000}},  # C3-L45  前右
+#             {'location': {'x': 3.45, 'y': -1.37, 'z': 1.9}, 'rotation': {'pitch': 0.0000, 'yaw': -150.0000, 'roll': 0.0000}},  # C4-L135
 #             {'location': {'x': 3.8500, 'y': 0.0000, 'z': 2.0}, 'rotation': {'pitch': 0.00, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
 # ]
 # lidar_positions_set = [
@@ -79,13 +81,21 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
 #     {'location': {'x': 3.8500, 'y': 0.0000, 'z': 1.8000}, 'rotation': {'pitch': 0.0000, 'yaw': 0.0000, 'roll': 0.0000}}  # L5
 # ]
 
-"""---------------------------------------------------   plan2    -----------------------------------------------------------"""
-
+"""---------------------------------------------------   planB    -----------------------------------------------------------"""
+# # fov=90
 # cam_positions_set = [
 # {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -17.0, 'yaw': 43.5000, 'roll': 0.0000}},  # C1-R45
 # {'location': {'x': 3.45, 'y': 1.37, 'z': 1.95 }, 'rotation': {'pitch': -17.0, 'yaw': 136.5000, 'roll': 0.0}},  # C3-L45  前右
 # {'location': {'x': 3.45, 'y': -1.37, 'z': 2.1 }, 'rotation': {'pitch': -17.0, 'yaw': -43.5000, 'roll': 0.0000}},  # C2-R135
 # {'location': {'x': 3.45, 'y': -1.37, 'z': 1.95 }, 'rotation': {'pitch': -17.0, 'yaw': -136.5000, 'roll': -0.0}},  # C4-L135
+# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
+# ]
+# #fov=60
+# cam_positions_set = [
+# {'location': {'x': 3.45, 'y': 1.37, 'z': 2.1}, 'rotation': {'pitch': -10.0, 'yaw': 30.000, 'roll': 0.0000}},  # C1-R45
+# {'location': {'x': 3.45, 'y': 1.37, 'z': 1.95 }, 'rotation': {'pitch': -10.0, 'yaw': 150.000, 'roll': 0.0}},  # C3-L45  前右
+# {'location': {'x': 3.45, 'y': -1.37, 'z': 2.1 }, 'rotation': {'pitch': -10.0, 'yaw': -30.000, 'roll': 0.0000}},  # C2-R135
+# {'location': {'x': 3.45, 'y': -1.37, 'z': 1.95 }, 'rotation': {'pitch': -10.0, 'yaw': -150.000, 'roll': -0.0}},  # C4-L135
 # {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
 # ]
 # lidar_positions_set = [
@@ -133,7 +143,7 @@ cam_positions_set = [
 ]
 lidar_positions_set = [
 {'location': {'x': 3.7, 'y': 1.6, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
-{'location': {'x': 3.55, 'y': 1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -32.0}},# e1
+{'location': {'x': 3.55, 'y': 1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -0.0}},# e1
 {'location': {'x': 3.65, 'y': 1.6, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
 {'location': {'x': 3.55, 'y':-1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
 {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
@@ -229,10 +239,6 @@ def config_save_to_json(save_dir):
         json.dump(config_sensor_options_RGBCamera, f, indent=4)
 
 
-
-
-
-
 def get_sensor_cfg():
     print("cam_positions：", cam_positions)
     print("lidar_positions：", lidar_positions)
@@ -248,6 +254,7 @@ def get_sensor_cfg():
 
 if __name__ == '__main__':
     get_sensor_cfg()
+    # main_carla()
 
 
 

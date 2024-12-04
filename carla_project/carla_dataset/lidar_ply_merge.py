@@ -52,6 +52,7 @@ def point_cloud_update(point_cloud, intensities, transform):
     # scaled_intensities = intensities * 0.620  # 将其缩放到0-0.620
     scaled_intensities = (1.00 - intensities)#*0.62
     point_cloud_whth_intensities = np.hstack((points, scaled_intensities.reshape(-1, 1)))
+    # print("shape",point_cloud_whth_intensities.shape)
 
     return point_cloud_whth_intensities
 
@@ -131,6 +132,7 @@ def lidar_ply_merge(ply_dir, save_dir):
     print(pc_files_name)
 
     # 遍历每一个文件名并合并对应的 LiDAR 文件
+    shoudong_intensities=[0.1,0.3,0.5,0.7,0.9]
     for name in pc_files_name:
         ply_files = [f"{name}-L{i}.ply" for i in range(1, 6)]  # L1 到 L5
         lidar_paths = [os.path.join(ply_dir, ply) for ply in ply_files]
@@ -138,7 +140,28 @@ def lidar_ply_merge(ply_dir, save_dir):
             # 加载点云和强度数据
             points, intensities,_ = read_point_cloud_ply(lidar_path)
             # 使用预定义的位置更新点云数据
+
+            if i==0:
+                intensities[:] = 0.2
+            elif i==1:
+                intensities[:] = 0.4
+            elif i == 2:
+                intensities[:] = 0.6
+            elif i==3:
+                intensities[:] = 0.4
+            elif i == 4:
+                intensities[:] = 0.9
+
+            # print(points.shape)
+
             point_cloud_intensity = point_cloud_update(points, intensities, lidar_positions[i])
+            # 条件筛选：找到第三列小于等于 -2 的行
+            condition = point_cloud_intensity[:, 2] <= -1.97
+            point_cloud_intensity[condition, 3] -= 0.07
+            point_cloud_intensity[:, 1] *= -1
+            # 将符合条件的行的第四列加 0.05
+
+
             point_cloud_whth_intensities_list.append(point_cloud_intensity)
 
         # 合并所有的点云数据
