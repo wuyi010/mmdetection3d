@@ -269,7 +269,7 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         # ('vehicle.carlamotors.european_hgv', 391.005, -127.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
         # ('vehicle.carlamotors.european_hgv', 391.005, -136.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
 
-        ('vehicle.tesla.model3', 387.15, -123.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
+        # ('vehicle.tesla.model3', 387.15, -123.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
 
         # 5.最右侧车道，车辆侧前方、侧方、侧后方，各放置一台小轿车；【截图1张照片】
         # ('vehicle.tesla.model3',             383.15, -114.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
@@ -277,9 +277,9 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
         # ('vehicle.tesla.model3',             383.15, -132.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
 
         # 6.最右侧车道，车辆侧前方、侧方、侧后方，各放置一台卡车；【截图1张照片】
-        ('vehicle.carlamotors.european_hgv', 383.15, -114.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
-        ('vehicle.carlamotors.european_hgv', 383.15, -123.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
-        ('vehicle.carlamotors.european_hgv', 383.15, -132.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
+        ('vehicle.carlamotors.european_hgv', 384.45, -112.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
+        ('vehicle.carlamotors.european_hgv', 384.45, -121.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
+        ('vehicle.carlamotors.european_hgv', 384.45, -130.0, 90),  # 盲区 车长 3.97  127 +-3.97 = 130.97  123.03
     ]
 
     # 一堵墙

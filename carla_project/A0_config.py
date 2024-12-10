@@ -114,40 +114,58 @@ dataset_list_name_list = ['CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_FRONT_RIGHT', 
 #不盲雷达：260 304  328
 # {'location': {'x': 2.8, 'y': 1.6, 'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 110.0, 'roll': -20.0}},#      lidar 3
 """--------------------------------------------------------------------------------------------------------------------------"""
-# #实测3 补盲移动1.6m
-# cam_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0}, 'rotation': {'pitch': -0.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-# {'location': {'x': 3.20, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
-# {'location': {'x': 3.85, 'y': -1.30, 'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
-# {'location': {'x': 3.20, 'y': -1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
-# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
-# ]
-# lidar_positions_set = [
-# {'location': {'x': 3.85, 'y': 1.30, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 45.0, 'roll': 0.0000}}, #右前方
-# {'location': {'x': 3.2, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -40.000, 'yaw': 105.0, 'roll': -28.0}},# 左前方
-# {'location': {'x': 3.85, 'y':-1.30, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': -45.0, 'roll': 0.0000}},
-# {'location': {'x': 1.6, 'y':-1.30, 'z': 3.28 }, 'rotation': {'pitch': -40.00, 'yaw': -105.0, 'roll': 28.0}}, ############YOUCE
-# {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}
-# ]
+#实测3 补盲移动1.6m
+cam_positions_set = [
+{'location': {'x': 3.55, 'y': 1.30, 'z': 2.0}, 'rotation': {'pitch': -0.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
+{'location': {'x': 3.55, 'y': 1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
+{'location': {'x': 3.55, 'y': -1.30, 'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
+{'location': {'x': 3.55, 'y': -1.30, 'z': 3.28 }, 'rotation': {'pitch': -0.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
+{'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -0.0, 'yaw': 0.00, 'roll': 0.00}}  # C5-F0H  前
+]
+lidar_positions_set = [
+{'location': {'x': 3.55, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
+{'location': {'x': 3.65, 'y': 1.45, 'z': 1.78 }, 'rotation': {'pitch': -40.5, 'yaw': 149.0, 'roll': -44.0}},# e1 you
+{'location': {'x': 3.45, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
+{'location': {'x': 3.65, 'y':-1.45, 'z': 1.78 }, 'rotation': {'pitch': -34.00, 'yaw': -149.0, 'roll': 47.0}},
+{'location': {'x': 3.85, 'y': 0.0,  'z': 2.9 }, 'rotation': {'pitch': -46.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
+]
+
 
 
 """--------------------------------------------------   最终方案无死角覆盖    ---------------------------------------------------"""
-
-cam_positions_set = [
-{'location': {'x': 3.7, 'y': 1.45, 'z': 2.0}, 'rotation': {'pitch': -16.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
-{'location': {'x': 3.7, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': -16.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
-{'location': {'x': 3.7, 'y': -1.45, 'z': 2.0 }, 'rotation': {'pitch': -16.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
-{'location': {'x': 3.70, 'y': -1.45, 'z': 1.9}, 'rotation': {'pitch': -16.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
-{'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}},  # C5-F0H  前
-
-]
-lidar_positions_set = [
-{'location': {'x': 3.7, 'y': 1.6, 'z': 2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
-{'location': {'x': 3.55, 'y': 1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -0.0}},# e1
-{'location': {'x': 3.65, 'y': 1.6, 'z':2.0 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
-{'location': {'x': 3.55, 'y':-1.6, 'z': 1.9 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
-{'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
-]
+"""------------------------------------------------x6000---------------------------------------------------------------------------"""
+# cam_positions_set = [
+# {'location': {'x': 3.7, 'y': 1.45, 'z': 2.0}, 'rotation': {'pitch': -16.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
+# {'location': {'x': 3.7, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': -16.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
+# {'location': {'x': 3.7, 'y': -1.45, 'z': 2.0 }, 'rotation': {'pitch': -16.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
+# {'location': {'x': 3.70, 'y': -1.45, 'z': 1.9}, 'rotation': {'pitch': -16.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
+# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}},  # C5-F0H  前
+#
+# ]
+# lidar_positions_set = [
+# {'location': {'x': 3.55, 'y': 1.45, 'z': 1.9 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
+# {'location': {'x': 3.55, 'y': 1.45, 'z': 1.78 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -32.0}},# e1
+# {'location': {'x': 3.45, 'y': 1.45, 'z':1.9}, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
+# {'location': {'x': 3.55, 'y':-1.45, 'z': 1.78 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
+# {'location': {'x': 3.85, 'y': 0.45,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
+# ]
+"""------------------------------------------------x5000---------------------------------------------------------------------------"""
+# cam_positions_set = [
+# {'location': {'x': 3.7, 'y': 1.45, 'z': 1.7}, 'rotation': {'pitch': -16.0, 'yaw': 45.0000, 'roll': 0.0000}},  # C1-R45
+# {'location': {'x': 3.7, 'y': 1.45, 'z': 1.6 }, 'rotation': {'pitch': -16.0, 'yaw': 135.0000, 'roll': 0.0}},  # C3-L45  前右
+# {'location': {'x': 3.7, 'y': -1.45, 'z': 1.7 }, 'rotation': {'pitch': -16.0, 'yaw': -45.0000, 'roll': 0.0000}},  # C2-R135
+# {'location': {'x': 3.70, 'y': -1.45, 'z': 1.6}, 'rotation': {'pitch': -16.0, 'yaw': -135.0000, 'roll': -0.0}},  # C4-L135
+# {'location': {'x': 3.85, 'y': 0.00,  'z': 2.0 }, 'rotation': {'pitch': -10.0, 'yaw': 0.00, 'roll': 0.00}},  # C5-F0H  前
+#
+# ]
+# lidar_positions_set = [
+# {'location': {'x': 3.7, 'y': 1.6, 'z': 1.7 }, 'rotation': {'pitch': 0.0000, 'yaw': 30.0, 'roll': 0.0000}}, #AT128 FRONT
+# {'location': {'x': 3.55, 'y': 1.6, 'z': 1.6 }, 'rotation': {'pitch': -48.00, 'yaw': 120.0, 'roll': -32.0}},# e1
+# {'location': {'x': 3.65, 'y': 1.6, 'z':1.7 }, 'rotation': {'pitch': 0.0000, 'yaw': 125.0, 'roll': 0.0000}},#AT128 BACK
+# {'location': {'x': 3.55, 'y':-1.6, 'z': 1.6 }, 'rotation': {'pitch': -48.00, 'yaw': -120.0, 'roll': 32.0}},
+# {'location': {'x': 3.85, 'y': 0.0,  'z': 3.04 }, 'rotation': {'pitch': -45.000, 'yaw': 0.000, 'roll': 0.0000}}    # FRONT
+# ]
+"""------------------------------------------------x TEST---------------------------------------------------------------------------"""
 """---------------------------------------------------------------------------------------------------------------------------"""
 
 

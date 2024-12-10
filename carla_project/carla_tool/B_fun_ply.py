@@ -51,7 +51,21 @@ def read_pcd_ply_visualize(pkg_path):
 
     visualize_point_cloud(points, intensities,  keep=True)
 
+def traverse_lidar_merge_directory(directory_path):
+    # 检查目录是否存在
+    if not os.path.exists(directory_path):
+        print(f"Directory {directory_path} does not exist.")
+        return
 
+    # 遍历目录中的所有文件
+    for root, dirs, files in os.walk(directory_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            print(f"Processing file: {file_path}")
+            read_pcd_ply_visualize(file_path)
+            # 在这里你可以对每个文件进行处理
+            # 比如你可以传递给 read_pcd_ply_visualize(file_path)
+            # read_pcd_ply_visualize(file_path)
 if __name__ == "__main__":
 
     # # 指定目录
@@ -70,5 +84,13 @@ if __name__ == "__main__":
     #
 
     ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge/000000.ply"
-    ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge/001363.ply"
-    read_pcd_ply_visualize(ply_dir5)
+    ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar/000000-L2.ply"
+    # read_pcd_ply_visualize(ply_dir5)
+
+
+
+
+    # 使用函数遍历目录
+    directory = '/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge'
+    traverse_lidar_merge_directory(directory)
+

@@ -142,23 +142,26 @@ def lidar_ply_merge(ply_dir, save_dir):
             # 使用预定义的位置更新点云数据
 
             if i==0:
-                intensities[:] = 0.2
+                intensities[:] = 0.4
             elif i==1:
-                intensities[:] = 0.4
+                intensities[:] = 0.2
             elif i == 2:
-                intensities[:] = 0.6
+                intensities[:] = 0.3
             elif i==3:
-                intensities[:] = 0.4
+                intensities[:] = 0.2
             elif i == 4:
-                intensities[:] = 0.9
+                intensities[:] = 0.1
+
 
             # print(points.shape)
 
             point_cloud_intensity = point_cloud_update(points, intensities, lidar_positions[i])
             # 条件筛选：找到第三列小于等于 -2 的行
-            condition = point_cloud_intensity[:, 2] <= -1.97
-            point_cloud_intensity[condition, 3] -= 0.07
-            point_cloud_intensity[:, 1] *= -1
+            condition = point_cloud_intensity[:, 2] <= -2.0
+            point_cloud_intensity[condition, 3] -= 0.08
+            # point_cloud_intensity[:, 1] *= -1
+
+
             # 将符合条件的行的第四列加 0.05
 
 
