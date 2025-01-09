@@ -1,4 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import torch
+
 from mmdet3d.models.layers import make_sparse_convmodule
 from mmdet3d.models.layers.spconv import IS_SPCONV2_AVAILABLE
 from mmdet3d.models.middle_encoders import SparseEncoder
@@ -149,3 +151,38 @@ class BEVFusionSparseEncoder(SparseEncoder):
             return spatial_features, encode_features
         else:
             return spatial_features
+
+
+
+
+
+
+# # 假设我们有以下输入
+# batch_size = 2
+# N = 2  # 体素的数量
+# C = 5    # 每个体素的特征数量
+#
+# # 模拟 voxel_features 和 coors
+# voxel_features = torch.randn(N, C)  # 体素特征，形状 (N, C)
+# coors = torch.randint(0, 10, (N, 4))  # 体素坐标，形状 (N, 4)
+# print(voxel_features,"\n", coors)
+#
+# # 假设稀疏张量的形状为 (D, H, W)
+# sparse_shape = [10, 10, 10]
+#
+# # 创建 BEVFusionSparseEncoder 实例
+# encoder = BEVFusionSparseEncoder(
+#     in_channels=C,
+#     sparse_shape=sparse_shape,
+#     base_channels=16,
+#     output_channels=128,
+#     encoder_channels=((16,), (32, 32, 32), (64, 64, 64), (64, 64, 64)),
+#     encoder_paddings=((1,), (1, 1, 1), (1, 1, 1), ((0, 1, 1), 1, 1)),
+#     block_type='conv_module',
+#     return_middle_feats=False
+# )
+#
+# # 调用 forward 方法
+# spatial_features = encoder.forward(voxel_features, coors, batch_size)
+#
+# print(f"Spatial features shape: {spatial_features.shape}")

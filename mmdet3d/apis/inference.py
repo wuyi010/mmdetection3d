@@ -263,14 +263,12 @@ def inference_multi_modality_detector(model: nn.Module,
                         data_info['images'][cam_type]['lidar2img'])
             # Depth to image conversion for SUNRGBD dataset
             elif box_mode_3d == Box3DMode.DEPTH:
-                data_['depth2img'] = np.array(
-                    data_info['images'][cam_type]['depth2img'])
+                data_['depth2img'] = np.array(data_info['images'][cam_type]['depth2img'])
         else:
             assert osp.isdir(img), f'{img} must be a file directory'
             for _, img_info in data_info['images'].items():
                 img_info['img_path'] = osp.join(img, img_info['img_path'])
-                assert osp.isfile(img_info['img_path']
-                                  ), f'{img_info["img_path"]} does not exist.'
+                assert osp.isfile(img_info['img_path'] ), f'{img_info["img_path"]} does not exist.'
             data_ = dict(
                 lidar_points=dict(lidar_path=pcd),
                 images=data_info['images'],

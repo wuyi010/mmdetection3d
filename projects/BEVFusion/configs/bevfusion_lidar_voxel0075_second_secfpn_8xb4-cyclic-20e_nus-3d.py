@@ -8,7 +8,9 @@ custom_imports = dict(
 # If point cloud range is modified, do remember to change all related
 # keys in the Sensor_cfg.
 voxel_size = [0.075, 0.075, 0.2]
-point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+# point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+point_cloud_range =[-150.0, -150.0,  -10.0,   150.0,   150.0,  10]
+
 class_names = [
     'car', 'truck', 'construction_vehicle', 'bus', 'trailer', 'barrier',
     'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone'
@@ -57,10 +59,10 @@ model = dict(
         type='BEVFusionSparseEncoder',
         in_channels=5,
         sparse_shape=[1440, 1440, 41],
+
         order=('conv', 'norm', 'act'),
         norm_cfg=dict(type='BN1d', eps=0.001, momentum=0.01),
-        encoder_channels=((16, 16, 32), (32, 32, 64), (64, 64, 128), (128,
-                                                                      128)),
+        encoder_channels=((16, 16, 32), (32, 32, 64), (64, 64, 128), (128, 128)),
         encoder_paddings=((0, 0, 1), (0, 0, 1), (0, 0, (1, 1, 0)), (0, 0)),
         block_type='basicblock'),
     pts_backbone=dict(
@@ -134,7 +136,8 @@ model = dict(
         bbox_coder=dict(
             type='TransFusionBBoxCoder',
             pc_range=[-54.0, -54.0],
-            post_center_range=[-61.2, -61.2, -10.0, 61.2, 61.2, 10.0],
+            # post_center_range=[-61.2, -61.2, -10.0, 61.2, 61.2, 10.0],
+            post_center_range=[-100.2, -100.2, -10.0, 100.2, 100.2, 10.0],
             score_threshold=0.0,
             out_size_factor=8,
             voxel_size=[0.075, 0.075],
@@ -255,7 +258,8 @@ test_pipeline = [
         backend_args=backend_args),
     dict(
         type='PointsRangeFilter',
-        point_cloud_range=[-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]),
+        # point_cloud_range=[-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]),
+        point_cloud_range=[-150.0, -150.0, -10.0, 150.0, 150.0, 10.0]),
     dict(
         type='Pack3DDetInputs',
         keys=['img', 'points', 'gt_bboxes_3d', 'gt_labels_3d'],

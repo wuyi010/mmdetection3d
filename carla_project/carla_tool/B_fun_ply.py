@@ -4,7 +4,9 @@ import pickle
 import numpy as np
 import yaml
 
-from carla_project.carla_tool import visualize_point_cloud, read_point_cloud_ply
+
+from carla_project.carla_tool import visualize_point_cloud
+from carla_tool import read_point_cloud_ply
 
 
 def save_file(content, file_name="kitti_pkg.pkl"):
@@ -75,22 +77,23 @@ if __name__ == "__main__":
     #
     # # 获取目录下的所有 .ply 文件
     # ply_files = [f for f in os.listdir(ply_dir) if f.endswith('.ply')]
-    #
+
     # # 循环读取每个 .ply 文件
     # for ply_file in ply_files:
     #     ply_path = os.path.join(ply_dir, ply_file)
     #     print(f"读取文件: {ply_path}")
     #     read_pcd_ply_visualize(ply_path)
-    #
 
     ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge/000000.ply"
-    ply_dir5= "/home/didi/mmdetection3d/carla_project/Carla_data/lidar/000000-L2.ply"
+    ply_dir5= "/home/didi/mmdetection3d_ing/carla_project/CarlaData/bevfusion/bevfusion_pkl_merge/0000000383.ply"
+    ply_dir5= "/home/didi/mmdetection3d_ing/carla_project/CarlaData/bevfusion/bevfusion_pkl_merge/0000001880.ply"
     # read_pcd_ply_visualize(ply_dir5)
 
 
 
 
     # 使用函数遍历目录
-    directory = '/home/didi/mmdetection3d/carla_project/Carla_data/lidar_merge'
+    directory = '/home/didi/mmdetection3d_ing/carla_project/CarlaData/Lidar'
+    directory = '/home/didi/mmdetection3d_ing/carla_project/CarlaData/bevfusion/bevfusion_pkl_merge'
     traverse_lidar_merge_directory(directory)
 

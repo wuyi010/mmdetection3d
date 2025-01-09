@@ -1,8 +1,7 @@
 import os
 
-from carla_project.carla_simu import parse_arguments
-from carla_project.carla_tool.read_point_cloud_ply import read_point_cloud_ply
-from carla_project.carla_tool.visualize_point_cloud import visualize_point_cloud_save_png
+
+from carla_project import config as config
 
 
 def get_numeric_filename(file_name):
@@ -12,10 +11,10 @@ def get_numeric_filename(file_name):
 
 if __name__ == "__main__":
 
-    args = parse_arguments()
 
     # PLY 文件路径
-    ply_file_path = args.save_path + args.lidar_merge_path  # 替换为您的文件路径
+
+    ply_file_path = config.CarlaDataPath['dataset_path'] + config.CarlaDataPath['lidar_merge_path']
 
     # 获取所有 .ply 文件并按数字排序
     ply_files = [f for f in os.listdir(ply_file_path) if f.endswith('.ply')]

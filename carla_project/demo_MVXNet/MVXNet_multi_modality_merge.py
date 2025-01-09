@@ -1,0 +1,99 @@
+# Copyright (c) OpenMMLab. All rights reserved.
+import time
+
+from tqdm import tqdm
+
+from carla_project.carla_tool import load_from_pickle
+from carla_project.demo_MVXNet.MVXNet_DatasetCreate import create_dataset_paths_dirs, main_data_mvxnet
+from carla_project.demo_MVXNet.Read_and_visualize_use_NMS import carla_dataset_vis
+from config import carla_config
+from config.carla_config import SensorCameraName
+from mmdet3d.apis import MultiModalityDet3DInferencer
+
+
+import os
+
+
+def MVXNetInference(BasePath,carla_project_path,DATASET_path, mvxnet_cal_folder,mvxnet_out_folder,):
+
+    DATASET = load_from_pickle(DATASET_path)
+
+
+    calibs_path = mvxnet_cal_folder
+    create_dataset_paths_dirs([mvxnet_out_folder])
+
+    model_PATH = os.path.join(BasePath,'configs/mvxnet/mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class.py')
+    weights_PATH = os.path.join(BasePath,'checkpoints/mvxnet_fpn_dv_second_secfpn_8xb2-80e_kitti-3d-3class-fixed.pth')
+    # 固定推理参数（这些不会改变）
+    init_args = {
+        'model': model_PATH,
+        'weights': weights_PATH,
+        'device': 'cuda:0'}
+
+
+    inferencer = MultiModalityDet3DInferencer(**init_args)
+
+    call_args_base = {'pred_score_thr': 0.01,
+                      'out_dir': mvxnet_out_folder,
+                      # 'show': True,  # 关闭显示
+                      'show': False,  # 关闭显示
+                      'wait_time': -1,
+                      'no_save_vis': False,
+                      'no_save_pred': False,
+                      'print_result': False}
+
+    # 迭代 DATASET 中的每个 timestamp 和数据
+    for timestamp, data in tqdm(DATASET.items(), desc="Processing timestamps", total=len(DATASET)):
+
+        # 获取点云路径
+        points_path = os.path.join(carla_project_path, data['point']['path'])
+        # 迭代每个 SensorCameraName
+        for name in SensorCameraName:
+            call_args = call_args_base.copy()
+            img_path = os.path.join(carla_project_path, DATASET[timestamp]['camera'][name]['path'])
+            # 获取文件名（不包含扩展名）
+            filename_with_extension = os.path.basename(img_path)
+            filename, _ = os.path.splitext(filename_with_extension)
+            # 获取 infos 路径
+
+            infos_path = os.path.join(carla_project_path, calibs_path, f'{filename}.pkl')
+            # 更新 call_args 输入
+            # 设置预测结果的输出路径，并根据相机名来命名预测文件
+            call_args['out_dir'] = os.path.join(mvxnet_out_folder, f'{name}')
+            call_args['inputs'] = {'points': points_path, 'img': img_path, 'infos': infos_path, 'cam-type': "CAM2"}
+            # 调用推理函数
+            inferencer(**call_args)
+            # 暂停 0.1 秒，模拟处理时间
+            time.sleep(0.01)
+
+def inference_vis():
+
+    base_path = "/home/didi/mmdetection3d_ing/carla_project"
+
+    dataset_path = os.path.join(base_path, carla_config.CarlaDataPath['dataset_path'])
+    lidar_path = os.path.join(base_path, carla_config.CarlaDataPath['lidar_path'])
+    camera_path = os.path.join(base_path, carla_config.CarlaDataPath['camera_path'])
+
+    mvxnet_bin_folder = os.path.join(base_path, carla_config.CarlaDataPath['mvxnet_bin_folder'])
+    mvxnet_pkl_file = os.path.join(base_path, carla_config.CarlaDataPath['mvxnet_pkl_file'])
+    mvxnet_cal_folder = os.path.join(base_path, carla_config.CarlaDataPath['mvxnet_cal_folder'])
+    mvxnet_out_folder = os.path.join(base_path, carla_config.CarlaDataPath['mvxnet_out_folder'])
+    mvxnet_path_name = os.path.join(base_path, carla_config.CarlaDataPath['mvxnet_path_name'])
+
+    BasePath =f"/home/didi/mmdetection3d_ing"
+    carla_project_path =base_path
+
+
+    """一. 推理"""
+    DATASET_path = mvxnet_pkl_file
+    MVXNetInference(BasePath,carla_project_path,DATASET_path, mvxnet_cal_folder,mvxnet_out_folder,)
+    """二. NMS算法进行可视化"""
+    carla_dataset_vis(base_dir=carla_project_path,bin_file_path=mvxnet_bin_folder,output_dir=mvxnet_out_folder)
+
+
+if __name__ == '__main__':
+    inference_vis()
+
+
+
+

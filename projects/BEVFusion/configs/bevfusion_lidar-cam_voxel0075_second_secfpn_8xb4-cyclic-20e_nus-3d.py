@@ -1,7 +1,9 @@
 _base_ = [
     './bevfusion_lidar_voxel0075_second_secfpn_8xb4-cyclic-20e_nus-3d.py'
 ]
-point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+# point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+point_cloud_range =[-150.0, -150.0,  -10.0,   150.0,   150.0,  10]
+
 input_modality = dict(use_lidar=True, use_camera=True) # 定义了模型是否使用激光雷达 (use_lidar=True) 和摄像头 (use_camera=True) 数据作为输入。
 backend_args = None
 
@@ -48,8 +50,12 @@ model = dict(# 模型定义
         out_channels=80,
         image_size=[256, 704],
         feature_size=[32, 88],
-        xbound=[-54.0, 54.0, 0.3],
-        ybound=[-54.0, 54.0, 0.3],
+        # xbound=[-54.0, 54.0, 0.3],
+        # ybound=[-54.0, 54.0, 0.3],
+        # zbound=[-10.0, 10.0, 20.0],
+        # dbound=[1.0, 60.0, 0.5],
+        xbound=[-150.0, 150.0, 0.3],
+        ybound=[-150.0, 150.0, 0.3],
         zbound=[-10.0, 10.0, 20.0],
         dbound=[1.0, 60.0, 0.5],
         downsample=2),
@@ -162,7 +168,8 @@ test_pipeline = [
         is_train=False),
     dict(
         type='PointsRangeFilter',
-        point_cloud_range=[-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]),
+        # point_cloud_range=[-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]),
+        point_cloud_range=[-150.0, -150.0,  -10.0,   150.0,   150.0,  10],),
     dict(
         type='Pack3DDetInputs',
         keys=['img', 'points', 'gt_bboxes_3d', 'gt_labels_3d'],

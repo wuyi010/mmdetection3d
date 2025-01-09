@@ -3,7 +3,7 @@ import numpy as np
 import os
 import shutil
 
-from carla_project.carla_dataset.dataset_get import convert_ply
+
 from carla_project.carla_tool import read_point_cloud_ply
 from carla_project.carla_tool.B_fun_png_display import get_numeric_filename
 

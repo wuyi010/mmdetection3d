@@ -4,8 +4,8 @@ _base_ = [
     '../_base_/schedules/cyclic-40e.py', '../_base_/default_runtime.py'
 ]
 
-point_cloud_range = [0, -39.68, -3, 69.12, 39.68, 1]
-point_cloud_range = [0, -39.68, -3, 100, 39.68, 1]
+# point_cloud_range = [0, -39.68, -3, 69.12, 39.68, 1]
+point_cloud_range = [-150, -150, -30, 150, 150, 30]
 # dataset settings
 data_root = 'data/kitti/'
 class_names = ['Pedestrian', 'Cyclist', 'Car']

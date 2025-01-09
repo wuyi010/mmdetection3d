@@ -108,6 +108,7 @@ class Voxelization(nn.Module):
                 https://github.com/open-mmlab/mmdetection3d/pull/904
                 it is an experimental feature and we will appreciate it if
                 you could share with us the failing cases.
+                计算出将点云划分为体素后，点云的每个维度（x、y、z）上所需要的体素数，从而确定点云在三维空间中的体素网格尺寸。
         """
         self.voxel_size = voxel_size
         self.point_cloud_range = point_cloud_range

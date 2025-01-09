@@ -125,7 +125,7 @@ def carla_vis_nms(base_dir="/home/didi/mmdetection3d/carla_project"):
     import os
     import json
     # 定义目录和范围
-    from carla_project.A0_config import dataset_list_name_list
+
     camera_dirs = dataset_list_name_list[:5]
     preds_subdir = "preds"
 

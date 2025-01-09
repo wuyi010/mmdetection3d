@@ -161,6 +161,7 @@ class BEVLoadMultiViewImageFromFiles(LoadMultiViewImageFromFiles):
 
         # img is of shape (h, w, c, num_views)
         # h and w can be different for different views
+        #从每个路径加载图像，并将所有图像的数据（字节流或其他形式）存储到 img_bytes 列表中。
         img_bytes = [
             get(name, backend_args=self.backend_args) for name in filename
         ]
@@ -168,7 +169,7 @@ class BEVLoadMultiViewImageFromFiles(LoadMultiViewImageFromFiles):
             mmcv.imfrombytes(
                 img_byte,
                 flag=self.color_type,
-                backend='pillow',
+                backend='pillow', # 后段字节流加载图像
                 channel_order='rgb') for img_byte in img_bytes
         ]
         # handle the image with different shape

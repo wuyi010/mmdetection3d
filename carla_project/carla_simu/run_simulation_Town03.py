@@ -6,10 +6,9 @@ import numpy as np
 import cv2
 from matplotlib import cm
 
-from carla_project.carla_simu import DisplayManager, get_config_sensor_options, get_config_file_to_transform
-from carla_project.carla_simu.CustomTimer import CustomTimer
-from carla_project.carla_simu.SensorManager import SensorManager
-from carla_project.example.dynamic_weather import set_custom_weather
+from carla_project.carla_example.dynamic_weather import set_custom_weather
+from carla_project.carla_simu.Asimu import SensorManager, DisplayManager, CustomTimer
+from config import carla_config
 
 try:
     sys.path.append(glob.glob('../carla_project/dist/carla_project-*%d.%d-%s.egg' % (
@@ -26,7 +25,7 @@ except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
 
-def run_simulation_Town03(args, client):
+def run_simulation_Town03(client):
     """This function performs one test run using the args parameters
     and connects to the carla_project client passed.
     """
@@ -46,16 +45,16 @@ def run_simulation_Town03(args, client):
     blueprint_library = world.get_blueprint_library()
 
     try:
-        if args.sync:  # 同步模式
+        if carla_config.Server["sync"]:  # 同步模式
             print("Setting up synchronous mode...")
-            TM = client.get_trafficmanager(args.tm_port)
-            TM.set_synchronous_mode(True)  # 设置 TM 为同步模式
-            TM.global_percentage_speed_difference(90.0)
+            TM = client.get_trafficmanager(carla_config.Server["tm_port"])
+            TM.set_synchronous_mode(carla_config.Server["sync"])  # 设置 TM 为同步模式
+            TM.global_percentage_speed_difference(carla_config.World["global_percentage_speed_difference"])
 
             # 设置世界为同步模式
             settings = world.get_settings()
-            settings.synchronous_mode = True
-            settings.fixed_delta_seconds = 0.1  # 确保 TM 和 Carla 使用相同的时间步长
+            settings.synchronous_mode = carla_config.World["worldSettingsSynchronous_mode"]
+            settings.fixed_delta_seconds = carla_config.World["fixed_delta_seconds"]  # 确保 TM 和 Carla 使用相同的时间步长
             world.apply_settings(settings)
 
             # 设置观察者视角
@@ -64,7 +63,7 @@ def run_simulation_Town03(args, client):
 
         else:  # 非同步模式
             print("Setting up asynchronous mode...")
-            TM = client.get_trafficmanager(args.tm_port)
+            TM = client.get_trafficmanager(carla_config.Server["tm_port"])
             TM.set_synchronous_mode(False)  # 禁用 TM 同步模式
 
             # 设置世界为异步模式
@@ -77,7 +76,7 @@ def run_simulation_Town03(args, client):
             spectator.set_transform(carla.Transform(carla.Location(x=389.56, y=-224.7, z=15), carla.Rotation(yaw=90)))
 
         # 启动主要的 CARLA 运行逻辑
-        main_run_carla(args, client, world, TM, g_vehicle_list,display_manager)
+        main_run_carla(world, TM, g_vehicle_list)
 
     except KeyboardInterrupt:
         print("\nSimulation interrupted by user.")
@@ -128,7 +127,7 @@ def spawn_crossbike(world, blueprint_library, g_vehicle_list, vehicle_type,x, y,
     """
     # 创建车辆的Transform
     vehicle_transform = carla.Transform(carla.Location(x=x, y=y, z=z),
-                                        carla.Rotation(pitch=0.000000, yaw=yaw, roll=0.000000))
+                                            carla.Rotation(pitch=0.000000, yaw=yaw, roll=0.000000))
 
     # 从蓝图库中选择crossbike蓝图
     crossbike_blueprint = blueprint_library.filter(vehicle_type)[0]
@@ -140,7 +139,6 @@ def spawn_crossbike(world, blueprint_library, g_vehicle_list, vehicle_type,x, y,
     g_vehicle_list.append(crossbike)
 
 
-import carla
 def spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_type, x, y, z=0.400000, yaw=-90.439095):
     """
     生成一辆车辆并将其添加到车辆列表中。
@@ -167,22 +165,39 @@ def spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, vehicle_typ
     g_vehicle_list.append(vehicle)
 
 
-def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
+def main_run_carla(world, TM, g_vehicle_list):
     blueprint_library = world.get_blueprint_library()
 
-    # 获取spawn点
+    print("_______________________")
+    # 获取所有车辆类型
+    blueprints_vehicles = world.get_blueprint_library().filter('vehicle.*')
+    # 获取所有行人类型
+    blueprints_walkers = world.get_blueprint_library().filter('walker.pedestrian.*')
+    # # 列出所有的车辆类型
+    # vehicle_types = blueprint_library.filter('vehicle')
+    # for vehicle in vehicle_types:
+    #     print(vehicle.id)  # 打印车辆类型
+
+    # # 按字符串输出所有行人类型
+    # walker_types = [walker.id for walker in blueprints_walkers]
+    # for walker_type in walker_types:
+    #     print(walker_type)
+
+    print("_______________________")
+    """显示可刷出车辆位置"""
     spawn_points = world.get_map().get_spawn_points()
     # for i, spawn_point in enumerate(spawn_points):    # 在地图上用数字标出刷出点的位置
     #     world.debug.draw_string(spawn_point.location, str(i), life_time=10000000)
 
-        # 定义每种车辆类型和对应的刷出点 indices
+    """获取实际刷出位置"""
+
+
+    """非主场景车辆"""
     vehicle_type_to_indices = {
         'vehicle.jeep.wrangler_rubicon':    [202],
         'vehicle.tesla.model3':             [39,203,164,38],
-        'vehicle.bh.crossbike':             [161],
         'vehicle.ford.mustang':             [160 ],
         'vehicle.toyota.prius':             [ 165],
-        'vehicle.gazelle.omafiets':         [37],
         'vehicle.bmw.grandtourer':[40],
     }
 
@@ -196,57 +211,57 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     x=5.854201, y=184.692886, z=0.275307
     """
     vehicle_positions = [
-        ('vehicle.bmw.grandtourer', 1.826758, 172.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 1.826758, 164.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 1.826758, 154.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 1.926758, 144.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.026758, 134.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.126758, 124.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.226758, 114.692886, -90.362541),
-        ('vehicle.bmw.grandtourer', 2.326758, 104.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.426758, 94.692886,  -90.362541),
-        ('vehicle.bmw.grandtourer', 2.526758, 84.692886, -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.626758, 74.692886,  -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.7826758, 64.692886,  -90.362541),
-        # ('vehicle.bmw.grandtourer', 2.826758, 54.692886,  -90.362541),
+
+        # ('vehicle.tesla.model3',    8.56675, 115.692886, -96.362541),
+        # ('vehicle.bmw.grandtourer', 2.226758, 115.692886, -93.362541),
+        ('vehicle.bmw.grandtourer',    9.06675, 144.692886, -60.362541),#左侧
+        ("walker.pedestrian.0029",     7.2,     140.992886, -180.362541),
+        ('vehicle.jeep.wrangler_rubicon', 5.35, 136.692886, -90.362541),#左侧
+        ('vehicle.tesla.model3', 1.0, 140.692886, -120.362541),
+
         # """----------------------------------------------------------------"""
-        # """----------------------------------------------------------------"""
-        # """----------------------------------------------------------------"""
-        # ('vehicle.tesla.model3',  8.46675,   172.692886,   -90.362541),
-        ('vehicle.tesla.model3', 8.46675,   168.692886,   -90.362541),
-        # ('vehicle.tesla.model3', 8.46675,   154.692886,   -90.062541),
-        # ('vehicle.tesla.model3', 8.46675,   144.692886,   -90.062541),
-        # ('vehicle.tesla.model3', 8.46675,   134.692886,   -90.062541),
-        # ('vehicle.tesla.model3', 8.46675,   124.692886,   -90.362541),
-        # ('vehicle.tesla.model3', 8.46675,   114.692886,   -90.362541),
-        ('vehicle.tesla.model3', 8.46675,   104.692886,   -90.362541),
-        ('vehicle.tesla.model3', 8.46675,   94.692886 ,   -90.362541),
-        # ('vehicle.tesla.model3', 8.46675,   84.692886 ,   -90.362541),
-        ('vehicle.tesla.model3', 8.46675,   74.692886 ,   -90.362541),
-        # ('vehicle.tesla.model3', 8.46675,   64.692886 ,   -90.362541),
-        ('vehicle.tesla.model3', 8.46675,   54.692886 ,   -90.362541),
+
+        ('vehicle.bmw.grandtourer', 2.026758, 171.692886, -90.362541),
+        # ('vehicle.tesla.model3', 8.0675, 173.692886, -90.362541),
+
+        ("walker.pedestrian.0027", 9.1, 157.992886,  -90.362541),
+        ("walker.pedestrian.0028", 8.6, 163.692886,  -100.362541),
+
+
     ]
+
     for pos in vehicle_positions:
-        spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, pos[0], x=pos[1], y=pos[2],z=0.281942,yaw=pos[3])
+        spawn_vehicle_side_two(world, blueprint_library, g_vehicle_list, pos[0], x=pos[1], y=pos[2],z=0.481942,yaw=pos[3])
 
 
 
 
     """ego左侧自行车布置""" #     自行车 5.854201, y=184.692886, z=0.275307
-    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 161.692886,)
-    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 164.692886,)
+    # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.254201, 162.292886,)
+    # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.254201, 165.692886,)
+
+
+
+    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike", 8.25, 149.292886)
+    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike", 8.45, 154.692886)
+    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike", 7.4504, 162.292886)
+    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike", 7.4504, 165.692886)
+
+
+
+
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.bh.crossbike",3.304201, 167.692886,)
     """ego右侧摩托车布置"""
-    spawn_crossbike(world, blueprint_library, g_vehicle_list,"vehicle.kawasaki.ninja",  7.804, 161.692886)
-    spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", 7.804,164.692886)
+    # spawn_crossbike(world, blueprint_library, g_vehicle_list,"vehicle.kawasaki.ninja",  7.804, 161.692886)
+    # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", 7.804,165.692886)
     # spawn_crossbike(world, blueprint_library, g_vehicle_list, "vehicle.kawasaki.ninja", 7.804,167.692886)
 
     """ego前方卡车布置"""
-    car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]  #8.526758, 164.692886,
-    car_A_transform = carla.Transform(carla.Location(x=5.354201, y=149.692886, z=0.281942),
-                                      carla.Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
-    vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
-    g_vehicle_list.append(vehicle_car_A)
+    # car_A = blueprint_library.filter('vehicle.carlamotors.european_hgv')[0]  #8.526758, 164.692886,
+    # car_A_transform = carla.Transform(carla.Location(x=5.354201, y=149.692886, z=0.281942),
+    #                                   carla.Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
+    # vehicle_car_A = world.spawn_actor(car_A, car_A_transform)
+    # g_vehicle_list.append(vehicle_car_A)
 
     """
     Transform(Location(x=2.354272, y=189.215149, z=0.275307), Rotation(pitch=0.000000, yaw=-90.362541, roll=0.000000))
@@ -278,49 +293,63 @@ def main_run_carla(args, client, world, TM, g_vehicle_list,display_manager):
     # vehicle_hgv.set_autopilot(False,TM.get_port())
 
     """ego车辆传感器配置"""
-    cam_name = [1, 2, 3, 4, 5, 6]
-    lidar_name = [1, 2, 3, 4, 5]
-    display_rgb_pos = {0: [0, 3], 1: [0, 4], 2: [0, 1], 3: [0, 0], 4: [0, 2]}
-    # 创建 LiDAR 映射表
-    display_pos_lidar = {0: [1, 4], 1: [1, 0], 2: [1, 3], 3: [1, 1], 4: [1, 2]}
-    display_manager = DisplayManager(grid_size=[2, 5], window_size=[args.width, args.height])
+    display_manager = DisplayManager(grid_size=[2, 3], window_size=[carla_config.DisplayWindows['W'],carla_config.DisplayWindows['H']])
+    display_rgb_pos =    {0: [0, 1], 1: [0, 0], 2:[0, 2],
+                          3: [1, 0], 4: [1, 2], 5:[1, 1]}
+    display_lidar_pos =  {0: [0, 4], 1: [0, 3], 2:[0, 5],
+                          3: [1, 3], 4: [1, 5], 5:[1, 4]}
+    for i, (cam_name, camera_data) in enumerate(carla_config.SensorCamera_set.items()):
+        # 提取位置和旋转信息
+        location = camera_data['location']
+        rotation = camera_data['rotation']
 
-    save_dir = 'config'
-    sensor_options_RGBCamera = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_RGBCamera.json'))
-    sensor_options_LiDAR = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar.json'))
-    sensor_options_LiDAR_1 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_1.json'))
-    sensor_options_LiDAR_2 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_2.json'))
-    sensor_options_LiDAR_3 = get_config_sensor_options(os.path.join(save_dir, 'config_sensor_options_lidar_3.json'))
-    sensor_options_LiDAR_123 = [
-        sensor_options_LiDAR,  # 第一个 LiDAR 配置
-        sensor_options_LiDAR,  # 第二个 LiDAR 配置
-        sensor_options_LiDAR,  # 第三个 LiDAR 配置
-        sensor_options_LiDAR,  # 第四个 LiDAR 配置
-        sensor_options_LiDAR,  # 第五个 LiDAR 配置
-    ]
-    config_rgb = get_config_file_to_transform(os.path.join(save_dir, 'config_rgb.json'))
-    config_lidar = get_config_file_to_transform(os.path.join(save_dir, 'config_lidar.json'))
+        # 格式化为 Transform 格式
+        transform = carla.Transform(
+            carla.Location(x=location['x'], y=location['y'], z=location['z']),
+            carla.Rotation(pitch=rotation['pitch'], yaw=rotation['yaw'], roll=rotation['roll'])
+        )
+        # 提取传感器选项
+        sensor_options = camera_data['config']['options']
+        print("生成",cam_name,"选择参数sensor_options: ",sensor_options)
 
-    # 遍历配置并使用映射表设置 display_pos
-    for i, transform in enumerate(config_rgb):
-        display_pos = display_rgb_pos.get(i, [0, 0])
-        SensorManager(world, display_manager, 'RGBCamera', transform,
-                      vehicle_hgv, sensor_options_RGBCamera, display_pos, cam_name[i], args)
-    # # 遍历 LiDAR 传感器配置
-    # for i, transform in enumerate(config_lidar):
-    #     display_pos = display_pos_lidar.get(i, [1, 0])  # 如果没有匹配则默认[1, 0]
-    #     SensorManager(world, display_manager, 'LiDAR', transform,
-    #                   vehicle_hgv, sensor_options_LiDAR, display_pos, lidar_name[i], args)
-    # # 遍历 LiDAR 传感器配置
-    for i, transform in enumerate(config_lidar):
-        display_pos = display_pos_lidar.get(i, [1, 0])  # 如果没有匹配则默认[1, 0]
-        SensorManager(world, display_manager, 'LiDAR', transform,
-                      vehicle_hgv, sensor_options_LiDAR_123[i], display_pos, lidar_name[i], args)
+        # 执行 SensorManager
+        SensorManager(world=world,
+                      display_man=display_manager,
+                      sensor_type='RGBCamera',
+                      transform=transform,
+                      attached=vehicle_hgv,
+                      sensor_options=sensor_options,
+                      display_pos=display_rgb_pos.get(i),
+                      sensor_name=cam_name,)
+    for i, (LiDARName, LiDARData) in enumerate(carla_config.SensorLiDAR_set.items()):
+        # 提取位置和旋转信息
+        location = LiDARData['location']
+        rotation = LiDARData['rotation']
+
+        # 格式化为 Transform 格式
+        transform = carla.Transform(
+            carla.Location(x=location['x'], y=location['y'], z=location['z']),
+            carla.Rotation(pitch=rotation['pitch'], yaw=rotation['yaw'], roll=rotation['roll'])
+        )
+        # 提取传感器选项
+        sensor_options = LiDARData['config']
+        print("生成", LiDARName, "选择参数sensor_options: ", sensor_options)
+
+        # 执行 SensorManager
+        SensorManager(world=world,
+                      display_man=display_manager,
+                      sensor_type='LiDAR',
+                      # sensor_type='SemanticLiDAR',
+                      transform=transform,
+                      attached=vehicle_hgv,
+                      sensor_options=sensor_options,
+                      display_pos=display_lidar_pos.get(i),
+                      sensor_name=LiDARName,)
 
     # Simulation loop
     call_exit = False
     while True:
-        if args.sync:
+        if carla_config.Server["sync"]:
             world.tick()
         else:
             world.wait_for_tick()

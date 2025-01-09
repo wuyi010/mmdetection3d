@@ -3,7 +3,7 @@ import open3d as o3d
 
 from carla_project.carla_tool import visualize_point_cloud
 from carla_project.carla_tool.read_bin_file_ import read_bin_file
-from carla_project.carla_tool.read_point_cloud_ply import read_point_cloud_ply
+
 
 
 
@@ -28,59 +28,29 @@ def main():
     # # 替换为您的.bin文件路径
     # load_kitti_bin_visualize("/home/didi/mmdetection3d/data/kitti/testing/velodyne_reduced_L5/000000.bin")
     # load_kitti_bin_visualize("/home/didi/mmdetection3d/demo/data/kitti/备份_kitti/000008.bin")
-    load_kitti_bin_visualize("/carla_project/Carla_data/my_lidar/left_back.bin")
+    # load_kitti_bin_visualize("/carla_project/Carla_data/my_lidar/left_back.bin")
 
 
     bin_dir_carla = "/home/didi/mmdetection3d/demo/data/kitti/备份_kitti/000008.bin"
+    bin_dir_carla = '/home/didi/mmdetection3d_ing/demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
+    bin_dir_carla = '/carla_project/config/bevfusion/LidarBin/0000000036.bin'
+
     load_kitti_bin_visualize(bin_dir_carla)
-    points_cus = np.fromfile(bin_dir_carla, dtype=np.float32).reshape(-1, 4)
+    points_cus = np.fromfile(bin_dir_carla, dtype=np.float32).reshape(-1,)
     print(f"点云共有 {points_cus.shape[0]} 个点")
     print("前5个点的数据为：")
-    print(points_cus[:5])  # 打印前5个点
-    min_values = points_cus.min(axis=0)
-    max_values = points_cus.max(axis=0)
-    # 打印结果
-    for i in range(points_cus.shape[1]):
-        print(f"Column {i}: Min = {min_values[i]:.3f}, Max = {max_values[i]:.3f}")
-
-
-    bin_dir_sim = "/home/didi/mmdetection3d/data/kitti/testing/RainySimSet_velodyne_reduced/000030.bin"
-    load_kitti_bin_visualize(bin_dir_sim)
-    points = np.fromfile(bin_dir_sim, dtype=np.float32).reshape(-1, 4)
-    print(f"点云共有 {points.shape[0]} 个点")
-    print("前5个点的数据为：") #
-    print(points[:5])  # 打印前5个点 [21.554  0.028  0.938  0.34 ]
-    # 计算每列的最大值和最小值
-    min_values = points.min(axis=0)
-    max_values = points.max(axis=0)
-
-    # 打印结果
-    for i in range(points.shape[1]):
-        print(f"Column {i}: Min = {min_values[i]:.3f}, Max = {max_values[i]:.3f}")
-    #
-
-
-
-    bin_dir_carla = "/home/didi/mmdetection3d/carla_project/Carla_data/dataset/points/000000.bin"
-    load_kitti_bin_visualize(bin_dir_carla)
-    points_cus = np.fromfile(bin_dir_carla, dtype=np.float32).reshape(-1, 4)
-    print(f"点云共有 {points_cus.shape[0]} 个点")
-    print("前5个点的数据为：")
-    print(points_cus[:5])  # 打印前5个点
-
-    min_values = points_cus.min(axis=0)
-    max_values = points_cus.max(axis=0)
-
-    # 打印结果
-    for i in range(points_cus.shape[1]):
-        print(f"Column {i}: Min = {min_values[i]:.3f}, Max = {max_values[i]:.3f}")
+    print(points_cus[:40])  # 打印前5个点
+    # min_values = points_cus.min(axis=0)
+    # max_values = points_cus.max(axis=0)
+    # # 打印结果
+    # for i in range(points_cus.shape[1]):
+    #     print(f"Column {i}: Min = {min_values[i]:.3f}, Max = {max_values[i]:.3f}")
 
 
 
 
 
-
-def visualize_point_nuscenes(bin_path):
+def visualize_point_nuscenes(bin_path,column):
     import numpy as np
     import open3d as o3d
 
@@ -89,11 +59,12 @@ def visualize_point_nuscenes(bin_path):
 
     # 将数据加载为 numpy 数组
     # 一般的 .bin 点云数据格式是 [x, y, z, intensity]，每个点占用4个float32数值
-    point_cloud = np.fromfile(bin_path, dtype=np.float32).reshape(-1, 3)
+    column =column
+    point_cloud = np.fromfile(bin_path, dtype=np.float32).reshape(-1, column)
 
     print(f"点云共有 {point_cloud.shape[0]} 个点")
     print("前5个点的数据为：")
-    print(point_cloud[:5])  # 打印前5个点
+    print(point_cloud[:50])  # 打印前5个点
     min_values = point_cloud.min(axis=0)
     max_values = point_cloud.max(axis=0)
     # 打印结果
@@ -116,10 +87,12 @@ def visualize_point_nuscenes(bin_path):
     points = point_cloud[:, :3]
 
     # 提取强度值用于颜色映射
-    intensity = point_cloud[:, 3]
+    intensity = point_cloud[:, 4]
 
-    visualize_point_cloud(points, intensity, keep=True)
-
+    visualize_point_cloud(points,intensity, keep=True)
+    #
+    # # visualize_point_cloud(points, intensity, keep=True)
+    #
     # # 创建 Open3D 点云对象
     # pcd = o3d.geometry.PointCloud()
     # pcd.points = o3d.utility.Vector3dVector(points)
@@ -136,9 +109,15 @@ def visualize_point_nuscenes(bin_path):
 
 if __name__ == '__main__':
     # main()
-    bin_path = '/home/didi/mmdetection3d/carla_project/Carla_data_map3_plan1_vehicle/dataset/points/000000.bin'
-    bin_path = '/home/didi/mmdetection3d/carla_project/Carla_data_map3_plan2_vehicle/dataset/points/000000.bin'
-    visualize_point_nuscenes()
+
+
+
+    # bin_path = '/home/didi/mmdetection3d/carla_project/Carla_data_map3_plan1_vehicle/dataset/points/000000.bin'
+    # bin_path = '/home/didi/mmdetection3d/carla_project/Carla_data_map3_plan2_vehicle/dataset/points/000000.bin'
+    # bin_path = '/home/didi/mmdetection3d_ing/demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
+    bin_path = '/home/didi/mmdetection3d_ing/demo/data/nuscenes_copy/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
+    bin_path = '/carla_project/config/bevfusion/LidarBin/0000000036.bin'
+    visualize_point_nuscenes(bin_path = bin_path,column=5)
 
 """
 点云共有 119528 个点
