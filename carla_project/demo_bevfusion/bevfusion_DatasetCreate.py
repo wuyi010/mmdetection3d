@@ -476,7 +476,7 @@ def rename_files_in_directory(directory):
             last_value = value
         # 获取文件扩展名
         extension = os.path.splitext(file)[1]
-        # 构造新的文件名，如"0.png", "1.png"等
+        # 构造新的文件名，如"实验_车辆模型.png", "实验_晴天场景.png"等
         prefix = '_'.join(file.split('_')[:-1])
         new_filename = f"{prefix}_{i}{extension}"
         # 旧文件的完整路径
