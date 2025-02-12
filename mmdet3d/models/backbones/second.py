@@ -2,6 +2,7 @@
 import warnings
 from typing import Optional, Sequence, Tuple
 
+import torch
 from mmcv.cnn import build_conv_layer, build_norm_layer
 from mmengine.model import BaseModule
 from torch import Tensor
@@ -93,3 +94,31 @@ class SECOND(BaseModule):
             x = self.blocks[i](x)
             outs.append(x)
         return tuple(outs)
+
+
+
+# model = SECOND(
+#     in_channels=256,         # 输入通道数
+#     layer_nums=[5, 5],       # 每个块的卷积层数量
+#     layer_strides=[1, 2],    # 每个块的第一个卷积层的步幅
+#     out_channels=[128, 256]  # 每个块的输出通道数
+# )
+#
+#
+# # Instantiate model and forward pass
+# # Simulating input tensor of shape (N, C, H, W) where N=1 (batch size), C=128 (input channels), H=256, W=256
+# input_tensor = torch.randn(1, 256, 256, 256)
+#
+#
+#
+# output = model(input_tensor)
+#
+# # Display the model structure and the output shape for each layer
+#
+# output_shapes = [out.shape for out in output]
+#
+# print( "model：",model,)
+# # Loop through the tuple and print the shape of each output tensor
+# for i, out in enumerate(output):
+#     print(f"Output {i} shape: {out.shape}")
+

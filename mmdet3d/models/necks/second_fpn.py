@@ -92,3 +92,35 @@ class SECONDFPN(BaseModule):
         else:
             out = ups[0]
         return [out]
+
+
+
+
+
+"""
+
+
+# 模拟输入特征图
+input_1 = torch.randn(1, 128, 64, 64)  # 第一个特征图
+input_2 = torch.randn(1, 256, 32, 32)  # 第二个特征图
+
+# 将它们组成列表
+input_tensor = [input_1, input_2]
+import torch
+# 实例化模型
+model = SECONDFPN(
+    in_channels=[128, 256],
+    upsample_strides=[1, 2],
+    out_channels=[256, 256]
+)
+
+# 前向传播
+output = model(input_tensor)
+print( "model：",model,)
+
+output_shapes = [out.shape for out in output]
+# Loop through the tuple and print the shape of each output tensor
+for i, out in enumerate(output):
+    print(f"Output {i} shape: {out.shape}")
+
+"""

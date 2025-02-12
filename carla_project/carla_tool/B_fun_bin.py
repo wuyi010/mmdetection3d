@@ -34,6 +34,7 @@ def main():
     bin_dir_carla = "/home/didi/mmdetection3d/demo/data/kitti/备份_kitti/000008.bin"
     bin_dir_carla = '/home/didi/mmdetection3d_ing/demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
     bin_dir_carla = '/carla_project/config/bevfusion/LidarBin/0000000036.bin'
+    bin_dir_carla = '/home/didi/mmdetection3d_ing/carla_project/CarlaData/mvxnet/LidarBin/1.bin'
 
     load_kitti_bin_visualize(bin_dir_carla)
     points_cus = np.fromfile(bin_dir_carla, dtype=np.float32).reshape(-1,)
@@ -108,7 +109,7 @@ def visualize_point_nuscenes(bin_path,column):
 
 
 if __name__ == '__main__':
-    # main()
+    main()
 
 
 
@@ -117,7 +118,8 @@ if __name__ == '__main__':
     # bin_path = '/home/didi/mmdetection3d_ing/demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
     bin_path = '/home/didi/mmdetection3d_ing/demo/data/nuscenes_copy/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin'
     bin_path = '/carla_project/config/bevfusion/LidarBin/0000000036.bin'
-    visualize_point_nuscenes(bin_path = bin_path,column=5)
+
+    visualize_point_nuscenes(bin_path = bin_path,column=4)
 
 """
 点云共有 119528 个点

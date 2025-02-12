@@ -3,7 +3,10 @@ import logging
 import os
 from argparse import ArgumentParser
 
+import torch
+from mmcv.ops import Voxelization
 from mmengine.logging import print_log
+from tensorboard import summary
 
 from demo_MVXNet.MVXNet_DatasetCreate import main_data_mvxnet
 from mmdet3d.apis import LidarDet3DInferencer
@@ -102,18 +105,14 @@ def main():
     'points':'/home/didi/mmdetection3d_ing/carla_project/CarlaData/mvxnet/LidarBin/1.bin'
 
     }}
-
-
-
-
     inferencer = LidarDet3DInferencer(**init_args)
-    inferencer(**call_args)
 
-    if call_args['out_dir'] != '' and not (call_args['no_save_vis']
-                                           and call_args['no_save_pred']):
-        print_log(
-            f'results have been saved at {call_args["out_dir"]}',
-            logger='current')
+    # Print model structure
+    print(inferencer.model)
+
+    inferencer(**call_args)
+    if call_args['out_dir'] != '' and not (call_args['no_save_vis']  and call_args['no_save_pred']):
+        print_log(f'results have been saved at {call_args["out_dir"]}', logger='current')
 
 
 if __name__ == '__main__':

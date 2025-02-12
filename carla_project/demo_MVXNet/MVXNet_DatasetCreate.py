@@ -326,7 +326,7 @@ def main_data_mvxnet():
     Merge_Lidar(DATASET, mvxnet_pkl_merge)
 
 
-    # ROI_add_to_PLY(mvxnet_pkl_merge)
+    ROI_add_to_PLY(mvxnet_pkl_merge)
 
     """(3)PLY 文件转为bin格式 num_pts_feats = 4"""
     Ply_to_Bin_num_pts_feats4(DATASET, mvxnet_pkl_merge, mvxnet_bin_folder, display=False)

@@ -105,9 +105,7 @@ class Anchor3DHead(Base3DDenseHead, AnchorTrainMixin):
 
         # build loss function
         self.use_sigmoid_cls = loss_cls.get('use_sigmoid', False)
-        self.sampling = loss_cls['type'] not in [
-            'mmdet.FocalLoss', 'mmdet.GHMC'
-        ]
+        self.sampling = loss_cls['type'] not in [ 'mmdet.FocalLoss', 'mmdet.GHMC']
         if not self.use_sigmoid_cls:
             self.num_classes += 1
         self.loss_cls = MODELS.build(loss_cls)

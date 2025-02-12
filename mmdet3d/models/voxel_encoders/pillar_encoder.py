@@ -108,9 +108,7 @@ class PillarFeatureNet(nn.Module):
         features_ls = [features]
         # Find distance of x, y, and z from cluster center
         if self._with_cluster_center:
-            points_mean = features[:, :, :3].sum(
-                dim=1, keepdim=True) / num_points.type_as(features).view(
-                    -1, 1, 1)
+            points_mean = features[:, :, :3].sum(dim=1, keepdim=True) / num_points.type_as(features).view(-1, 1, 1)
             f_cluster = features[:, :, :3] - points_mean
             features_ls.append(f_cluster)
 
@@ -119,15 +117,9 @@ class PillarFeatureNet(nn.Module):
         if self._with_voxel_center:
             if not self.legacy:
                 f_center = torch.zeros_like(features[:, :, :3])
-                f_center[:, :, 0] = features[:, :, 0] - (
-                    coors[:, 3].to(dtype).unsqueeze(1) * self.vx +
-                    self.x_offset)
-                f_center[:, :, 1] = features[:, :, 1] - (
-                    coors[:, 2].to(dtype).unsqueeze(1) * self.vy +
-                    self.y_offset)
-                f_center[:, :, 2] = features[:, :, 2] - (
-                    coors[:, 1].to(dtype).unsqueeze(1) * self.vz +
-                    self.z_offset)
+                f_center[:, :, 0] = features[:, :, 0] - (coors[:, 3].to(dtype).unsqueeze(1) * self.vx +self.x_offset)
+                f_center[:, :, 1] = features[:, :, 1] - (coors[:, 2].to(dtype).unsqueeze(1) * self.vy +self.y_offset)
+                f_center[:, :, 2] = features[:, :, 2] - (coors[:, 1].to(dtype).unsqueeze(1) * self.vz +self.z_offset)
             else:
                 f_center = features[:, :, :3]
                 f_center[:, :, 0] = f_center[:, :, 0] - (
@@ -324,3 +316,45 @@ class DynamicPillarFeatureNet(PillarFeatureNet):
                 features = torch.cat([point_feats, feat_per_point], dim=1)
 
         return voxel_feats, voxel_coors
+
+
+
+"""
+
+import torch
+from torch import nn
+from torch import Tensor
+from typing import Optional, Tuple
+
+# 假设 PFNLayer 已经定义并可用，以下是一个示例代码。
+
+# 假设 PillarFeatureNet 已经定义
+model = PillarFeatureNet(
+    in_channels=4,  # 输入特征数量，通常是 x, y, z, r
+    feat_channels=[64],  # 每层的特征通道数
+    with_distance=False,  # 不使用距离
+    voxel_size=[0.16, 0.16, 4],  # Voxel 大小
+    point_cloud_range=[0, -39.68, -3, 69.12, 39.68, 1]  # 点云范围
+)
+
+# 打印模型结构
+print(model)
+
+# 创建模拟输入
+batch_size = 2
+num_points = torch.tensor([10,20], dtype=torch.int)  # 每个 pillar 中的点数
+features = torch.rand((batch_size, 100, 4))  # 假设每个 pillar 有 150 个点，4 个特征
+coors = torch.randint(0, 10, (batch_size, 100, 4))  # 模拟每个 pillar 的坐标信息
+
+# 打印输入
+print("Features shape:", features.shape)
+print("Num points:", num_points)
+print("Coordinates shape:", coors.shape)
+
+# 前向传播
+output = model(features, num_points, coors)
+
+# 打印输出
+print("Output shape:", output.shape)
+"""
+

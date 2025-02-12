@@ -63,7 +63,7 @@ config_LiDAR_n128_120x30_m200_f10_pps1b53w = {
     'dropoff_zero_intensity':   str(0.0),    # 无强度时的衰减为0
     "channels":                 str(128),    # 通道数128
     "horizontal_fov":           str(120),    # 水平视场角120°
-    "upper_fov":                str(15),   # 上半部分垂直视场角为12.7°
+    "upper_fov":                str(15),     # 上半部分垂直视场角为12.7°
     "lower_fov":                str(-15.0),  # 下半部分垂直视场角为-12.7°
     "range":                    str(200.0),  # 探测距离200米@10%反射率
     "rotation_frequency":       str(10),     # 转速为10Hz
@@ -117,6 +117,8 @@ config_SemanticLiDAR = config_SemanticLiDAR_n128_120x30_m200_f10_pps1b53w
 
 
 #方案A--------------------------------------------------------
+
+
 
 
 # SensorCamera_set1 = dict(#fov=60
@@ -175,7 +177,7 @@ CAM_BACK_RIGHT   ={'config': config_LiDAR, 'location': {'x': 0.8, 'y': 1.45,  'z
 _xx, _yy, _zz, _length, _width, _height, _roi_intensities = 10, 0, 0, 40.0, 11.25, 4, 1
 
 #生成选择方案
-set='A' # B A
+set='B' # B A
 if set=='A':
     SensorCamera_set = SensorCamera_set1
     SensorLiDAR_set = SensorLiDAR_set1
@@ -188,7 +190,7 @@ SensorLiDARName =  [name for name in SensorLiDAR_set]
 intensity_values = np.linspace(0, 1, len(SensorLiDARName))
 # 创建字典，按顺序将强度值映射到传感器
 sensor_intensity_map = {SensorLiDARName[i]: intensity_values[i] for i in range(len(SensorLiDARName))}
-Selection_simulation_environment = 4  # 执行run_simulation_Town04 3 4 10
+Selection_simulation_environment = 10  # 执行run_simulation_Town04 3 4 10
 Layered_display = False
 Layered_display = True #会引起mvxnet识别错误
 

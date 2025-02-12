@@ -528,7 +528,7 @@ def bevfusion_data_process():
     Merge_Lidar(DATASET, bevfusion_pkl_merge)
 
     """(7)添加ROI"""
-    # ROI_add_to_PLY(bevfusion_pkl_merge)
+    ROI_add_to_PLY(bevfusion_pkl_merge)
 
     """(3)PLY 文件转为bin格式 num_pts_feats = 5"""
     Ply_to_Bin_num_pts_feats5(DATASET, bevfusion_pkl_merge, bevfusion_bin_folder, display=False)

@@ -54,52 +54,20 @@ load_from = None
 log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=50)
 lr = 0.001
-metainfo = dict(classes=[
-    'Car',
-])
+metainfo = dict(classes=[  'Car',])
 model = dict(
     backbone=dict(
         in_channels=64,
-        layer_nums=[
-            3,
-            5,
-            5,
-        ],
-        layer_strides=[
-            2,
-            2,
-            2,
-        ],
-        out_channels=[
-            64,
-            128,
-            256,
-        ],
+        layer_nums=[3,5,5,],
+        layer_strides=[2,2,2,],
+        out_channels=[64,128, 256,],
         type='SECOND'),
     bbox_head=dict(
         anchor_generator=dict(
-            ranges=[
-                [
-                    0,
-                    -39.68,
-                    -1.78,
-                    69.12,
-                    39.68,
-                    -1.78,
-                ],
-            ],
+            ranges=[[ 0, -39.68,-1.78,69.12,39.68,-1.78,],],
             reshape_out=True,
-            rotations=[
-                0,
-                1.57,
-            ],
-            sizes=[
-                [
-                    3.9,
-                    1.6,
-                    1.56,
-                ],
-            ],
+            rotations=[  0,1.57,],
+            sizes=[ [3.9,1.6,1.56,], ],
             type='AlignedAnchor3DRangeGenerator'),
         assign_per_class=True,
         bbox_coder=dict(type='DeltaXYZWLHRBBoxCoder'),
@@ -118,9 +86,9 @@ model = dict(
             use_sigmoid=True),
         loss_dir=dict(
             loss_weight=0.2, type='mmdet.CrossEntropyLoss', use_sigmoid=False),
-        num_classes=1,
-        type='Anchor3DHead',
-        use_direction_classifier=True),
+            num_classes=1,
+            type='Anchor3DHead',
+            use_direction_classifier=True),
     data_preprocessor=dict(
         type='Det3DDataPreprocessor',
         voxel=True,

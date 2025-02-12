@@ -3,6 +3,7 @@ import argparse
 import logging
 import os
 import os.path as osp
+from types import SimpleNamespace
 
 from mmengine.config import Config, DictAction
 from mmengine.logging import print_log
@@ -64,6 +65,35 @@ def parse_args():
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
     return args
+
+
+from types import SimpleNamespace
+from types import SimpleNamespace
+import os
+
+
+# def parse_args():
+#     # 手动配置参数，而不是通过命令行解析
+#     args = SimpleNamespace(
+#         Sensor_cfg='path/to/your/Sensor_cfg/file',  # 替换为你的传感器配置文件路径
+#         work_dir='path/to/work_dir',  # 替换为保存日志和模型的目录路径
+#         amp=False,  # 是否启用混合精度训练
+#         sync_bn='none',  # 可选 'none', 'torch', 'mmcv'
+#         auto_scale_lr=False,  # 是否启用自动缩放学习率
+#         resume='auto',  # 如果需要指定checkpoint路径，填写路径；否则默认'auto'
+#         ceph=False,  # 是否使用 ceph 作为数据存储后端
+#         cfg_options=None,  # 可选的覆盖配置，按需填写
+#         launcher='none',  # 可选 'none', 'pytorch', 'slurm', 'mpi'
+#         local_rank=0  # 默认为0
+#     )
+#
+#     # 模拟命令行环境中的 `LOCAL_RANK` 参数
+#     if 'LOCAL_RANK' not in os.environ:
+#         os.environ['LOCAL_RANK'] = str(args.local_rank)
+#
+#     return args
+
+
 
 
 def main():
@@ -139,6 +169,9 @@ def main():
 
     # start training
     runner.train()
+
+
+
 
 
 if __name__ == '__main__':
